@@ -14,7 +14,7 @@
   <title>Golden Balloon</title>
 </head>
 <body>
-  <nav style="background-color: #FFED90;" class="navbar navbar-expand-lg">
+  <nav style="background-color: #FFED90;" class="navbar navbar-expand-sm">
     <div class="container-fluid m-2 p-2">
         <div style="float:left;">
             <img style="width: 50px;" src="/STATIC/imege/로고고-removebg-preview.png" alt="">
@@ -28,7 +28,7 @@
               <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                   <a class="nav-link active" aria-current="page" href="#">리뷰목록</a>
-                  <a class="nav-link" href="#">공지사항 / FQA</a>
+                  <a class="nav-link" href="{% url 'articles:notice' %}">공지사항 / FQA</a>
                   <a class="nav-link" href="#">로그인</a>
                   <a class="nav-link disabled">회원가입/마이페이지</a>
                 </div>

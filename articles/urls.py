@@ -11,4 +11,10 @@ urlpatterns = [
     path("update/<int:pk>", views.update, name="update"),
     path("c_create/<int:pk>", views.c_create, name="c_create"),
     path("c_delete/<int:a_pk>/<int:c_pk>", views.c_delete, name="c_delete"),
+    path("like/<int:pk>", views.like, name="like"),
+    path("notice/", views.notice, name="notice"),
+    path("n_create/", views.n_create, name="n_create"),
+    path("n_detail/<int:pk>", views.n_detail, name="n_detail"),
+    path("n_delete/<int:pk>", views.n_delete, name="n_delete"),
+    path("n_update/<int:pk>", views.n_update, name="n_update"),
 ]

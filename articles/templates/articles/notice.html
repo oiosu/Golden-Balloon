@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %} 
+
+<h1 class='text-center'>공지사항</h1><hr>
+<div class='text-end  my-3'>
+  <a class='btn btn-primary btn-sm' href="{% url 'articles:n_create' %}">글쓰기</a>
+</div>
+
+<table class="table table-warning table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">공지 제목</th>
+      <th scope="col">작성시간</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    {% for notice in notices %}
+    <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
+      <th scope="row">{{ notice.pk }}</th>
+      <td>{{ notice.title }}</td>
+      <td>{{ notice.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
