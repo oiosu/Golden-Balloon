@@ -5,13 +5,20 @@
 
 <h1>3. 글 상세페이지</h1><hr>
 
-<!-- 글 제목, 내용-->>
+<!-- 글 제목, 내용, 이미지-->
 <p class='text-end'>{{ article.created_at }}</p>
 <h1>{{ article.title }}</h1>
 <p>{{ article.content }}</p>
+
+{% if request.user == review.user %}
 <a href="{% url 'articles:update' article.pk %}">수정</a>
 <a href="{% url 'articles:delete' article.pk %}">삭제</a>
+{% endif %}
 <a href="{% url 'articles:index' %}">홈으로</a>
+<div class='container text-center mt-5 mb-5'>
+  {% if article.image %}
+  <img src="{{ article.image.url }}" alt="{{ article.image }}" width="400" height="300"> {% endif %}
+</div>
 <hr>
 
 <!-- 댓글 작성 -->

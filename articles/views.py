@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment
-from .forms import ArticleForm, CommentForm
+from .models import Article, Comment, Notice
+from .forms import ArticleForm, CommentForm, NoticeForm
 
 # Create your views here.
 def index(request):
@@ -15,10 +15,11 @@ def index(request):
     return render(request, "articles/index.html", context)
 
 
+@login_required
 def create(request):
 
     if request.method == "POST":
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article = article_form.save(commit=False)
             article.user = request.user
@@ -60,7 +61,7 @@ def update(request, pk):
     article = Article.objects.get(pk=pk)
 
     if request.method == "POST":
-        article_form = ArticleForm(request.POST, instance=article)
+        article_form = ArticleForm(request.POST, request.FILES, instance=article)
         if article_form.is_valid():
             article_form.save()
             return redirect("articles:detail", pk)
@@ -72,6 +73,7 @@ def update(request, pk):
     return render(request, "articles/update.html", context)
 
 
+@login_required
 def c_create(request, pk):
 
     article = Article.objects.get(pk=pk)
@@ -93,3 +95,81 @@ def c_delete(request, a_pk, c_pk):
     comment.delete()
 
     return redirect("articles:detail", a_pk)
+
+
+@login_required
+def like(request, pk):
+
+    article = Article.objects.get(pk=pk)
+
+    if request.user in article.like_users.all():
+        article.like_users.remove(request.user)
+    else:
+        article.like_users.add(request.user)
+
+    return redirect("articles:index")
+
+
+def notice(request):
+
+    notices = Notice.objects.order_by("-pk")
+
+    context = {
+        "notices": notices,
+    }
+
+    return render(request, "articles/notice.html", context)
+
+
+@login_required
+def n_create(request):
+
+    if request.method == "POST":
+        notice_form = NoticeForm(request.POST, request.FILES)
+        if notice_form.is_valid():
+            notice = notice_form.save(commit=False)
+            notice.user = request.user
+            notice.save()
+            return redirect("articles:notice")
+    else:
+        notice_form = NoticeForm()
+    context = {
+        "notice_form": notice_form,
+    }
+    return render(request, "articles/n_create.html", context)
+
+
+def n_detail(request, pk):
+
+    notice = Notice.objects.get(pk=pk)
+
+    context = {
+        "notice": notice,
+    }
+
+    return render(request, "articles/n_detail.html", context)
+
+
+def n_delete(request, pk):
+
+    notice = Notice.objects.get(pk=pk)
+    notice.delete()
+
+    return redirect("articles:notice")
+
+
+def n_update(request, pk):
+
+    notice = Notice.objects.get(pk=pk)
+
+    if request.method == "POST":
+        notice_form = NoticeForm(request.POST, request.FILES, instance=notice)
+        if notice_form.is_valid():
+            notice_form.save()
+            return redirect("articles:n_detail", pk)
+    else:
+        notice_form = NoticeForm(instance=notice)
+    context = {
+        "notice_form": notice_form,
+    }
+    return render(request, "articles/n_update.html", context)
