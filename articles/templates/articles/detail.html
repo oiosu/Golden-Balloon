@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %} 
+
+<h1>3. 글 상세페이지</h1><hr>
+
+<p class='text-end'>{{ article.created_at }}</p>
+<h1>{{ article.title }}</h1>
+<p>{{ article.content }}</p>
+삭제
+수정
+
+
+{% endblock %}
