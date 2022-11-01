@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %}
+<h1>회원 정보 보기</h1>
+
+<h1>{{ user.username }}</h1>
+<!-- 프로필 이미지 생성 예정-->
+<p>팔로워 {{ user.followers.count }} | 팔로잉 {{ user.followings.count }}</p>
+{% if request.user != user %}
+<a href="{% url 'accounts:follow' user.pk %}" class="text-decoration-none"></a>
+    {% if request.user in user.followers.all %}
+        <button class="btn btn-outline-light m-2" type="button">
+            팔로우 취소
+        </button>
+    {% else %}
+        <button class="btn btn-primary m-2" type="button">
+            팔로우
+        </button>
+    {% endif %}
+</a>
+{% endif %}
+
+<p>이메일: {{ user.email }}</p>
+
+<h3>"{{ user.username }}"님이 작성한 글</h3>
+{% for article in user.article_set.all %}
+<p>
+    {{ forloop.counter }}
+    <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
+</p>
+{% endfor %}
+
+<h3>"{{ user.username }}"님이 작성한 댓글</h3>
+{% for comment in user.comment_set.all %}
+    <p class="text-white">
+        {{ forloop.counter }}
+        <a class="text-decoration-none" href="{% url 'articles:detail' comment.article_id %}">{{ comment.content }}</a>
+    </p>
+{% endfor %}
+
+<h3>위시리스트</h3>
+{% endblock %}
