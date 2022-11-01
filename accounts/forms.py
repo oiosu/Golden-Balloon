@@ -12,7 +12,8 @@ class CustomUserCreationForm(UserCreationForm):
             "username",
             "last_name",
             "first_name",
-            "email",)
+            "email",
+            )
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:

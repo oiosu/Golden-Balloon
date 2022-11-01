@@ -6,9 +6,10 @@
 <p>닉네임: {{ user.username }}</p>
 <p>이메일: {{ user.email }}</p>
 
-<a href="" class="btn btn-ouline-warning">편집하기</a>
+<a href="{% url 'accounts:update' %}" class="btn btn-outline-warning">편집하기</a>
 
-<p>나를 팔로우 한 사람</p>
-<p>내가 팔로우 한 사람</p>
+<h3>나를 팔로우 한 사람</h3>
+
+<h3>내가 팔로우 한 사람</h3>
 
 {% endblock %}

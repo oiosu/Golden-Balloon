@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
@@ -53,20 +53,21 @@ def mypage_1(request, pk):
 
 def mypage_2(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    
+
     context = {
         'user': user,
     }
     return render(request, 'accounts/mypage_2.html', context)
 
+@login_required
 def follow(request, pk):
-    user = get_user_model().objects.get(id=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
     if request.user == user:
-        message.warning(request, '팔로우할 수 없습니다.')
+        messages.warning(request, '스스로 팔로우 할 수 없습니다.')
         return redirect('accounts:mypage_2', pk)
 
-    if request.user in user.followers.all():        
-        user.followers.remove(request.user)    
+    if request.user in user.followers.all():
+        user.followers.remove(request.user)
     else:
         user.followers.add(request.user)
 

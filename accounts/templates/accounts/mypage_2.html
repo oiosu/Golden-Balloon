@@ -4,13 +4,14 @@
 {% block body %}
 <h1>회원 정보 보기</h1>
 
-<h1>{{ user.username }}</h1>
+<h3>{{ user.username }}</h3>
 <!-- 프로필 이미지 생성 예정-->
-<p>팔로워 {{ user.followers.count }} | 팔로잉 {{ user.followings.count }}</p>
+
+<p>팔로우 : {{ user.followings.count }} | 팔로워 : {{ user.followers.count }}</p>
 {% if request.user != user %}
-<a href="{% url 'accounts:follow' user.pk %}" class="text-decoration-none"></a>
+<a href="{% url 'accounts:follow' user.pk %}">
     {% if request.user in user.followers.all %}
-        <button class="btn btn-outline-light m-2" type="button">
+        <button class="btn btn-outline-dark mt-2" type="button">
             팔로우 취소
         </button>
     {% else %}
@@ -40,4 +41,5 @@
 {% endfor %}
 
 <h3>위시리스트</h3>
+
 {% endblock %}
