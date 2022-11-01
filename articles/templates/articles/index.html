@@ -11,6 +11,8 @@
   <p>
   {{ article.pk }}
   <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
+  {{ article.user }}
+  {{ article.created_at }}
   </p>
 {% endfor %}
 

@@ -28,6 +28,7 @@ class Article(models.Model):
         format="JPEG",
         options={"quality": 80},
     )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
