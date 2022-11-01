@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %}
+<h1>{{ user.username }}</h1>
+<p>닉네임: {{ user.username }}</p>
+<p>이메일: {{ user.email }}</p>
+
+<a href="" class="btn btn-ouline-warning">편집하기</a>
+
+<p>나를 팔로우 한 사람</p>
+<p>내가 팔로우 한 사람</p>
+
+{% endblock %}

@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth import get_user_model, update_session_auth_hash
+from email import message
+
 
 # Create your views here.
 def signup(request):
@@ -56,3 +58,30 @@ def mypage_2(request, pk):
         'user': user,
     }
     return render(request, 'accounts/mypage_2.html', context)
+
+def follow(request, pk):
+    user = get_user_model().objects.get(id=pk)
+    if request.user == user:
+        message.warning(request, '팔로우할 수 없습니다.')
+        return redirect('accounts:mypage_2', pk)
+
+    if request.user in user.followers.all():        
+        user.followers.remove(request.user)    
+    else:
+        user.followers.add(request.user)
+
+    return redirect('accounts:mypage_2', pk)
+
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:mypage_1', request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/update.html', context)
