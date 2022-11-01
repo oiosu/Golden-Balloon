@@ -3,17 +3,35 @@
 
 {% block body %} 
 
-<h1>1. index페이지</h1><hr>
-<a href="{% url 'articles:create' %}">글쓰기</a>
-<hr>
+<div class='text-end  my-3'>
+  <a class='btn btn-primary btn-sm' href="{% url 'articles:create' %}">글쓰기</a>
+</div>
 
-{% for article in articles %}
-  <p>
-  {{ article.pk }}
-  <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
-  {{ article.user }}
-  {{ article.created_at }}
-  </p>
-{% endfor %}
+<!-- 카드 -->
+<div class='d-flex align-content-around justify-content-between flex-wrap my-2'>
+  {% for article in articles %}
+  <div class="card" style="width: 18rem;">
+    {% if article.thumbnail %}
+    <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.image }}" style='height: 15rem;'>
+    {% else %}
+    <img src="https://dummyimage.com/200x300/000000/c4c4c4" class="card-img-top" style="height: 15rem;">
+    {% endif %}
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <div>No.{{ article.pk }}</div>
+        <div>{{ article.user }}</div>
+      </div>
+      <h2 class="card-title text-center"><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h2>
+      <div class='text-end'>
+        {% if request.user in article.like_users.all %}
+          <a href="{% url 'articles:like' article.pk %}" class="btn btn-danger btn-sm">♥ {{ article.like_users.count }} </a>
+        {% else %}
+          <a href="{% url 'articles:like' article.pk %}" class="btn btn-outline-danger btn-sm">♥ {{ article.like_users.count }} </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
