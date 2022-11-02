@@ -28,30 +28,16 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        user = auth.authenticate(request, email=email, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('articles:index')
-        else:
-            return render(request, 'accounts/login.html', {'error': '이메일 혹은 비밀번호가 일치하지 않습니다.'})
-    
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect(request.GET.get('next') or 'articles:index')
     else:
-        return render(request, 'accounts/login.html')
-    #     return render(request)
-    #     form = AuthenticationForm(request, data=request.POST)
-    #     if form.is_valid():
-    #         auth_login(request, form.get_user())
-    #         return redirect(request.GET.get('next') or 'articles:index')
-
-    # else:
-    #     form = AuthenticationForm()
-
-    # context = {
-    #     'form': form,
-    # }
-    # return render(request, 'accounts/login.html', context)
+        form = AuthenticationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/login.html', context)
 
 def logout(request):
     auth_logout(request)
