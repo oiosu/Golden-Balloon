@@ -73,7 +73,7 @@ class Review(models.Model):
     thumbnail = ProcessedImageField(
         upload_to="images/",
         blank=True,
-        processors=[Thumbnail(200, 300)],
+        processors=[Thumbnail(400, 300)],
         format="JPEG",
         options={"quality": 80},
     )

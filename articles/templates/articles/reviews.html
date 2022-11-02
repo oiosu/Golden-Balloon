@@ -18,7 +18,11 @@
   <div class="d-flex justify-content-center flex-wrap container pb-5">
     {% for review in reviews %}
     <div class="card mx-5 my-4" style="width: 18rem; border:2px solid #FFED90">
-      <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/84000/84621-Paris.jpg" class="card-img-top" alt="...">
+      {% if review.thumbnail %}
+        <img src="{{ review.thumbnail.url }}" class="card-img-top" alt="{{ review.image }}" style='height: 10rem;'>
+      {% else %}
+        <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/84000/84621-Paris.jpg" class="card-img-top" alt="...">
+      {% endif %}
       <div class="card-body" style="height: 15rem;">
         <p class="text-muted mb-0" style="font-size:0.9rem">카테고리</p>
         <h4 class="card-title mt-0 mb-1">{{ review.title }}</h4>

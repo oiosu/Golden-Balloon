@@ -23,4 +23,5 @@ urlpatterns = [
     path("reviews/delete/<int:pk>", views.r_delete, name="r_delete"),
     path("reviews/update/<int:pk>", views.r_update, name="r_update"),
     path("reviews/c_create/<int:pk>", views.r_c_create, name="r_c_create"),
+    path("reviews/c_delete/<int:a_pk>/<int:c_pk>", views.r_c_delete, name="r_c_delete"),
 ]

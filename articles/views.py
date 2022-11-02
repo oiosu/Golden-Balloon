@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment, Notice, Review
+from .models import Article, Comment, Notice, Review, ReviewComment
 from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm, ReviewCommentForm
 
 # Create your views here.
@@ -260,3 +260,12 @@ def r_c_create(request, pk):
         review_comment.save()
 
     return redirect("articles:r_detail", pk)
+
+
+@login_required
+def r_c_delete(request, a_pk, c_pk):
+
+    comment = ReviewComment.objects.get(pk=c_pk)
+    comment.delete()
+
+    return redirect("articles:r_detail", a_pk)

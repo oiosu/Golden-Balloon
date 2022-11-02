@@ -95,6 +95,7 @@
       <span class="fw-bold me-5" style="display: inline-block; width: 5rem"
         >{{ comment.user }}</span
       ><span>{{ comment.content }}</span>
+      <span><a href="{% url 'articles:r_c_delete' review.pk comment.pk %}">삭제</a></span>
     </div>
     {% endfor %}
   </div>
@@ -103,7 +104,6 @@
 <a href="{% url 'articles:r_update' review.pk %}">수정</a>
 <a href="{% url 'articles:r_delete' review.pk %}">삭제</a>
 {% endif %}
-<a href="{% url 'articles:reviews' %}">목록으로</a>
 <hr>
 <!-- 댓글 작성 -->
 <form action="{% url 'articles:r_c_create' review.pk %}" method="POST">
