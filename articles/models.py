@@ -83,6 +83,9 @@ class Review(models.Model):
         settings.AUTH_USER_MODEL, related_name="like_reviews"
     )
     grade = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    like_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="like_review"
+    )
 
 
 class ReviewComment(models.Model):

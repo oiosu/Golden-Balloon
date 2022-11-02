@@ -18,6 +18,11 @@
   <div class="d-flex justify-content-center flex-wrap container pb-5">
     {% for review in reviews %}
     <div class="card mx-5 my-4" style="width: 18rem; border:2px solid #FFED90">
+      {% if request.user in review.like_users.all %}
+        <a href="{% url 'articles:r_like' review.pk %}" class="position-absolute top-0 end-0" style="margin: 1rem 1rem 0rem 0; text-decoration: none"><i class="bi bi-heart-fill fs-4" style="color: red;"></i></a>
+      {% else %}
+      <a href="{% url 'articles:r_like' review.pk %}" class="position-absolute top-0 end-0" style="margin: 1rem 1rem 0rem 0; text-decoration: none"><i class="bi bi-heart fs-4" style="color: red;"></i></a>
+      {% endif %}
       {% if review.thumbnail %}
         <img src="{{ review.thumbnail.url }}" class="card-img-top" alt="{{ review.image }}" style='height: 10rem;'>
       {% else %}

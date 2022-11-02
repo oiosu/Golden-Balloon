@@ -269,3 +269,16 @@ def r_c_delete(request, a_pk, c_pk):
     comment.delete()
 
     return redirect("articles:r_detail", a_pk)
+
+
+@login_required
+def r_like(request, pk):
+
+    review = Review.objects.get(pk=pk)
+
+    if request.user in review.like_users.all():
+        review.like_users.remove(request.user)
+    else:
+        review.like_users.add(request.user)
+
+    return redirect("articles:reviews")
