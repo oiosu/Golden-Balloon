@@ -3,6 +3,7 @@
 
 {% block body %}
 <h1>{{ user.username }}</h1>
+<img src="{{ user.user_img.url }}" alt="{{ user.user_img }}">
 <p>닉네임: {{ user.username }}</p>
 <p>이메일: {{ user.email }}</p>
 
