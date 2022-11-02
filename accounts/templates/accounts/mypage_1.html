@@ -2,17 +2,6 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-<h1>{{ user.username }}</h1>
-<img src="{{ user.user_img.url }}" alt="{{ user.user_img }}">
-<p>닉네임: {{ user.username }}</p>
-<p>이메일: {{ user.email }}</p>
-
-<a href="{% url 'accounts:update' %}" class="btn btn-outline-warning">편집하기</a>
-
-<h3>나를 팔로우 한 사람</h3>
-
-<h3>내가 팔로우 한 사람</h3>
-
 <div class="py-5">
     <div style="border-radius: 3%; border: 3px solid #FFED90;" class="container">
       <div class="row">
@@ -20,7 +9,11 @@
           <div class="row">
             <div class="col-md-4"></div>
             <div class="d-flex justify-content-center col-md-4">
-              <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
+                {% if user.user_img %}
+                    <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
+                {% else %}  
+                    <img class="m-3 rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="{{ user.user_img }}" style="width:100px;">
+                {% endif %}
             </div>
             <div class="col-md-4 text-right p-3">
               <a style="border: 3px solid #FFED90;" class="btn" href="{% url 'accounts:update' %}">편집하기</a>
@@ -32,25 +25,27 @@
                 <br><br>
                 이메일&nbsp; : {{ user.email }}
                 <br><br> 
-                비밀번호&nbsp; : ************** </p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <ul class="list-group list-group-flush">
                 <p style="text-align: center;">나를 팔로우 한 사람 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140051.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140077.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-              </ul>
+                    {% for myfollower in user.followers.all %}
+                        {{ forloop.counter }}
+                        <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" style="width:50px;">{{ myfollower.username }}</li>
+                    {% endfor %}
+                </ul>
+
             </div>
             <div class="col-md-6">
               <p style="text-align: center;">내가 팔로우 한 사람 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140061.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4139/4139981.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-                <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4139/4139951.png" style="width:50px;">&nbsp&nbsp김00&nbsp;</li>
-              </ul>
+                {% for myfollowing in user.followings.all %}
+                    {{ forloop.counter }}
+                    <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140061.png" style="width:50px;">{{ myfollowing.username }}</li>
+                {% endfor %}
+            </ul>
             </div>
           </div>
         </div>
