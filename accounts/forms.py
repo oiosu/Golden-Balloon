@@ -24,4 +24,5 @@ class CustomUserChangeForm(UserChangeForm):
             "last_name",
             "first_name",
             "email",
+            "user_img"
         )
