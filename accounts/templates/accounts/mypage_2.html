@@ -3,9 +3,9 @@
 
 {% block body %}
 <h1>회원 정보 보기</h1>
-
+<br>
 <h3>{{ user.username }}</h3>
-<!-- 프로필 이미지 생성 예정-->
+<img src="{{ user.user_img.url }}" alt="{{ user.user_img }}">
 
 <p>팔로우 : {{ user.followings.count }} | 팔로워 : {{ user.followers.count }}</p>
 {% if request.user != user %}
