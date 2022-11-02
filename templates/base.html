@@ -18,7 +18,7 @@
     <div class="container-fluid m-2 p-2">
         <div style="float:left;">
             <img style="width: 50px;" src="/STATIC/imege/로고고-removebg-preview.png" alt="">
-            <a class="navbar-brand" href="#">누런 풍선</a>
+            <a class="navbar-brand" href="{% url 'articles:index' %}">누런 풍선</a>
             <input class="pe-5 " type="text" placeholder="검색해보세요.">
         </div>
         <div>
@@ -27,9 +27,8 @@
               </button>
               <div class="collapse navbar-collapse m-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="#">리뷰목록</a>
-
-                  <a class="nav-link" href="articles:notice">공지사항 / FQA</a>
+                  <a class="nav-link active" aria-current="page" href="{% url 'articles:reviews' %}">리뷰목록</a>
+                  <a class="nav-link" href="{% url 'articles:notice' %}">공지사항 / FQA</a>
 
                   {% if request.user.is_authenticated %}
                   <a class="nav-link" href="{% url 'accounts:mypage_1' request.user.pk %}">{{ request.user }}</a> 
