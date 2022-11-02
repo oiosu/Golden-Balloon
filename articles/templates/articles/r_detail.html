@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %} 
+
+
+<h1>리뷰 상세페이지</h1><hr>
+
+<!-- 글 제목, 내용, 이미지-->
+<p class='text-end'>작성시간: {{ review.created_at }}</p>
+<p>글쓴이: {{ review.user }}
+<h1>{{ review.title }}</h1>
+<p>{{ review.content }}</p>
+
+{% if request.user == review.user %}
+<a href="">수정</a>
+<a href="">삭제</a>
+{% endif %}
+<a href="{% url 'articles:reviews' %}">목록으로</a>
+<hr>
+
+{% endblock %}

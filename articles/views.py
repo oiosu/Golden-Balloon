@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment, Notice
-from .forms import ArticleForm, CommentForm, NoticeForm
+from .models import Article, Comment, Notice, Review
+from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm
 
 # Create your views here.
 def index(request):
@@ -173,3 +173,44 @@ def n_update(request, pk):
         "notice_form": notice_form,
     }
     return render(request, "articles/n_update.html", context)
+
+
+def reviews(request):
+
+    reviews = Review.objects.order_by("-pk")
+
+    context = {
+        "reviews": reviews,
+    }
+
+    return render(request, "articles/reviews.html", context)
+
+
+@login_required
+def r_create(request):
+
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST, request.FILES)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.save()
+            return redirect("articles:reviews")
+    else:
+        review_form = ReviewForm()
+    context = {
+        "review_form": review_form,
+    }
+    return render(request, "articles/r_create.html", context)
+
+
+@login_required
+def r_detail(request, pk):
+
+    review = Review.objects.get(pk=pk)
+
+    context = {
+        "review": review,
+    }
+
+    return render(request, "articles/r_detail.html", context)
