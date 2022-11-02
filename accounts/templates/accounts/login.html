@@ -3,15 +3,15 @@
 
 {% block body %}
 <h1>로그인</h1>
-{% comment %} <div>
+<div>
     <form action="" method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% bootstrap_button button_type="submit" content="로그인" %}
     </form>
-</div> {% endcomment %}
+</div> 
 
-<div class="py-5 text-center">
+{% comment %} <div class="py-5 text-center">
     <div class="py-5 container">
       <div class="row">
         <div style="border-radius: 3%; border: 3px solid #FFED90;" class="mx-auto col-md-6 col-10 bg-white p-5">
@@ -42,5 +42,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
 {% endblock body %}
