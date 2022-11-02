@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill, Thumbnail
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 # like_users는 추후에 업로드할 예정입니다!
@@ -81,6 +82,7 @@ class Review(models.Model):
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="like_reviews"
     )
+    grade = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
 
 class ReviewComment(models.Model):
