@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Article, Comment, Notice, Review
-from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm
+from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm, ReviewCommentForm
 
 # Create your views here.
 def index(request):
@@ -208,9 +208,55 @@ def r_create(request):
 def r_detail(request, pk):
 
     review = Review.objects.get(pk=pk)
+    review_comment_form = ReviewCommentForm()
+    comments = review.reviewcomment_set.order_by("-pk")
 
     context = {
         "review": review,
+        "review_comment_form": review_comment_form,
+        "comments": comments,
     }
 
     return render(request, "articles/r_detail.html", context)
+
+
+@login_required
+def r_delete(request, pk):
+
+    review = Review.objects.get(pk=pk)
+    review.delete()
+
+    return redirect("articles:reviews")
+
+
+@login_required
+def r_update(request, pk):
+
+    review = Review.objects.get(pk=pk)
+
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST, request.FILES, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect("articles:r_detail", pk)
+    else:
+        review_form = ReviewForm(instance=review)
+    context = {
+        "review_form": review_form,
+    }
+    return render(request, "articles/r_update.html", context)
+
+
+@login_required
+def r_c_create(request, pk):
+
+    review = Review.objects.get(pk=pk)
+    review_comment_form = ReviewCommentForm(request.POST)
+
+    if review_comment_form.is_valid():
+        review_comment = review_comment_form.save(commit=False)
+        review_comment.review = review
+        review_comment.user = request.user
+        review_comment.save()
+
+    return redirect("articles:r_detail", pk)

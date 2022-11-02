@@ -70,7 +70,6 @@ class Review(models.Model):
         options={"quality": 80},
         null=True,
     )
-
     thumbnail = ProcessedImageField(
         upload_to="images/",
         blank=True,
@@ -82,3 +81,10 @@ class Review(models.Model):
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="like_reviews"
     )
+
+
+class ReviewComment(models.Model):
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
