@@ -36,7 +36,7 @@ class NoticeForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ["title", "content", "image", "thumbnail"]
+        fields = ["title", "content", "grade", "image", "thumbnail"]
 
 
 class ReviewCommentForm(forms.ModelForm):
@@ -49,10 +49,10 @@ class ReviewCommentForm(forms.ModelForm):
             "content": forms.Textarea(
                 attrs={
                     "placeholder": "",
-                    "style": "height: 40px; resize: none; width: 100%;",
+                    "style": "color: #c6c6c6; border: 1px solid #c6c6c6; height: 40px; resize: none; width: 45rem; padding: 0.4rem 0; display: inline-block;",
                 }
             ),
         }
         labels = {
-            "content": "댓글",
+            "content": "댓글을 집력해주세요",
         }
