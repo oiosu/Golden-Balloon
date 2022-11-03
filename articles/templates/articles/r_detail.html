@@ -140,16 +140,18 @@
       <span class="fw-bold me-5" style="display: inline-block; width: 5rem"
         >{{ comment.user }}</span
       ><span>{{ comment.content }}</span>
-      <a href="{% url 'articles:r_c_delete' review.pk comment.pk %}">
-        <span class="fs-4" style="color: #e83c4b; display: inline-block; transform: translateY(3px);">
-          <i class="bi bi-x"></i>
-        </span>
-      </a>
+      {% if request.user == comment.user %}
+        <a href="{% url 'articles:r_c_delete' review.pk comment.pk %}">
+          <span class="fs-4" style="color: #e83c4b; display: inline-block; transform: translateY(3px);">
+            <i class="bi bi-x"></i>
+          </span>
+        </a>
+      {% endif %}
     </div>
     {% endfor %}
       <!-- 댓글 입력 폼 -->
       <div class="mt-4 mx-3">
-        <form action="{% url 'articles:r_c_create' review.pk %}" method="POST">
+        <form action="{% url 'articles:r_c_create' review.pk %}" method="POST" name="comment_form">
           {% csrf_token %}
           <input
             class="ps-3 rounded"
@@ -161,6 +163,9 @@
             "
             type="text"
             placeholder="댓글을 입력해주세요"
+            name="comment"
+            id="comment"
+            required
             />
           <button
             class="btn fw-semibold mb-1 ms-1"
@@ -170,21 +175,10 @@
             등록
           </button>
         </form>
-        <!-- 댓글 작성 -->
-          <form action="{% url 'articles:r_c_create' review.pk %}" method="POST">
-            {% csrf_token %}
-            {% bootstrap_form review_comment_form layout="inline" %}
-            <button
-            class="btn fw-semibold mb-1 ms-1"
-            style="background-color: #ffed90; width: 4rem display: inline-block;"
-            type="submit"
-          >
-            등록
-          </button>
-          </form>
       </div>
   </div>
 </section>
+
 
 <!-- JavaScript Bundle with Popper -->
 <script

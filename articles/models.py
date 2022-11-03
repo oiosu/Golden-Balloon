@@ -59,6 +59,7 @@ class Notice(models.Model):
 
 
 class Review(models.Model):
+    country = models.CharField(max_length=10)
     title = models.CharField(max_length=20)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -89,7 +90,7 @@ class Review(models.Model):
 
 
 class ReviewComment(models.Model):
-    content = models.TextField()
+    content = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
