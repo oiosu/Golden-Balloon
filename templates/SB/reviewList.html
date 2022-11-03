@@ -279,6 +279,7 @@
           <p
             class="card-text fw-semibold"
             style="
+              min-height: 3rem;
               text-overflow: ellipsis;
               overflow: hidden;
               word-break: break-word;
@@ -287,8 +288,7 @@
               -webkit-box-orient: vertical;
             "
           >
-            너무 비싸고 좋았어요. 가이드님이 정말 비싼 곳만 데리고 다녀서 돈 다
-            털리고 좋았어요. 강추!
+            너무 비싸고 좋았어요.
           </p>
           <h1 class="float-end">
             <button class="btn p-0">
@@ -302,7 +302,37 @@
       </div>
     </div>
 
-    <!-- 글쓰기  -->
+    <!-- 페이지네이션 -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Previous"
+            style="border: none"
+          >
+            <
+          </a>
+        </li>
+        <li class="page-item mx-2">
+          <a class="page-link" href="#" style="border: none">1</a>
+        </li>
+        <li class="page-item mx-2">
+          <a class="page-link" href="#" style="border: none">2</a>
+        </li>
+        <li class="page-item mx-2">
+          <a class="page-link" href="#" style="border: none">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next" style="border: none">
+            >
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 글쓰기 -->
     <div class="sticky-bottom float-end me-4">
       <button class="btn fw-semibold px-3" style="font-size: 4rem">
         <i class="bi bi-plus-circle-fill" style="color: #ffed90"></i>

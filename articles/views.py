@@ -1,8 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment, Notice, Review, ReviewComment
-from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm, ReviewCommentForm
+from .models import Article, Comment, Notice, Review, ReviewComment, Faq
+from .forms import (
+    ArticleForm,
+    CommentForm,
+    NoticeForm,
+    ReviewForm,
+    ReviewCommentForm,
+    FaqForm,
+)
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -125,18 +133,13 @@ def notice(request):
 def n_create(request):
 
     if request.method == "POST":
-        notice_form = NoticeForm(request.POST, request.FILES)
-        if notice_form.is_valid():
-            notice = notice_form.save(commit=False)
-            notice.user = request.user
-            notice.save()
-            return redirect("articles:notice")
-    else:
-        notice_form = NoticeForm()
-    context = {
-        "notice_form": notice_form,
-    }
-    return render(request, "articles/n_create.html", context)
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        user = request.user
+        Notice.objects.create(title=title, content=content, user=user)
+        return redirect("articles:notice")
+
+    return render(request, "articles/n_create.html")
 
 
 def n_detail(request, pk):
@@ -150,6 +153,7 @@ def n_detail(request, pk):
     return render(request, "articles/n_detail.html", context)
 
 
+@login_required
 def n_delete(request, pk):
 
     notice = Notice.objects.get(pk=pk)
@@ -158,20 +162,24 @@ def n_delete(request, pk):
     return redirect("articles:notice")
 
 
+@login_required
 def n_update(request, pk):
 
     notice = Notice.objects.get(pk=pk)
 
     if request.method == "POST":
-        notice_form = NoticeForm(request.POST, request.FILES, instance=notice)
-        if notice_form.is_valid():
-            notice_form.save()
-            return redirect("articles:n_detail", pk)
-    else:
-        notice_form = NoticeForm(instance=notice)
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        notice.title = title
+        notice.content = content
+        notice.save()
+
+        return redirect("articles:n_detail", pk)
+
     context = {
-        "notice_form": notice_form,
+        "notice": notice,
     }
+
     return render(request, "articles/n_update.html", context)
 
 
@@ -179,8 +187,15 @@ def reviews(request):
 
     reviews = Review.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(reviews, 6)
+    paginated_reviews = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "reviews": reviews,
+        "paginated_reviews": paginated_reviews,
+        "max_index": max_index,
     }
 
     return render(request, "articles/reviews.html", context)
@@ -281,3 +296,68 @@ def r_like(request, pk):
         review.like_users.add(request.user)
 
     return redirect("articles:reviews")
+
+
+def faq(request):
+
+    faqs = Faq.objects.order_by("-pk")
+
+    context = {
+        "faqs": faqs,
+    }
+
+    return render(request, "articles/faq.html", context)
+
+
+@login_required
+def faq_create(request):
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        user = request.user
+        Faq.objects.create(title=title, content=content, user=user)
+        return redirect("articles:faq")
+
+    return render(request, "articles/faq_create.html")
+
+
+def faq_detail(request, pk):
+
+    faq = Faq.objects.get(pk=pk)
+
+    context = {
+        "faq": faq,
+    }
+
+    return render(request, "articles/faq_detail.html", context)
+
+
+@login_required
+def faq_delete(request, pk):
+
+    faq = Faq.objects.get(pk=pk)
+    faq.delete()
+
+    return redirect("articles:faq")
+
+
+@login_required
+def faq_update(request, pk):
+
+    faq = Faq.objects.get(pk=pk)
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        faq.title = title
+        faq.content = content
+        faq.save()
+
+        return redirect("articles:faq_detail", pk)
+
+    context = {
+        "faq": faq,
+    }
+
+    return render(request, "articles/faq_update.html", context)

@@ -65,7 +65,7 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
-        upload_to="reviews/",
+        upload_to="images/",
         blank=True,
         processors=[ResizeToFill(1200, 960)],
         format="JPEG",
@@ -96,6 +96,7 @@ class ReviewComment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
+
 class Product(models.Model):
     title = models.CharField(max_length=100)
     # content = models.TextField()
@@ -107,3 +108,19 @@ class Product(models.Model):
     #     options={"quality": 80},
     #     null=True,
     # )
+
+class Faq(models.Model):
+    title = models.CharField(max_length=20)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    image = ProcessedImageField(
+        upload_to="images/",
+        blank=True,
+        processors=[ResizeToFill(1200, 960)],
+        format="JPEG",
+        options={"quality": 80},
+        null=True,
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+

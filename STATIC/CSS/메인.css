@@ -32,6 +32,7 @@ header .main-menu .item .item__name {
     padding: 10px 20px 34px 20px;
     text-align: center;
     font-size: 19px;
+    
 }
 header .main-menu .item:hover .item__name {
     background-color: #FFED90;
@@ -49,6 +50,8 @@ header .main-menu .item:hover .item__contents {
 }
 header .main-menu .item .item__contents .contents__menu {
     background-color: #FFED90;
+    /* position: fixed; */
+    /* width: 1900px; */
 }
 header .main-menu .item .item__contents .contents__menu > ul {
     display: flex;
@@ -72,11 +75,13 @@ header .main-menu .item .item__contents .contents__menu > ul > li ul li {
 }
 header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
     color: #669900;
+    
 }
 
 header .main-menu .item .item__contents .contents__texture p {
     color: #669900;
     margin: 4px 0 14px;
+    
 }
 
 
@@ -178,7 +183,7 @@ header .main-menu .item .item__contents .contents__texture p {
   
   .sub_mins > h3 {
     font-size: 24px;
-  margin-top: 7px;
+    margin-top: 7px;
     margin-bottom: -15px;
   }
   
@@ -278,4 +283,7 @@ header .main-menu .item .item__contents .contents__texture p {
   .cont_modal_active > .cont_photo  > .cont_detalles{
     bottom: 0px;
   }
-  
+
+/* 가운데 4개 */
+
+
