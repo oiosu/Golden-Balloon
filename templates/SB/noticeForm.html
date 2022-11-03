@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 왼쪽 nav -->
+    <div
+      class=""
+      style="
+        width: 200px;
+        border-right: 1px solid #8b8b8b;
+        position: fixed;
+        height: 100%;
+      "
+    >
+      <ul
+        style="
+          list-style: none;
+          padding-left: 0;
+          margin-top: 5rem;
+          color: #5f5e5e;
+        "
+        class="fw-bold fs-4 text-center"
+      >
+        <li class="mb-5">공지사항</li>
+        <li class="mb-5">FAQ</li>
+        <li class="mb-5">Q & A</li>
+      </ul>
+    </div>
+
+    <!-- 공지 사항 -->
+    <section style="padding: 60px 20px 20px 280px">
+      <!-- 제목 -->
+      <div>
+        <h2 class="ms-3 fw-bold">공지사항</h2>
+        <hr class="my-3" style="width: 9rem; color: black" />
+        <p class="fw-semibold">홈페이지 공지사항입니다.</p>
+      </div>
+      <!-- form -->
+      <form class="mt-5">
+        <!-- 제목 -->
+        <p class="fs-4 fw-semibold mb-2 ms-1">제목</p>
+        <input
+          class="rounded p-2 mb-5 ps-3"
+          style="border: 1.5px solid #424143; width: 45rem"
+          type="text"
+          placeholder="최대 20자 이하의 후기 제목을 남겨주세요."
+        />
+        <!-- 내용 -->
+        <p class="fs-4 fw-semibold mb-2 ms-1">내용</p>
+        <textarea
+          class="mb-3 rounded ps-3 pt-3"
+          style="border: 1.5px solid #424143; width: 45rem; height: 14rem"
+          placeholder="최소 50자 이상의 자세한 여행 후기를 남겨주세요."
+        ></textarea>
+        <div class="mt-4" style="width: 93%">
+          <button class="btn fw-semibold" style="background-color: #ffed90">
+            글쓰기
+          </button>
+        </div>
+      </form>
+      <!-- 글쓰기 버튼 -->
+    </section>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
