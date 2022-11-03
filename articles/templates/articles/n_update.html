@@ -1,14 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load django_bootstrap5 %}
 
 {% block body %} 
 
-<h1 class='text-center'>공지사항 수정</h1><hr>
-
-<form action='' method='POST' enctype="multipart/form-data">
-  {% csrf_token %}
-  {% bootstrap_form notice_form %}
-  {% bootstrap_button button_type='submit' content='수정하기' %}
-</form>
+<!-- 공지 사항 -->
+<section style="padding: 60px 20px 20px 280px">
+  <!-- 제목 -->
+  <div>
+    <h2 class="ms-3 fw-bold">공지사항</h2>
+    <hr class="my-3" style="width: 9rem; color: black" />
+    <p class="fw-semibold">홈페이지 공지사항입니다.</p>
+  </div>
+  <!-- form -->
+  <form class="mt-5" action="" method="POST">
+    {% csrf_token %}
+    <!-- 제목 -->
+    <p class="fs-4 fw-semibold mb-2 ms-1">제목</p>
+    <input class="rounded p-2 mb-5 ps-3" style="border: 1.5px solid #424143; width: 45rem" type="text" placeholder="질문의 제목을 입력해주세요." name="title" value='{{ notice.title }}' required>
+      <!-- 내용 -->
+      <p class="fs-4 fw-semibold mb-2 ms-1">내용</p>
+      <textarea class="mb-3 rounded ps-3 pt-3" style="border: 1.5px solid #424143; width: 45rem; height: 14rem" placeholder="질문의 내용을 입력해주세요." name="content" required>{{ notice.content }}</textarea>
+    <div class="mt-4" style="width: 93%">
+      <button class="btn fw-semibold" style="background-color: #ffed90">
+        수정하기
+      </button>
+    </div>
+  </form>
+</section>
 
 {% endblock %}

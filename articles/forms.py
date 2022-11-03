@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article, Comment, Notice, Review, ReviewComment
+from .models import Article, Comment, Notice, Review, ReviewComment, Faq
 
 
 class ArticleForm(forms.ModelForm):
@@ -64,3 +64,9 @@ class ReviewCommentForm(forms.ModelForm):
         labels = {
             "content": "댓글을 집력해주세요",
         }
+
+
+class FaqForm(forms.ModelForm):
+    class Meta:
+        model = Faq
+        fields = ["title", "content", "image"]
