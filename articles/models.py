@@ -94,3 +94,19 @@ class ReviewComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class Faq(models.Model):
+    title = models.CharField(max_length=20)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    image = ProcessedImageField(
+        upload_to="images/",
+        blank=True,
+        processors=[ResizeToFill(1200, 960)],
+        format="JPEG",
+        options={"quality": 80},
+        null=True,
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

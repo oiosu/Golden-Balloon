@@ -1,30 +1,51 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load django_bootstrap5 %}
 
 {% block body %} 
 
-<h1 class='text-center'>공지사항</h1><hr>
-<div class='text-end  my-3'>
-  <a class='btn btn-primary btn-sm' href="{% url 'articles:n_create' %}">글쓰기</a>
+<!-- 공지 사항 -->
+<section style="padding: 60px 20px 20px 280px">
+<!-- 제목 -->
+<div>
+  <h2 class="ms-3 fw-bold">공지사항</h2>
+  <hr class="my-3" style="width: 9rem; color: black" />
+  <p class="fw-semibold">홈페이지 공지사항입니다.</p>
 </div>
+<!-- 글쓰기 버튼 -->
+<div class="mt-4" style="width: 93%">
+    <a href="{% url 'articles:n_create' %}"
+      class="btn fw-semibold float-end mb-3 px-3"
+      style="background-color: #ffed90; text-color: black;"
+    >
+    글쓰기
+  </a>
+</button>
 
-<table class="table table-warning table-striped table-hover">
-  <thead>
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">공지 제목</th>
-      <th scope="col">작성시간</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    {% for notice in notices %}
-    <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
-      <th scope="row">{{ notice.pk }}</th>
-      <td>{{ notice.title }}</td>
-      <td>{{ notice.created_at }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <!-- 테이블 -->
+  <table class="table table-hover">
+    <thead class="table-group-divider">
+      <tr style="font-size: 1.17rem">
+        <th
+          style="padding: 0.7rem 0 0.7rem 2rem; width: 5rem"
+          scope="col"
+        >
+          번호
+        </th>
+        <th style="padding: 0.7rem 0 0.7rem 8rem" scope="col">작성시간</th>
+        <th style="padding: 0.7rem 0 0.7rem 8rem" scope="col">제목</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for notice in notices %}
+      <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
+        <td style="padding: 0.7rem 0 0.7rem 3rem" scope="row">{{ notice.pk }}</td>
+        <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.created_at }}</td>
+        <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.title }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</section>
 
 {% endblock %}

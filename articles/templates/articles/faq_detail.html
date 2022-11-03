@@ -1,0 +1,14 @@
+{% extends 'base2.html' %}
+
+{% block body %}
+
+<section style="padding: 60px 20px 20px 280px">
+  <h1>faq 상세페이지</h1><hr>
+
+  <h1>{{ faq.title }}</h1>
+  <p>{{ faq.content }}</p>
+  <a href="{% url 'articles:faq_update' faq.pk %}">수정</a>
+  <a href="{% url 'articles:faq_delete' faq.pk %}">삭제</a>
+</section>
+
+{% endblock body %}
