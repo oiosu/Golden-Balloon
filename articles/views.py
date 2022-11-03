@@ -251,13 +251,12 @@ def r_update(request, pk):
 def r_c_create(request, pk):
 
     review = Review.objects.get(pk=pk)
-    review_comment_form = ReviewCommentForm(request.POST)
 
-    if review_comment_form.is_valid():
-        review_comment = review_comment_form.save(commit=False)
-        review_comment.review = review
-        review_comment.user = request.user
-        review_comment.save()
+    comment = request.POST.get("comment")
+
+    if comment != "":
+        user = request.user
+        ReviewComment.objects.create(content=comment, user=user, review=review)
 
     return redirect("articles:r_detail", pk)
 

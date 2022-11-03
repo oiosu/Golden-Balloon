@@ -36,7 +36,15 @@ class NoticeForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ["title", "content", "grade", "image", "thumbnail"]
+        fields = ["country", "title", "content", "grade", "image", "thumbnail"]
+        labels = {
+            "country": "다녀온 나라",
+            "title": "후기 제목",
+            "content": "후기 내용",
+            "image": "사진 업로드",
+            "grade": "이번 여행에 점수를 주자면? (1~5)",
+            "thumbnail": "대표 사진",
+        }
 
 
 class ReviewCommentForm(forms.ModelForm):
