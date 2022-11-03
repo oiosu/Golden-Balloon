@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Article, Comment, Notice, Review, ReviewComment
 from .forms import ArticleForm, CommentForm, NoticeForm, ReviewForm, ReviewCommentForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -179,8 +180,15 @@ def reviews(request):
 
     reviews = Review.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(reviews, 6)
+    paginated_reviews = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "reviews": reviews,
+        "paginated_reviews": paginated_reviews,
+        "max_index": max_index,
     }
 
     return render(request, "articles/reviews.html", context)
