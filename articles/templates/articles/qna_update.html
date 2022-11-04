@@ -15,10 +15,10 @@
     {% csrf_token %}
     <!-- 제목 -->
     <p class="fs-4 fw-semibold mb-2 ms-1">제목</p>
-    <input class="rounded p-2 mb-5 ps-3" style="border: 1.5px solid #424143; width: 45rem" type="text" placeholder="질문의 제목을 입력해주세요." name="title" required>
+    <input class="rounded p-2 mb-5 ps-3" style="border: 1.5px solid #424143; width: 45rem" type="text" placeholder="질문의 제목을 입력해주세요." name="title" value="{{ qna.title }}" required>
     <!-- 내용 -->
     <p class="fs-4 fw-semibold mb-2 ms-1">내용</p>
-    <textarea class="mb-3 rounded ps-3 pt-3" style="border: 1.5px solid #424143; width: 45rem; height: 14rem" placeholder="질문의 내용을 입력해주세요." name="content" required></textarea>
+    <textarea class="mb-3 rounded ps-3 pt-3" style="border: 1.5px solid #424143; width: 45rem; height: 14rem" placeholder="질문의 내용을 입력해주세요." name="content" required>{{ qna.content }}</textarea>
     <div class="mt-4" style="width: 93%">
       <button class="btn fw-semibold" style="background-color: #ffed90">
         글쓰기

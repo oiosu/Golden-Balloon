@@ -1,7 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment, Notice, Review, ReviewComment, Faq, Qna
+from .models import (
+    Article,
+    Comment,
+    Notice,
+    Review,
+    ReviewComment,
+    Faq,
+    Qna,
+    QnaComment,
+)
 from .forms import (
     ArticleForm,
     CommentForm,
@@ -133,14 +142,15 @@ def notice(request):
 @login_required
 def n_create(request):
 
-    if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        user = request.user
-        Notice.objects.create(title=title, content=content, user=user)
-        return redirect("articles:notice")
-
-    return render(request, "articles/n_create.html")
+    if request.user.is_staff:
+        if request.method == "POST":
+            title = request.POST.get("title")
+            content = request.POST.get("content")
+            user = request.user
+            Notice.objects.create(title=title, content=content, user=user)
+            return redirect("articles:notice")
+        return render(request, "articles/n_create.html")
+    return redirect("articles:notice")
 
 
 def n_detail(request, pk):
@@ -157,31 +167,30 @@ def n_detail(request, pk):
 @login_required
 def n_delete(request, pk):
 
-    notice = Notice.objects.get(pk=pk)
-    notice.delete()
-
+    if request.user.is_staff:
+        notice = Notice.objects.get(pk=pk)
+        notice.delete()
     return redirect("articles:notice")
 
 
 @login_required
 def n_update(request, pk):
 
-    notice = Notice.objects.get(pk=pk)
+    if request.user.is_staff:
+        notice = Notice.objects.get(pk=pk)
 
-    if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        notice.title = title
-        notice.content = content
-        notice.save()
-
-        return redirect("articles:n_detail", pk)
-
-    context = {
-        "notice": notice,
-    }
-
-    return render(request, "articles/n_update.html", context)
+        if request.method == "POST":
+            title = request.POST.get("title")
+            content = request.POST.get("content")
+            notice.title = title
+            notice.content = content
+            notice.save()
+            return redirect("articles:n_detail", pk)
+        context = {
+            "notice": notice,
+        }
+        return render(request, "articles/n_update.html", context)
+    return redirect("articles:notice")
 
 
 def reviews(request):
@@ -313,14 +322,16 @@ def faq(request):
 @login_required
 def faq_create(request):
 
-    if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        user = request.user
-        Faq.objects.create(title=title, content=content, user=user)
-        return redirect("articles:faq")
+    if request.user.is_staff:
+        if request.method == "POST":
+            title = request.POST.get("title")
+            content = request.POST.get("content")
+            user = request.user
+            Faq.objects.create(title=title, content=content, user=user)
+            return redirect("articles:faq")
 
-    return render(request, "articles/faq_create.html")
+        return render(request, "articles/faq_create.html")
+    redirect("articles:faq")
 
 
 def faq_detail(request, pk):
@@ -337,8 +348,9 @@ def faq_detail(request, pk):
 @login_required
 def faq_delete(request, pk):
 
-    faq = Faq.objects.get(pk=pk)
-    faq.delete()
+    if request.user.is_staff:
+        faq = Faq.objects.get(pk=pk)
+        faq.delete()
 
     return redirect("articles:faq")
 
@@ -346,22 +358,22 @@ def faq_delete(request, pk):
 @login_required
 def faq_update(request, pk):
 
-    faq = Faq.objects.get(pk=pk)
+    if request.user.is_staff:
 
-    if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        faq.title = title
-        faq.content = content
-        faq.save()
+        faq = Faq.objects.get(pk=pk)
 
-        return redirect("articles:faq_detail", pk)
-
-    context = {
-        "faq": faq,
-    }
-
-    return render(request, "articles/faq_update.html", context)
+        if request.method == "POST":
+            title = request.POST.get("title")
+            content = request.POST.get("content")
+            faq.title = title
+            faq.content = content
+            faq.save()
+            return redirect("articles:faq_detail", pk)
+        context = {
+            "faq": faq,
+        }
+        return render(request, "articles/faq_update.html", context)
+    return redirect("articles:faq")
 
 
 def qna(request):
@@ -391,39 +403,62 @@ def qna_create(request):
 def qna_detail(request, pk):
 
     qna = Qna.objects.get(pk=pk)
+    comments = qna.qnacomment_set.order_by("-pk")
+
+    context = {
+        "qna": qna,
+        "comments": comments,
+    }
+
+    return render(request, "articles/qna_detail.html", context)
+
+
+@login_required
+def qna_delete(request, pk):
+
+    qna = Qna.objects.get(pk=pk)
+    qna.delete()
+
+    return redirect("articles:qna")
+
+
+@login_required
+def qna_update(request, pk):
+
+    qna = Qna.objects.get(pk=pk)
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        qna.title = title
+        qna.content = content
+        qna.save()
+
+        return redirect("articles:qna_detail", pk)
 
     context = {
         "qna": qna,
     }
 
-    return render(request, "articles/faq_detail.html", context)
+    return render(request, "articles/qna_update.html", context)
 
 
-# @login_required
-# def faq_delete(request, pk):
+@login_required
+def qna_c_create(request, pk):
 
-#     faq = Faq.objects.get(pk=pk)
-#     faq.delete()
+    if request.user.is_staff:
+        qna = Qna.objects.get(pk=pk)
+        comment = request.POST.get("comment")
+        user = request.user
+        QnaComment.objects.create(content=comment, user=user, qna=qna)
+    return redirect("articles:qna_detail", pk)
 
-#     return redirect("articles:faq")
 
+@login_required
+def qna_c_delete(request, a_pk, c_pk):
 
-# @login_required
-# def faq_update(request, pk):
+    if request.user.is_staff:
+        comment = QnaComment.objects.get(pk=c_pk)
+        comment.delete()
 
-#     faq = Faq.objects.get(pk=pk)
-
-#     if request.method == "POST":
-#         title = request.POST.get("title")
-#         content = request.POST.get("content")
-#         faq.title = title
-#         faq.content = content
-#         faq.save()
-
-#         return redirect("articles:faq_detail", pk)
-
-#     context = {
-#         "faq": faq,
-#     }
-
-#     return render(request, "articles/faq_update.html", context)
+    return redirect("articles:qna_detail", a_pk)
