@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 왼쪽 nav -->
+    <div
+      style="
+        width: 200px;
+        border-right: 1px solid #8b8b8b;
+        position: fixed;
+        height: 100%;
+      "
+    >
+      <ul
+        style="
+          list-style: none;
+          padding-left: 0;
+          margin-top: 5rem;
+          color: #5f5e5e;
+        "
+        class="fw-bold fs-4 text-center"
+      >
+        <li class="mb-5">공지사항</li>
+        <li class="mb-5">FAQ</li>
+        <li class="mb-5">Q & A</li>
+      </ul>
+    </div>
+
+    <!-- 공지 사항 -->
+    <section style="padding: 60px 20px 20px 280px">
+      <!-- 제목 -->
+      <div>
+        <h2 class="ms-3 fw-bold">공지사항</h2>
+        <hr class="my-3" style="width: 9rem; color: black" />
+        <p class="fw-semibold">홈페이지 공지사항입니다.</p>
+      </div>
+      <!-- 글 -->
+      <section class="">
+        <div class="p-3">
+          <div
+            class="rounded mt-3 p-5"
+            style="width: 60rem; min-height: 30rem; border: 2.5px solid #ffed90"
+          >
+            <!-- 수정, 삭제 -->
+            <div class="fs-4 float-end">
+              <i class="bi bi-pencil me-2" style="color: #2657ff"></i>
+              <i class="bi bi-trash" style="color: #e83c4b"></i>
+            </div>
+
+            <!-- 날짜와 제목 -->
+            <p class="text-muted fw-semibold mb-0 ms-1">2022-10-31</p>
+            <p class="fw-bold fs-2">이벤트 당첨자 공지</p>
+
+            <!-- 후기 내용 -->
+            <div class="mt-4 ms-1" style="min-height: 4rem">
+              당첨을 축하합니당
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 글쓰기 버튼 -->
+    </section>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
