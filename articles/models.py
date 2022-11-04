@@ -96,10 +96,10 @@ class ReviewComment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
-
 class Product(models.Model):
     title = models.CharField(max_length=100)
     # content = models.TextField()
+
     image = ProcessedImageField(
         upload_to="reviews/",
         blank=True,
@@ -111,6 +111,17 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
+
+    # image = ProcessedImageField(
+    #     upload_to="reviews/",
+    #     blank=True,
+    #     processors=[ResizeToFill(1200, 960)],
+    #     format="JPEG",
+    #     options={"quality": 80},
+    #     null=True,
+    # )
+
+
 class Faq(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
@@ -126,3 +137,25 @@ class Faq(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+
+class Qna(models.Model):
+    title = models.CharField(max_length=20)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    image = ProcessedImageField(
+        upload_to="images/",
+        blank=True,
+        processors=[ResizeToFill(1200, 960)],
+        format="JPEG",
+        options={"quality": 80},
+        null=True,
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class QnaComment(models.Model):
+    content = models.TextField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    qna = models.ForeignKey(Qna, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

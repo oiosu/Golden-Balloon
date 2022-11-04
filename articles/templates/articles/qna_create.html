@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+
+{% block body %}
+
+<!-- Q & A -->
+<section style="padding: 60px 20px 20px 280px">
+  <!-- 제목 -->
+  <div>
+    <h2 class="ms-3 fw-bold">Q & A</h2>
+    <hr class="my-3" style="width: 9rem; color: black" />
+    <p class="fw-semibold">홈페이지 운영에 관해 궁금하신것 물어보세요.</p>
+  </div>
+  <!-- form -->
+  <form class="mt-5" action="" method="POST">
+    {% csrf_token %}
+    <!-- 제목 -->
+    <p class="fs-4 fw-semibold mb-2 ms-1">제목</p>
+    <input class="rounded p-2 mb-5 ps-3" style="border: 1.5px solid #424143; width: 45rem" type="text" placeholder="질문의 제목을 입력해주세요." name="title" required>
+    <!-- 내용 -->
+    <p class="fs-4 fw-semibold mb-2 ms-1">내용</p>
+    <textarea class="mb-3 rounded ps-3 pt-3" style="border: 1.5px solid #424143; width: 45rem; height: 14rem" placeholder="질문의 내용을 입력해주세요." name="content" required></textarea>
+    <div class="mt-4" style="width: 93%">
+      <button class="btn fw-semibold" style="background-color: #ffed90">
+        글쓰기
+      </button>
+    </div>
+  </form>
+  <!-- 글쓰기 버튼 -->
+</section>
+
+{% endblock body %}
