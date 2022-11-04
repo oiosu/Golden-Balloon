@@ -32,10 +32,12 @@
               <a class="nav-link active text-black mx-2 fs-5 fw-semibold" aria-current="page" href="{% url 'articles:reviews' %}">리뷰목록</a>
               <a class="nav-link text-black mx-5 fs-5 fw-semibold" href="{% url 'articles:notice' %}">공지사항</a>
 
-              <div class="py-1 rounded me-4" style="background-color:#F7F3FA; display: inline-block;">
-                <i class="bi bi-search ms-3"></i>
-                <input class="pe-5 py-2 rounded" style="border:none; background-color:#F7F3FA;  outline: none; white-space:nowrap;" type="text" placeholder="검색해보세요">
-              </div>
+              <form action="{% url 'articles:search' %}">
+                <div class="py-1 rounded me-4" style="background-color:#F7F3FA; display: inline-block;">
+                  <i class="bi bi-search ms-3"></i>
+                  <input class="pe-5 py-2 rounded" style="border:none; background-color:#F7F3FA;  outline: none; white-space:nowrap;" type="search" name="search" aria-label="Search" placeholder="검색해보세요">
+                </div>
+              </form>
 
               {% if request.user.is_authenticated %}
                 <a class="nav-link fs-6 mt-1" href="{% url 'accounts:mypage_1' request.user.pk %}">{{ request.user }}</a>
@@ -49,7 +51,7 @@
         </div>
       </div>
     </nav>
-    
+
     {% block body %}{% endblock body %}
   </body>
 

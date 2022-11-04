@@ -30,4 +30,6 @@ urlpatterns = [
     path("faq/faq_detail/<int:pk>", views.faq_detail, name="faq_detail"),
     path("faq/faq_delete/<int:pk>", views.faq_delete, name="faq_delete"),
     path("faq/faq_update/<int:pk>", views.faq_update, name="faq_update"),
+    path("search/", views.search, name="search"),
+    path("searchfail/", views.searchfail, name="searchfail"),
 ]
