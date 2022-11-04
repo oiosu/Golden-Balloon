@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Article, Comment, Notice, Review, ReviewComment, Faq
+from .models import Article, Comment, Notice, Review, ReviewComment, Faq, Qna
 from .forms import (
     ArticleForm,
     CommentForm,
@@ -9,6 +9,7 @@ from .forms import (
     ReviewForm,
     ReviewCommentForm,
     FaqForm,
+    QnaForm,
 )
 from django.core.paginator import Paginator
 
@@ -361,3 +362,68 @@ def faq_update(request, pk):
     }
 
     return render(request, "articles/faq_update.html", context)
+
+
+def qna(request):
+
+    qnas = Qna.objects.order_by("-pk")
+
+    context = {
+        "qnas": qnas,
+    }
+
+    return render(request, "articles/qna.html", context)
+
+
+@login_required
+def qna_create(request):
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        user = request.user
+        Qna.objects.create(title=title, content=content, user=user)
+        return redirect("articles:qna")
+
+    return render(request, "articles/qna_create.html")
+
+
+def qna_detail(request, pk):
+
+    qna = Qna.objects.get(pk=pk)
+
+    context = {
+        "qna": qna,
+    }
+
+    return render(request, "articles/faq_detail.html", context)
+
+
+# @login_required
+# def faq_delete(request, pk):
+
+#     faq = Faq.objects.get(pk=pk)
+#     faq.delete()
+
+#     return redirect("articles:faq")
+
+
+# @login_required
+# def faq_update(request, pk):
+
+#     faq = Faq.objects.get(pk=pk)
+
+#     if request.method == "POST":
+#         title = request.POST.get("title")
+#         content = request.POST.get("content")
+#         faq.title = title
+#         faq.content = content
+#         faq.save()
+
+#         return redirect("articles:faq_detail", pk)
+
+#     context = {
+#         "faq": faq,
+#     }
+
+#     return render(request, "articles/faq_update.html", context)
