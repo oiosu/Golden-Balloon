@@ -10,7 +10,7 @@ from .forms import (
     ReviewCommentForm,
     FaqForm,
 )
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 # Create your views here.
