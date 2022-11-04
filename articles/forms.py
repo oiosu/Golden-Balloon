@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article, Comment, Notice, Review, ReviewComment, Faq
+from .models import Article, Comment, Notice, Review, ReviewComment, Faq, Qna
 
 
 class ArticleForm(forms.ModelForm):
@@ -69,4 +69,10 @@ class ReviewCommentForm(forms.ModelForm):
 class FaqForm(forms.ModelForm):
     class Meta:
         model = Faq
+        fields = ["title", "content", "image"]
+
+
+class QnaForm(forms.ModelForm):
+    class Meta:
+        model = Qna
         fields = ["title", "content", "image"]

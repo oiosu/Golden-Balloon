@@ -11,6 +11,7 @@
   <hr class="my-3" style="width: 9rem; color: black" />
   <p class="fw-semibold">홈페이지 공지사항입니다.</p>
 </div>
+{% if request.user.is_staff %}
 <!-- 글쓰기 버튼 -->
 <div class="mt-4" style="width: 93%">
     <a href="{% url 'articles:n_create' %}"
@@ -20,6 +21,9 @@
     글쓰기
   </a>
 </button>
+{% else %}
+<br><br>
+{% endif %}
 
   <!-- 테이블 -->
   <table class="table table-hover">
@@ -37,15 +41,16 @@
     </thead>
     <tbody class="table-group-divider">
       {% for notice in notices %}
-      <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
-        <td style="padding: 0.7rem 0 0.7rem 3rem" scope="row">{{ notice.pk }}</td>
-        <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.created_at }}</td>
-        <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.title }}</td>
-      </tr>
+        <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
+          <td style="padding: 0.7rem 0 0.7rem 3rem" scope="row">{{ notice.pk }}</td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.created_at }}</td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.title }}</td>
+        </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
 </section>
+
 
 {% endblock %}

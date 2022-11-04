@@ -30,4 +30,11 @@ urlpatterns = [
     path("faq/faq_detail/<int:pk>", views.faq_detail, name="faq_detail"),
     path("faq/faq_delete/<int:pk>", views.faq_delete, name="faq_delete"),
     path("faq/faq_update/<int:pk>", views.faq_update, name="faq_update"),
+    path("qna/", views.qna, name="qna"),
+    path("qna/qna_create/", views.qna_create, name="qna_create"),
+    path("qna/qna_detail/<int:pk>", views.qna_detail, name="qna_detail"),
+    path("qna/qna_delete/<int:pk>", views.qna_delete, name="qna_delete"),
+    path("qna/qna_update/<int:pk>", views.qna_update, name="qna_update"),
+    path("qna_c_create/<int:pk>", views.qna_c_create, name="qna_c_create"),
+    path("qna_c_delete/<int:a_pk>/<int:c_pk>", views.qna_c_delete, name="qna_c_delete"),
 ]
