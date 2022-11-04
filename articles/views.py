@@ -462,9 +462,9 @@ def qna_c_delete(request, a_pk, c_pk):
         comment.delete()
 
     return redirect("articles:qna_detail", a_pk)
-  
- 
- def search(request):
+
+
+def search(request):
     search = request.GET.get("search", "")
 
     search_list = Review.objects.filter(
@@ -491,4 +491,3 @@ def qna_c_delete(request, a_pk, c_pk):
 
 def searchfail(request):
     return render(request, "articles/searchfail.html")
-
