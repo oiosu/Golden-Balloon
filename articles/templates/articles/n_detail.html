@@ -1,15 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load django_bootstrap5 %}
 
 {% block body %} 
+    <!-- 공지 사항 -->
+    <section style="padding: 60px 20px 20px 280px">
+      <!-- 제목 -->
+      <div>
+        <h2 class="ms-3 fw-bold">공지사항</h2>
+        <hr class="my-3" style="width: 9rem; color: black" />
+        <p class="fw-semibold">홈페이지 공지사항입니다.</p>
+      </div>
+      <!-- 글 -->
+      <section class="">
+        <div class="p-3">
+          <div
+            class="rounded mt-3 p-5"
+            style="width: 60rem; min-height: 30rem; border: 2.5px solid #ffed90"
+          >
+          {% if request.user.is_staff %}
+            <!-- 수정, 삭제 -->
+            <div class="fs-4 float-end">
+              <a href="{% url 'articles:n_update' notice.pk %}"<i class="bi bi-pencil me-2" style="color: #2657ff"></i></a>
+                <a href="{% url 'articles:n_delete' notice.pk %}"><i class="bi bi-trash" style="color: #e83c4b"></i></a>
+            </div>
+          {% endif %}
 
-<h1>공지사항 상세페이지</h1><hr>
+            <!-- 날짜와 제목 -->
+            <p class="text-muted fw-semibold mb-0 ms-1">{{ notice.created_at }}</p>
+            <p class="fw-bold fs-2">{{ notice.title }}</p>
 
-<h1>{{ notice.title }}</h1>
-<p>{{ notice.content }}</p>
-<a href="{% url 'articles:n_update' notice.pk %}">수정</a>
-<a href="{% url 'articles:n_delete' notice.pk %}">삭제</a>
-<a href="{% url 'articles:notice' %}">목록으로</a>
+            <!-- 후기 내용 -->
+            <div class="mt-4 ms-1" style="min-height: 4rem">
+              {{ notice.content }}
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 글쓰기 버튼 -->
+    </section>
 
 
 {% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base2.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %} 
+
+<!-- Q&A -->
+<section style="padding: 60px 20px 20px 280px">
+  <!-- 제목 -->
+  <div>
+    <h2 class="ms-3 fw-bold">Q & A</h2>
+    <hr class="my-3" style="width: 9rem; color: black" />
+    <p class="fw-semibold">홈페이지 운영에 관해 궁금하신 것 물어보세요.</p>
+  </div>
+  {% if request.user.is_staff %}
+  <!-- 글쓰기 버튼 -->
+  <div class="mt-4" style="width: 93%">
+    <a href="{% url 'articles:qna_create' %}"
+    class="btn fw-semibold float-end mb-3 px-3"
+    style="background-color: #ffed90; text-color: black;"
+    >
+    글쓰기
+    </a>
+  {% else %}
+  <br><br>
+  {% endif %}
+
+
+    <!-- 테이블 -->
+    <table class="table table-hover">
+      <thead class="table-group-divider">
+        <tr style="font-size: 1.17rem">
+          <th style="padding: 0.7rem 0 0.7rem 2rem; width: 13rem" scope="col">번호</th>
+          <th style="padding: 0.7rem 0 0.7rem 2.3rem" scope="col">작성자</th>
+          <th style="padding: 0.7rem 0 0.7rem 5rem" scope="col">제목</th>
+          <th style="padding: 0.7rem 0 0.7rem 5rem" scope="col">답변여부</th>
+          <th style="padding: 0.7rem 0 0.7rem 5rem" scope="col">작성시간</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for qna in qnas %}
+        <tr onclick='location.href="{% url 'articles:qna_detail' qna.pk %}"' style='cursor: pointer;'>
+          <td style="padding: 0.7rem 0 0.7rem 3rem" scope="row">{{ qna.pk }}</td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ qna.user }}</td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ qna.title }}</td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">
+            {% if qna.qnacomment_set.all %}
+              <span class="rounded fw-semibold" style="background-color: #fcbfbf; padding: 0.5rem 1rem">답변</span>
+            {% else %}
+              <span class="rounded fw-semibold" style="background-color: #C6C6C6; padding: 0.5rem 1rem">답변</span>
+            {% endif %}          
+          </td>
+          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ qna.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% endblock %}

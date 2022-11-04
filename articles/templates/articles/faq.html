@@ -11,7 +11,8 @@
     <hr class="my-3" style="width: 9rem; color: black" />
     <p class="fw-semibold">자주 묻는 질문들을 모아보았습니다.</p>
   </div>
-  <!-- 글쓰기 버튼 -->
+  {% if request.user.is_staff %}
+  <!-- 글쓰기 버튼   -->
   <div class="mt-4" style="width: 93%">
       <a href="{% url 'articles:faq_create' %}"
         class="btn fw-semibold float-end mb-3 px-3"
@@ -19,7 +20,9 @@
       >
       글쓰기
     </a>
-  </button>
+  {% else %}
+  <br><br>
+  {% endif %}
   
   <!-- 테이블 -->
   <table class="table table-hover">
