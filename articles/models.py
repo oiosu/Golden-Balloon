@@ -100,15 +100,17 @@ class ReviewComment(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=100)
     # content = models.TextField()
-    # image = ProcessedImageField(
-    #     upload_to="reviews/",
-    #     blank=True,
-    #     processors=[ResizeToFill(1200, 960)],
-    #     format="JPEG",
-    #     options={"quality": 80},
-    #     null=True,
-    # )
-
+    image = ProcessedImageField(
+        upload_to="reviews/",
+        blank=True,
+        processors=[Thumbnail(400, 300)],
+        format="JPEG",
+        options={"quality": 80},
+        null=True,
+    )
+    def __str__(self):
+        return self.title
+    
 class Faq(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
