@@ -1,151 +1,693 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Balloon</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}"/>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+</head>
 {% block body %} 
-<!-- 카드 
-<div class='text-end  my-3'>
-  <a class='btn btn-primary btn-sm' href="{% url 'articles:create' %}">글쓰기</a>
+<!DOCTYPE html>
+<!-- 카테고리 메뉴 -->
+    <header>
+        <div class="inner">    
+          <ul class="main-menu">
+            <li class="item">
+              <div class="item__name">항공권</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>진행중인 이벤트</h4>
+                      <ul>
+                        <li>아시아나 항공 특가 프로모션</li>
+                        <li>제주항공 얼리버드 단독특가</li>
+                        <li>힐링 유럽 여행 이벤트</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>우리 다시 일본 갈까요?</h4>
+                      <ul>
+                        <li>오카사(간사이)</li>
+                        <li>후쿠오카</li>
+                        <li>도쿄(나리타)</li>
+                        <li>삿포로(치토세)</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>누런풍선 단독특가</h4>
+                      <ul>
+                        <li>서울 > 토론토</li>
+                        <li>서울 > 밴쿠버</li>
+                        <li>서울 > 하와이 or 괌</li>
+                        <li>서울 > 스위스</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>최상의 여행을 즐기는 법</h4>
+                      <ul>
+                        <li>인기 상품 모음</li>
+                        <li>여행자가 구매한 필수템</li>
+                        <li>사용자가 추천한 여행 코스</li>
+                        <li>해외 교통의 모든 것</li>
+                        <li>누런 풍선의 여행 정보</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+            </li>
+            <li class="item">
+              <div class="item__name">투어&티켓</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>초특가 모음전</h4>
+                      <ul>
+                        <li>스위스 겨울</li>
+                        <li>스위스 기차</li>
+                        <li>유럽 기차 여행</li>
+                        <li>나혼자여행</li>
+                        <li>자유여행</li>
+                        <li>무계획여행</li>
+                        <li>가족여행</li>
+                        <li>반려동물과 함께</li>
+                        <li>너와 함께 여행</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>꿀잼 모음</h4>
+                      <ul>
+                        <li>테마파크</li>
+                        <li>자유이용권</li>
+                        <li>맛집 찾아</li>
+                        <li>야경 찾아</li>
+                        <li>영화 그곳</li>
+                        <li>체험과 함께</li>
+                        <li>꿀잼 후기 이벤트</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>얼리버드 할인</h4>
+                      <ul>
+                        <li>가이드</li>
+                        <li>유럽 패키지</li>
+                        <li>사파리 패키지</li>
+                        <li>예술 패키지</li>
+                        <li>선택 패키지</li>
+                        <li>선택하기 어렵다면?</li>
+                        <li>추천을 받아봐요</li>
+                        <li>신청 중 문제가 생겼다면?</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>무격리해외</h4>
+                      <ul>
+                        <li>좋은 후기 이벤트</li>
+                        <li>액티비티</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>더 특별한 누런 풍선 여행</h4>
+                      <ul>
+                        <li>아침의 요가와 함께하는 여행</li>
+                        <li>힐링하는 편안한 여행</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+            </li>
+            <li class="item">
+              <div class="item__name">패키지</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>어디로 떠날까요?</h4>
+                      <ul>
+                        <li>퀵 검색</li>
+                        <li>나라 검색</li>
+                        <li>나의 위시리스트</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>여행이야기</h4>
+                      <ul>
+                        <li>여행에 진심인 사람들의 이야기</li>
+                        <li>로맨스가 가득한 추억여행</li>
+                        <li>로컬가이드와 함께 떠나는 여행</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+            </li>
+            <li class="item">
+              <div class="item__name">호캉스</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>마이 리얼 호캉스</h4>
+                      <ul>
+                        <li>기간 한정</li>
+                        <li>쿠폰 줍줍</li>
+                        <li>특가 줍줍</li>
+                        <li>따듯한 계절</li>
+                        <li>핫한 계절</li>
+                        <li>호캉스 후기 이벤트</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>잠이 중요하다면</h4>
+                      <ul>
+                        <li>좋은 침대 후기</li>
+                        <li>좋은 이불 후기</li>
+                        <li>침대 조명 후기</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>방 크기가 중요하다면</h4>
+                      <ul>
+                        <li>방 구조 후기</li>
+                        <li>화장실 후기</li>
+                        <li>침실 후기</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>여행이 아니라면</h4>
+                      <ul>
+                        <li>여행이</li>
+                        <li>아닌</li>
+                        <li>출장이라면</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="contents__texture">
+            </li>
+            <li class="item">
+              <div class="item__name">이번주 특가</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>해외티켓 모음</h4>
+                      <ul>
+                        <li>테마파크</li>
+                        <li>등급 및 혜택</li>
+                        <li>가장 빠른 항공권</li>
+                        <li>예약 서비스</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>누런 풍선 카드</h4>
+                      <ul>
+                        <li>누런 풍선 카드 소개</li>
+                        <li>누런 풍선 카드 갤러리</li>
+                        <li>등록 및 조회</li>
+                        <li>충전 및 이용안내</li>
+                        <li>분실신고/환불신청</li>
+                        <li>자주하는 질문</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>추천 티켓 Best</h4>
+                      <ul>
+                        <li>아쿠아리움</li>
+                        <li>체험관</li>
+                        <li>스키/보드</li>
+                        <li>자유 이용권</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+            </li>
+            <li class="item">
+              <div class="item__name">해외 호텔</div>
+              <div class="item__contents">
+                <div class="contents__menu">
+                  <ul class="inner">
+                    <li>
+                      <h4>프로모션 & 이벤트</h4>
+                      <ul>
+                        <li>전체</li>
+                        <li>감성숙소</li>
+                        <li>호텔</li>
+                        <li>리조트</li>
+                        <li>호텔 코스 플래너</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>호텔 후기</h4>
+                      <ul>
+                        <li>전체</li>
+                        <li>호텔 선택 추천</li>
+                        <li>호텔에도 문화가?</li>
+                        <li>누런풍선카드와 함께</li>
+                        <li>인기 호텔 후기</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h4>호텔 예약 대신 서비스</h4>
+                      <ul>
+                        <li>예약하기</li>
+                        <li>자주하는 질문</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="item">
+                <div class="item__name">여행자 보험</div>
+                <div class="item__contents">
+                  <div class="contents__menu">
+                    <ul class="inner">
+                      <li>
+                        <h4>휴대폰 파손</h4>
+                        <ul>
+                          <li>전체</li>
+                          <li>고객센터</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <h4>수하물 지연</h4>
+                        <ul>
+                            <li>전체</li>
+                            <li>고객센터</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <h4>질병 의료비</h4>
+                        <ul>
+                            <li>전체</li>
+                            <li>고객센터</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+          </ul>
+        </div>
+        </header>
+<!-- 현재 핫한 인기나라 -->
+    <section>
+        <div class="py-5" >
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="breadcrumb">
+                    <li class="breadcrumb-item"> <h3 style="font: weight 900%;" href="#">🛫 현재 핫한 인기 나라!&nbsp;</h3> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+<!-- 메인 카드 구현 -->
+<div class="container">
+    <div class="py-1">
+        <div class="">
+          <div class="row" >
+            <div class="col-md-3">
+                <div class="cont_principal">
+                    <div class="cont_central">
+                        <div class="cont_modal cont_modal_active">
+                            <div class="cont_photo">
+                                <div class="cont_img_back">
+                                    <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4654_large_square_1535621335.jpg?1535621335" alt="" />
+                                </div>
+                                <div class="cont_mins">
+                                    <div class="sub_mins">
+                                        <h3>NEW</h3> 
+                                        <span>🛫</span>
+                                    </div>
+                                </div>
+                                <div class="cont_servings">
+                                    <h3 style="font-size: 15px;">BEST</h3>
+                                    <span>👍</span>
+                                </div>
+                                <div class="p-4 cont_detalles">
+                                    <h3>라스베가스</h3>
+                                    <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                        예약하기</button>
+                                    <p class="m-3 text-center">208여개의 여행상품</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="cont_principal">
+                    <div class="cont_central">
+                        <div class="cont_modal cont_modal_active">
+                            <div class="cont_photo">
+                                <div class="cont_img_back">
+                                    <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4735_large_square_1535795554.jpg?1535795554" alt="" />
+                                </div>
+                                <div class="cont_mins">
+                                    <div class="sub_mins">
+                                      <h3>NEW</h3> 
+                                      <span>🛫</span>
+                                  </div>
+                                </div>
+                                <div class="cont_servings">
+                                  <h3 style="font-size: 15px;">BEST</h3>
+                                  <span>👍</span>
+                                </div>
+                                <div class="p-4 cont_detalles">
+                                  <h3>후쿠오카</h3>
+                                  <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                      예약하기</button>
+                                  <p class="m-3 text-center">120여개의 여행상품</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="cont_principal">
+                  <div class="cont_central">
+                      <div class="cont_modal cont_modal_active">
+                          <div class="cont_photo">
+                              <div class="cont_img_back">
+                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/544_large_square_1468373190.jpg?1468373190" alt="" />
+                              </div>
+                              <div class="cont_mins">
+                                  <div class="sub_mins">
+                                      <h3>NEW</h3> 
+                                      <span>🛫</span>
+                                  </div>
+                              </div>
+                              <div class="cont_servings">
+                                  <h3 style="font-size: 15px;">BEST</h3>
+                                  <span>👍</span>
+                              </div>
+                              <div class="p-4 cont_detalles">
+                                <h3>칸쿤</h3>
+                                <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    예약하기</button>
+                                <p class="m-3 text-center">40여개의 여행상품</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+            <div class="cont_principal">
+                <div class="cont_central">
+                    <div class="cont_modal cont_modal_active">
+                        <div class="cont_photo">
+                            <div class="cont_img_back">
+                                <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4672_large_square_1535678422.jpg?1535678422" alt="" />
+                            </div>
+                            <div class="cont_mins">
+                                <div class="sub_mins">
+                                    <h3>NEW</h3> 
+                                    <span>🛫</span>
+                                </div>
+                            </div>
+                            <div class="cont_servings">
+                                <h3 style="font-size: 15px;">BEST</h3>
+                                <span>👍</span>
+                            </div>
+                            <div class="p-4 cont_detalles">
+                              <h3>바르셀로나</h3>
+                              <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                  예약하기</button>
+                              <p class="m-3 text-center">350여개의 여행상품</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+<!-- 추천 투어 / 상품리뷰 -->
+<section>
+    <div class="py-1" >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"> <h3 style="font: weight 900%;" href="#">✏ 추천 투어/상품 리뷰&nbsp;</h3> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!-- 상품리뷰 & 상품 -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      <img style="width: 1400px; height: 380px;" class="bd-placeholder-img bd-placeholder-img-lg d-block rounded" src="https://d2ur7st6jjikze.cloudfront.net/cms/642_original_1666923965.png?1666923965" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false" alt="">
+    </div>
+    <div class="carousel-item">
+      <img style="width: 1400px; height: 380px;" class="bd-placeholder-img bd-placeholder-img-lg d-block rounded" src="https://d2ur7st6jjikze.cloudfront.net/cms/2346_original_1665720610.png?1665720610" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false" alt="">
+
+    </div>
+    <div class="carousel-item active">
+      <img style="width: 1400px; height: 380px;" class="bd-placeholder-img bd-placeholder-img-lg d-block rounded" src="https://d2ur7st6jjikze.cloudfront.net/cms/2299_original_1664417904.jpg?1664417904" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false" alt="">
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
-<div class='d-flex align-content-around justify-content-between flex-wrap my-2'>
-  {% for article in articles %}
-  <div class="card" style="width: 18rem;">
-    {% if article.thumbnail %}
-    <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="{{ article.image }}" style='height: 15rem;'>
-    {% else %}
-    <img src="https://dummyimage.com/200x300/000000/c4c4c4" class="card-img-top" style="height: 15rem;">
-    {% endif %}
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-        <div>No.{{ article.pk }}</div>
-        <div>{{ article.user }}</div>
-      </div>
-      <h2 class="card-title text-center"><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h2>
-      <div class='text-end'>
-        {% if request.user in article.like_users.all %}
-          <a href="{% url 'articles:like' article.pk %}" class="btn btn-danger btn-sm">♥ {{ article.like_users.count }} </a>
-        {% else %}
-          <a href="{% url 'articles:like' article.pk %}" class="btn btn-outline-danger btn-sm">♥ {{ article.like_users.count }} </a>
-        {% endif %}
+  <!-- 추가한 메인페이지 -->
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="p-1 col-md-6" style="" >
+          <div class="m-2 card text-center">
+            <img class="rounded card-img-top" src="https://cimgcdn.ybtour.co.kr/attachHome/EP/EM/202201/202201051448572591104009001091.jpg" alt="Card image cap">
+          </div>
+        </div>
+        <div class="p-1 col-md-6" style="">
+          <div class="m-2 card text-center">
+            <img class="rounded card-img-top" src="https://cimgcdn.ybtour.co.kr/attachHome/EP/EM/202202/202202101125101741102001001003.jpg" alt="Card image cap">
+          </div>
+        </div>
+        <div class="p-1 col-md-6" style="">
+          <div class="m-2 card text-center">
+            <img class="rounded card-img-top" src="https://cimgcdn.ybtour.co.kr/attachHome/EP/EM/202210/202210201124346781410003001035.jpg" alt="Card image cap">
+          </div>
+        </div>
+        <div class="p-1 col-md-6" style="">
+          <div class="m-2 card text-center">
+            <img class="rounded card-img-top" src="https://cimgcdn.ybtour.co.kr/attachHome/EP/EM/202211/202211011729092842210002001098.jpg" alt="Card image cap">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  {% endfor %}
-</div>
- -->
+  <div class="py-5 p-3" style="background-color: #FFED90; background-position: right bottom;  background-size: cover; background-repeat: repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-8 text-center">
+          <h1>실시간 여행 후기 공유</h1>
+          <p class="mb-4">O my friend -- but it is too much for my strength -- I sink under the weight of the splendour of these visions!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-6 p-3">
+          <div class="card"><img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/106457/659512_large_1658824308.jpg?1658824308" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"> <b>루브르 박물관</b> </h5>
+              <p class="card-text">예술이 역사가 되는 곳</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 p-3">
+          <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/20220/369187_large_1559802935.jpg?1559802935" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"> <b>그랜드캐년</b> </h5>
+              <p class="card-text">후회없는 선택!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 p-3">
+          <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/46707/634698_large_1654798950.jpg?1654798950" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"> <b>박재벌의남부투어</b> </h5>
+              <p class="card-text">이탈리아 남부투어! 독보적재미!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 p-3">
+          <div class="card"> <img class="card-img-top" src="https://d32w679339tzui.cloudfront.net/reviews/56931/937210_large_1636250693.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"> <b>조슈아 트리 국립 공원</b> </h5>
+              <p class="card-text">미국/로스엔젤레스의 별밤</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 가이드 투어 카드 -->
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"> <a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Link</li>
+            <li class="breadcrumb-item active">Link</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/64296/620233_medium_1660875564.jpg?1660875564" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">Montserrat Tour</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>Exciting tour from Barcelona, ​​please contact us anytime</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/112073/602447_medium_1660875464.jpg?1660875464" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">Montserrat Tour</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>Exciting tour from Barcelona, ​​please contact us anytime</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/113552/669826_medium_1660871821.jpg?1660871821" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">Montserrat Tour</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>Exciting tour from Barcelona, ​​please contact us anytime</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/115642/669796_medium_1660871456.jpg?1660871456" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">Montserrat Tour</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>Exciting tour from Barcelona, ​​please contact us anytime</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- 여행상품.html -->
-    <!-- banner -->
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="carousel slide" data-ride="carousel" id="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item carousel-item-left"> <img class="d-block img-fluid w-100" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/dfbf62130479513.61813251acb25.jpg">
-                  <div class="carousel-caption">
-                    <h5 class="m-0">Carousel</h5>
-                    <p>with controls</p>
-                  </div>
-                </div>
-                <div class="carousel-item carousel-item-next carousel-item-left"> <img class="d-block img-fluid w-100" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2d40b9130479513.61813251b0007.jpg">
-                  <div class="carousel-caption">
-                    <h5 class="m-0">Carousel</h5>
-                    <p>with controls</p>
-                  </div>
-                </div>
-                <div class="carousel-item active"> <img class="d-block img-fluid w-100" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/dfbf62130479513.61813251acb25.jpg">
-                  <div class="carousel-caption">
-                    <h5 class="m-0">Carousel</h5>
-                    <p>with controls</p>
-                  </div>
-                </div>
-              </div> <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev" > <span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carousel" role="button" data-slide="next"> <span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span> </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <nav style="background-color: #FFED90;" class="navbar m-2">
-              <div class="container-fluid">
-                <span class="navbar-text"> ✈ BEST TRIP </span>
-              </div>
-            </nav>
-            <div class="row p-3">
-              <div class="col-md-3">
-                <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/114696/620118_large_1650270517.jpg?1650270517" alt="Card image cap" style="">
+  <!-- best 해외 여행지 -->
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"> <a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Link</li>
+            <li class="breadcrumb-item active">Link</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/26035/160736_medium_1525765896.jpg?1525765896" alt="Card image cap">
+                <div class="card-body">
                   <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h4 class="card-title">라스베가스</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>[최상급 1박 2일] 4대 캐년, <br> 그랜드+자이언+엔젤로프</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/119661/663841_large_1659658906.jpg?165965890" alt="Card image cap">
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/3329/387606_medium_1564028546.jpg?1564028546" alt="Card image cap">
+                <div class="card-body">
                   <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h4 class="card-title">로스엔젤레스</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>[LA 베스트] LA 반나절 <br> + 야경 투어</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/110001/675498_medium_1662013972.jpg?1662013972" alt="Card image cap">
+                <div class="card-body">
                   <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h4 class="card-title">로마</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>[바티칸 / 당일예약가능]  <br> 우리는 엔터 가이드입니다!</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
+            </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/33602/591513_medium_1635745022.jpg?1635745022" alt="Card image cap">
+                <div class="card-body">
                   <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <nav style="background-color: #FFED90;" class="navbar m-2">
-                <div class="container-fluid">
-                  <span class="navbar-text">🍽 Restaurant </span>
-                </div>
-              </nav>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/38272/643669_large_1656691448.jpg?1656691448" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                    <h4 class="card-title">파리</h4>
+                    <small class="text-muted">가이드 투어</small>
+                    <p>[숙소 무료 샌딩]  <br>JS 지베르니 투어(주간/야간)</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
               </div>
@@ -154,190 +696,65 @@
         </div>
       </div>
     </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 p-md-5 p-3 d-flex flex-column justify-content-center">
-            <h1>A thousand sliders</h1>
-            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-          </div>
-          <div class="col-lg-4 p-3">
-            <div id="carousel2" class="carousel slide" data-ride="carousel" data-interval="5000">
-              <div class="carousel-inner">
-                <div class="carousel-item"> <img class="d-block w-100" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/7511/296672_large_1544173662.jpg?1544173662"> </div>
-                <div class="carousel-item active"> <img class="d-block w-100" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/7511/296672_large_1544173662.jpg?1544173662"> </div>
-                <div class="carousel-item"> <img class="d-block w-100" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/7511/296672_large_1544173662.jpg?1544173662"> </div>
-                <div class="carousel-item"> <img class="d-block w-100" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/7511/296672_large_1544173662.jpg?1544173662"> </div>
-              </div>
-              <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
-              <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-              <img class="card-img-bottom" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/f58e0a151526505.630dddde6a276.jpg" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-md-6" style=""><iframe width="100%" height="510" src="https://maps.google.com/maps?q=New%20York&amp;z=14&amp;output=embed" scrolling="no" frameborder="0"></iframe></div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
-      <div class="container">
-        <div class="row">
-          <div class="text-center mx-auto col-md-12">
-            <h1 class="text-white mb-4">Testimonials</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 p-3">
-            <div class="card">
-              <div class="card-body p-4">
-                <div class="row">
-                  <div class="col-md-4 col-3"> <img class="img-fluid d-block rounded-circle" src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png"> </div>
-                  <div class="d-flex  col-md-8 flex-column justify-content-center align-items-start col-9">
-                    <p class="mb-0 lead"> <b>J. W. Goethe</b> </p>
-                    <p class="mb-0">Co-founder</p>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"> <a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Link</li>
+            <li class="breadcrumb-item active">Link</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/13688/464535_medium_1628832791.jpg?1628832791" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">하드 락 카페</h4>
+                    <small>바르셀로나</small>
+                    <p>Get Your Guide</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
-                <p class="mt-3 mb-0">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world.</p>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 p-3">
-            <div class="card">
-              <div class="card-body p-4">
-                <div class="row">
-                  <div class="col-md-4 col-3"> <img class="img-fluid d-block rounded-circle" src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png"> </div>
-                  <div class="d-flex  col-md-8 flex-column justify-content-center align-items-start col-9">
-                    <p class="mb-0 lead"> <b>G. W. John</b> </p>
-                    <p class="mb-0">CEO &amp; founder</p>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/57756/357352_medium_1627628130.jpg?1627628130" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">프라이빗 디너식사</h4>
+                    <small>파리</small>
+                    <p>ETripadvisor Experiences</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
-                <p class="mt-3 mb-0">I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies.</p>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 p-3">
-            <div class="card">
-              <div class="card-body p-4">
-                <div class="row">
-                  <div class="col-md-4 col-3"> <img class="img-fluid d-block rounded-circle" src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png"> </div>
-                  <div class="d-flex  col-md-8 flex-column justify-content-center align-items-start col-9">
-                    <p class="mb-0 lead"> <b>J. G. Wolf</b> </p>
-                    <p class="mb-0">CFO</p>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/117902/674056_medium_1661803041.jpg?1661803041" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">키안티 와이너리</h4>
+                    <small>피란체</small>
+                    <p>Get Your Guide</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
-                <p class="mt-3 mb-0">Oh, would I could describe these conceptions, could impress upon paper all that is living so full and warm within me, that it might be the mirror of my soul, as my soul is the mirror of the infinite God!</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-12">
-              <nav class="navbar bg-light">
-                <div class="container-fluid">
-                  <span class="navbar-text"> Navbar text with an inline element </span>
-                </div>
-              </nav>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                    <div class="card-body">
-                      <h4 class="card-title">Card title</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <nav class="navbar bg-light">
-                  <div class="container-fluid">
-                    <span class="navbar-text"> Navbar text with an inline element </span>
-                  </div>
-                </nav>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/22015/133914_large_1525755395.jpg?1525755395" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
+            <div class="col-md-3">
+              <div style=" border-color: #FFED90;" class="card"> <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/117802/643075_medium_1656661823.jpg?1656661823" alt="Card image cap">
+                <div class="card-body">
+                  <div class="card-body">
+                    <h4 class="card-title">민속 정원</h4>
+                    <small>프라하</small>
+                    <p>Get Your Guide</p>
+                    <p class="card-text">⭐⭐⭐⭐⭐</p>
+                    <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
                   </div>
                 </div>
               </div>
@@ -346,32 +763,58 @@
         </div>
       </div>
     </div>
-    <div class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-9">
-            <p class="lead">Sign up to our newsletter for the latest news</p>
-            <form class="form-inline">
-              <div class="form-group"> <input type="email" class="form-control" placeholder="Your e-mail here"> </div> <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
-            </form>
-          </div>
-          <div class="col-4 col-md-1 align-self-center"> <a href="#">
-              <i class="fa fa-fw fa-facebook text-muted fa-2x"></i>
-            </a> </div>
-          <div class="col-4 col-md-1 align-self-center"> <a href="#">
-              <i class="fa fa-fw fa-twitter text-muted fa-2x"></i>
-            </a> </div>
-          <div class="col-4 col-md-1 align-self-center"> <a href="#">
-              <i class="fa fa-fw fa-instagram text-muted fa-2x"></i>
-            </a> </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 mt-3 text-center">
-            <p>©2022</p>
+  </div>
+  <div class="py-5" style="background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/26332a104619893.5f67731432b11.jpg); background-position: right bottom;  background-size: cover; background-repeat: repeat; background-attachment: fixed;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto p-3 col-md-2 bg-white"> <img class="img-fluid d-block rounded-circle" src="https://cdn-icons-png.flaticon.com/512/2972/2972857.png"> </div>
+        <div class="p-3 col-md-7 mr-auto bg-white text-dark">
+          <div class="blockquote mb-0">
+            <p>"A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine."</p>
+            <div class="blockquote-footer"> <b>J. W. Goethe</b>, CEO at Werther Inc.</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- footer -->
+  <div class="py-3" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center"> <i class="d-block fa fa-stop-circle mb-3 text-muted fa-3x"></i>
+          <p>누런 풍선</p>
+          <p> <a style="text-decoration: none;" href="tel:+246 - 542 550 5462">멀티캠퍼스</a> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex align-items-center justify-content-center my-3">
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-facebook-official text-muted fa-lg mr-2"></i>
+          </a> 
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+          </a> 
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+          </a> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mb-0">© 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
 
 <!-- banner -->
 {% endblock %}

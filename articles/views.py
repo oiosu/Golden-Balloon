@@ -10,6 +10,7 @@ from .models import (
     Faq,
     Qna,
     QnaComment,
+    Product,
 )
 from .forms import (
     ArticleForm,
@@ -26,9 +27,10 @@ from django.core.paginator import Paginator
 def index(request):
 
     articles = Article.objects.order_by("-pk")
-
+    product = Product.objects.all()
     context = {
         "articles": articles,
+        "product": product,
     }
     return render(request, "articles/index.html", context)
 
