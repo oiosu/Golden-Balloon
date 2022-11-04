@@ -21,6 +21,7 @@ from .forms import (
     QnaForm,
 )
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -439,7 +440,6 @@ def qna_update(request, pk):
     context = {
         "qna": qna,
     }
-
     return render(request, "articles/qna_update.html", context)
 
 
@@ -462,3 +462,33 @@ def qna_c_delete(request, a_pk, c_pk):
         comment.delete()
 
     return redirect("articles:qna_detail", a_pk)
+  
+ 
+ def search(request):
+    search = request.GET.get("search", "")
+
+    search_list = Review.objects.filter(
+        Q(title__icontains=search) | Q(content__icontains=search)  # 제목
+    )
+
+    if search:
+        if search_list:
+            paginator = Paginator(search_list, 6)
+            page = request.GET.get("page", "")
+            boards = paginator.get_page(page)
+            context = {"search": search, "boards": boards, "search_list": search_list}
+
+            return render(
+                request,
+                "articles/search.html",
+                context,
+            )
+        else:
+            return render(request, "articles/searchfail.html")
+    else:
+        return render(request, "articles/searchfail.html")
+
+
+def searchfail(request):
+    return render(request, "articles/searchfail.html")
+
