@@ -48,9 +48,9 @@ class Notice(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
-        upload_to="images/",
+        upload_to="images/%Y/%m/%d",
         blank=True,
-        processors=[ResizeToFill(1200, 960)],
+        processors=[ResizeToFill(600, 600)],
         format="JPEG",
         options={"quality": 80},
         null=True,
@@ -65,13 +65,14 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
-        upload_to="images/",
+        upload_to="images/%Y/%m/%d",
         blank=True,
-        processors=[ResizeToFill(1200, 960)],
+        processors=[ResizeToFill(600, 600)],
         format="JPEG",
         options={"quality": 80},
         null=True,
     )
+    # image = models.ImageField(upload_to="images/%Y/%m/%d")
     thumbnail = ProcessedImageField(
         upload_to="images/",
         blank=True,
@@ -128,9 +129,9 @@ class Faq(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
-        upload_to="images/",
+        upload_to="images/%Y/%m/%d",
         blank=True,
-        processors=[ResizeToFill(1200, 960)],
+        processors=[ResizeToFill(600, 600)],
         format="JPEG",
         options={"quality": 80},
         null=True,
@@ -144,9 +145,9 @@ class Qna(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
-        upload_to="images/",
+        upload_to="images/%Y/%m/%d",
         blank=True,
-        processors=[ResizeToFill(1200, 960)],
+        processors=[ResizeToFill(600, 600)],
         format="JPEG",
         options={"quality": 80},
         null=True,

@@ -11,7 +11,7 @@
     <p class="fw-semibold">홈페이지 운영에 관해 궁금하신것 물어보세요.</p>
   </div>
   <!-- form -->
-  <form class="mt-5" action="" method="POST">
+  <form class="mt-5" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <!-- 제목 -->
     <p class="fs-4 fw-semibold mb-2 ms-1">제목</p>
@@ -19,9 +19,25 @@
     <!-- 내용 -->
     <p class="fs-4 fw-semibold mb-2 ms-1">내용</p>
     <textarea class="mb-3 rounded ps-3 pt-3" style="border: 1.5px solid #424143; width: 45rem; height: 14rem" placeholder="질문의 내용을 입력해주세요." name="content" required>{{ qna.content }}</textarea>
+    {% if qna.image %}
+    <p class="fs-4 fw-semibold mb-2 ms-1">사진 수정</p>
+    <input class="mb-3" type="file" name="image">
+    <div class="my-4 mx-2">
+      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ qna.image.url }}" alt="image">
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check'>
+      <label class="form-check-label" for="flexCheckDefault">
+        사진 삭제
+      </label>
+    </div>
+    {% else %}
+    <p class="fs-4 fw-semibold mb-2 ms-1">사진 첨부</p>
+    <input class="mb-3" type="file" name="image">
+    {% endif %}
     <div class="mt-4" style="width: 93%">
       <button class="btn fw-semibold" style="background-color: #ffed90">
-        글쓰기
+        수정하기
       </button>
     </div>
   </form>
