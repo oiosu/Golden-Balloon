@@ -37,6 +37,11 @@
             {{ faq.content }}
           </div>
         </div>
+        {% if faq.image %}
+        <div class="my-4 mx-2 text-center">
+          <img class="rounded me-3" style="width: 40rem; height: 40rem" src="{{ faq.image.url }}" alt="image">
+        </div>
+        {% endif %}
       </div>
     </div>
   </section>

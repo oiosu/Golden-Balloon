@@ -33,6 +33,11 @@
             <div class="mt-4 ms-1" style="min-height: 4rem">
               {{ notice.content }}
             </div>
+            {% if notice.image %}
+            <div class="my-4 mx-2 text-center">
+              <img class="rounded me-3" style="width: 40rem; height: 40rem" src="{{ notice.image.url }}" alt="image">
+            </div>
+            {% endif %}
           </div>
         </div>
       </section>

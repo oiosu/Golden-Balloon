@@ -146,9 +146,16 @@ def n_create(request):
         if request.method == "POST":
             title = request.POST.get("title")
             content = request.POST.get("content")
+            image = request.FILES.get("image")
             user = request.user
-            Notice.objects.create(title=title, content=content, user=user)
-            return redirect("articles:notice")
+            Notice.objects.create(
+                title=title,
+                content=content,
+                user=user,
+                image=image,
+            )
+            pk = Notice.objects.order_by("-pk")[0].pk
+            return redirect("articles:n_detail", pk)
         return render(request, "articles/n_create.html")
     return redirect("articles:notice")
 
@@ -182,6 +189,11 @@ def n_update(request, pk):
         if request.method == "POST":
             title = request.POST.get("title")
             content = request.POST.get("content")
+            if request.FILES.get("image"):
+                image = request.FILES.get("image")
+                notice.image = image
+            elif request.POST.get("check"):
+                notice.image = ""
             notice.title = title
             notice.content = content
             notice.save()
@@ -215,14 +227,26 @@ def reviews(request):
 def r_create(request):
 
     if request.method == "POST":
-        review_form = ReviewForm(request.POST, request.FILES)
-        if review_form.is_valid():
-            review = review_form.save(commit=False)
-            review.user = request.user
-            review.save()
-            return redirect("articles:reviews")
-    else:
-        review_form = ReviewForm()
+        country = request.POST.get("country")
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        grade = request.POST.get("grade")
+        user = request.user
+        image = request.FILES.get("image")
+        thumbnail = request.FILES.get("thumbnail")
+        Review.objects.create(
+            country=country,
+            title=title,
+            content=content,
+            grade=grade,
+            user=user,
+            image=image,
+            thumbnail=thumbnail,
+        )
+        return redirect("articles:reviews")
+
+    review_form = ReviewForm()
+
     context = {
         "review_form": review_form,
     }
@@ -327,8 +351,15 @@ def faq_create(request):
             title = request.POST.get("title")
             content = request.POST.get("content")
             user = request.user
-            Faq.objects.create(title=title, content=content, user=user)
-            return redirect("articles:faq")
+            image = request.FILES.get("image")
+            Faq.objects.create(
+                title=title,
+                content=content,
+                user=user,
+                image=image,
+            )
+            pk = Faq.objects.order_by("-pk")[0].pk
+            return redirect("articles:faq_detail", pk)
 
         return render(request, "articles/faq_create.html")
     redirect("articles:faq")
@@ -365,6 +396,11 @@ def faq_update(request, pk):
         if request.method == "POST":
             title = request.POST.get("title")
             content = request.POST.get("content")
+            if request.FILES.get("image"):
+                image = request.FILES.get("image")
+                faq.image = image
+            elif request.POST.get("check"):
+                faq.image = ""
             faq.title = title
             faq.content = content
             faq.save()
@@ -394,8 +430,15 @@ def qna_create(request):
         title = request.POST.get("title")
         content = request.POST.get("content")
         user = request.user
-        Qna.objects.create(title=title, content=content, user=user)
-        return redirect("articles:qna")
+        image = request.FILES.get("image")
+        Qna.objects.create(
+            title=title,
+            content=content,
+            user=user,
+            image=image,
+        )
+        pk = Qna.objects.order_by("-pk")[0].pk
+        return redirect("articles:qna_detail", pk)
 
     return render(request, "articles/qna_create.html")
 
@@ -430,6 +473,11 @@ def qna_update(request, pk):
     if request.method == "POST":
         title = request.POST.get("title")
         content = request.POST.get("content")
+        if request.FILES.get("image"):
+            image = request.FILES.get("image")
+            qna.image = image
+        elif request.POST.get("check"):
+            qna.image = ""
         qna.title = title
         qna.content = content
         qna.save()
