@@ -151,10 +151,7 @@ def n_create(request):
             image = request.FILES.get("image")
             user = request.user
             Notice.objects.create(
-                title=title,
-                content=content,
-                user=user,
-                image=image,
+                title=title, content=content, user=user, image=image,
             )
             pk = Notice.objects.order_by("-pk")[0].pk
             return redirect("articles:n_detail", pk)
@@ -355,10 +352,7 @@ def faq_create(request):
             user = request.user
             image = request.FILES.get("image")
             Faq.objects.create(
-                title=title,
-                content=content,
-                user=user,
-                image=image,
+                title=title, content=content, user=user, image=image,
             )
             pk = Faq.objects.order_by("-pk")[0].pk
             return redirect("articles:faq_detail", pk)
@@ -434,10 +428,7 @@ def qna_create(request):
         user = request.user
         image = request.FILES.get("image")
         Qna.objects.create(
-            title=title,
-            content=content,
-            user=user,
-            image=image,
+            title=title, content=content, user=user, image=image,
         )
         pk = Qna.objects.order_by("-pk")[0].pk
         return redirect("articles:qna_detail", pk)
@@ -527,11 +518,7 @@ def search(request):
             boards = paginator.get_page(page)
             context = {"search": search, "boards": boards, "search_list": search_list}
 
-            return render(
-                request,
-                "articles/search.html",
-                context,
-            )
+            return render(request, "articles/search.html", context,)
         else:
             return render(request, "articles/searchfail.html")
     else:
@@ -545,13 +532,14 @@ def searchfail(request):
 def product_main(request):
     products = Product.objects.all()
     context = {
-        'products': products,
+        "products": products,
     }
     return render(request, "articles/product_main.html", context)
+
 
 def product_detail(request):
     products = Product.objects.all()
     context = {
-        'products': products,
+        "products": products,
     }
     return render(request, "articles/product_detail.html", context)
