@@ -50,15 +50,14 @@
             {% for product in products %}
             <div class="col-md-3">
               <div style=" border-color: #FFED90;" class="card">
-                {% if product.image %}
-                <img src="{{ product.image.url }}" class="card-img-top" alt="...">
-              {% else %}
-                <img src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/43462/499672_medium_1585303053.jpg?1585303053" class="card-img-top">
-              {% endif %}                
+                {% comment %} {% for i in "x"|rjust:"64" %}
+                    {{ forloop.counter }} {% endcomment %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                  {% comment %} {% endfor %}             {% endcomment %}
               <div class="card-body">
                   <h4 class="card-title">{{ product.title }}</h4>
                   <p class="card-text">⭐⭐⭐⭐⭐</p>
-                  <a style="background-color: #FFED90;" href="#" class="btn">50,000</a>
+                  <a style="background-color: #FFED90;" href="{% url 'articles:product_detail'%}" class="btn">50,000</a>
                 </div>
               </div>
             </div> 

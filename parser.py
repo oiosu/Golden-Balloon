@@ -37,7 +37,7 @@ def prase_product():
     file_no = 1
     for i in range(len(images)):
         with urlopen(images[i]) as f:
-            with open('./p_images' + str(file_no)+'.jpeg', 'wb') as h:  
+            with open('p_images/' + str(file_no)+'.jpeg', 'wb') as h:  
                 img = f.read()
                 h.write(img)
                 file_no += 1    

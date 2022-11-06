@@ -11,6 +11,8 @@ from .models import (
     Qna,
     QnaComment,
     Product,
+    Wishlist,
+    WishItem,
 )
 from .forms import (
     ArticleForm,
@@ -24,6 +26,7 @@ from .forms import (
 )
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -543,3 +546,50 @@ def product_detail(request):
         "products": products,
     }
     return render(request, "articles/product_detail.html", context)
+
+def _wishlist(request):
+    wishlist = request.session.session_key
+    if not wishlist:
+        wishlist = request.session.create()
+    return _wishlist
+
+def add_wishitem(request, product_id):
+    product = Product.objects.get(id=product_id)
+    try:
+        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
+    except Wishlist.DoesNotExist:
+        wishlist=Wishlist.objects.create(
+            wishlist_id = _wishlist(request)
+        )
+        wishlist.save()
+    
+    try:
+        wishlist_item = WishItem.objects.get(product=product, wishlist=wishlist)
+        wishlist_item.quantity += 1
+        wishlist_item.save()
+
+    except WishItem.DoesNotExist:
+        wishlist_item = WishItem.objects.create(
+            product = product,
+            quantity = 1,
+            wishlist = wishlist
+        )
+        wishlist_item.save()
+    return redirect('accounts:mypage_2')
+
+def wishlist_detail(request, total=0, counter=0, cart_item = None):
+    try:
+        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
+        wishlist_items = WishItem.objects.filter(wishlist=wishlist, active=True)
+        for wishitem in wishlist_items:
+            total += (wishitem.product.price * cart_item.quantity)
+            counter += wishitem.quantity
+    except ObjectDoesNotExist:
+        pass
+    
+    context = {
+        'wishlist_items': wishlist_items,
+        'total': total,
+        'counter': counter,
+    }
+    return render(request, 'accounts:mypage_2', context)
