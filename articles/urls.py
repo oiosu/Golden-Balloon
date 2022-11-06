@@ -39,4 +39,8 @@ urlpatterns = [
     path("qna/qna_update/<int:pk>", views.qna_update, name="qna_update"),
     path("qna_c_create/<int:pk>", views.qna_c_create, name="qna_c_create"),
     path("qna_c_delete/<int:a_pk>/<int:c_pk>", views.qna_c_delete, name="qna_c_delete"),
+    path("product_main", views.product_main, name="product_main"),
+    path("product_detail", views.product_detail, name="product_detail"),
+    path("add_wishitem/<int:product_pk>", views.add_wishitem, name="add_wishitem"),
+    path("", views.wishlist_detail, name="wishlist_detail"),
 ]

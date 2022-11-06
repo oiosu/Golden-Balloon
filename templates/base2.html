@@ -10,14 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    {% block css %}{% endblock css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-    crossorigin="anonymous"
-  />
+    <link href="{% static 'css/main10.css' %}" rel="stylesheet" type="text/css">
+
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
@@ -85,13 +79,45 @@
     </ul>
   </div>
     
-    {% block body %}{% endblock body %}
+    {% block body %}
+
+    {% endblock body %}
+
+      <!-- footer -->
+  <div class="py-3" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center"> <i class="d-block fa fa-stop-circle mb-3 text-muted fa-3x"></i>
+          <p>누런 풍선</p>
+          <p> <a style="text-decoration: none;" href="tel:+246 - 542 550 5462">멀티캠퍼스</a> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex align-items-center justify-content-center my-3">
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-facebook-official text-muted fa-lg mr-2"></i>
+          </a> 
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+          </a> 
+          <a style="text-decoration: none;" href="#">
+            <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+          </a> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="mb-0">© 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     <!-- JavaScript Bundle with Popper -->
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
   </body>
 
 </html>
