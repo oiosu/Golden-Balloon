@@ -1,3 +1,4 @@
+
 {% extends 'base2.html' %}
 {% load django_bootstrap5 %}
 {% load static %}
@@ -29,6 +30,12 @@
       </nav>
       <br>
 
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block body %}
+                                       
 <!-- 카테고리 메뉴 -->
     <header>
         <div class="inner">    
@@ -786,7 +793,7 @@
       </div>
     </div>
   </div>
-
+  {% endblock body %}
   <!-- footer -->
   <div class="py-3" >
     <div class="container">
