@@ -286,14 +286,34 @@ def r_update(request, pk):
     review = Review.objects.get(pk=pk)
 
     if request.method == "POST":
-        review_form = ReviewForm(request.POST, request.FILES, instance=review)
-        if review_form.is_valid():
-            review_form.save()
-            return redirect("articles:r_detail", pk)
-    else:
-        review_form = ReviewForm(instance=review)
+        country = request.POST.get("country")
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        grade = request.POST.get("grade")
+        if request.FILES.get("image"):
+            image = request.FILES.get("image")
+            review.image = image
+        elif request.POST.get("check_image"):
+            review.image = ""
+        if request.FILES.get("thumbnail"):
+            thumbnail = request.FILES.get("thumbnail")
+            review.thumbnail = thumbnail
+        elif request.POST.get("check_thumbnail"):
+            review.thumbnail = ""
+
+        review.country = country
+        review.title = title
+        review.content = content
+        review.grade = grade
+        review.save()
+
+        return redirect("articles:r_detail", pk)
+
+    review_form = ReviewForm()
+
     context = {
         "review_form": review_form,
+        "review": review,
     }
     return render(request, "articles/r_update.html", context)
 

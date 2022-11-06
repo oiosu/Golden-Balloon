@@ -74,7 +74,7 @@ class Review(models.Model):
     )
     # image = models.ImageField(upload_to="images/%Y/%m/%d")
     thumbnail = ProcessedImageField(
-        upload_to="images/",
+        upload_to="images/%Y/%m/%d",
         blank=True,
         processors=[Thumbnail(400, 300)],
         format="JPEG",
@@ -107,9 +107,9 @@ class Product(models.Model):
         options={"quality": 80},
         null=True,
     )
+
     def __str__(self):
         return self.title
-
 
 class Faq(models.Model):
     title = models.CharField(max_length=20)
