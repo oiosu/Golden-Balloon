@@ -99,8 +99,6 @@ class ReviewComment(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    # content = models.TextField()
-
     image = ProcessedImageField(
         upload_to="reviews/",
         blank=True,
@@ -111,16 +109,6 @@ class Product(models.Model):
     )
     def __str__(self):
         return self.title
-    
-
-    # image = ProcessedImageField(
-    #     upload_to="reviews/",
-    #     blank=True,
-    #     processors=[ResizeToFill(1200, 960)],
-    #     format="JPEG",
-    #     options={"quality": 80},
-    #     null=True,
-    # )
 
 
 class Faq(models.Model):
