@@ -20,6 +20,7 @@ from .forms import (
     ReviewCommentForm,
     FaqForm,
     QnaForm,
+    ProductForm,
 )
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -28,10 +29,8 @@ from django.db.models import Q
 def index(request):
 
     articles = Article.objects.order_by("-pk")
-    product = Product.objects.all()
     context = {
         "articles": articles,
-        "product": product,
     }
     return render(request, "articles/index.html", context)
 
@@ -541,3 +540,18 @@ def search(request):
 
 def searchfail(request):
     return render(request, "articles/searchfail.html")
+
+
+def product_main(request):
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, "articles/product_main.html", context)
+
+def product_detail(request):
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, "articles/product_detail.html", context)
