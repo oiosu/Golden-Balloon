@@ -1,6 +1,8 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
+
+{% block body %}
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -13,11 +15,8 @@
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
     {% block css %}{% endblock css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"
     <title>Golden Balloon</title>
-   
   </head>
 
   <body>
