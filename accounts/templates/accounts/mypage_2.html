@@ -2,45 +2,49 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-<div class="">
+  <div class="">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h4 style="font-weight: bolder;" class="mt-4" >회원 정보 보기</h4>
+          <h4 style="font-weight: bolder;" class="mt-4">회원 정보 보기</h4>
         </div>
       </div>
     </div>
   </div>
   <div class="mb-5 p-2">
     <div style="border-radius: 3%; border: 3px solid #FFED90;" class="container">
-      <div class="row">
+      <div class="row mt-4">
         <div class="col-md-12">
           <div class="row">
             <div class="p-3 d-flex justify-content-center col-md-4">
-                {% if user.user_img %}
-                    <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
-                {% else %}  
-                    <img class="m-3 rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4484/4484346.png" alt="{{ user.user_img }}" style="width:100px;">
-                {% endif %}
+              {% if user.user_img %}
+                <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
+              {% else %}
+                <img class="m-3 rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4484/4484346.png" alt="{{ user.user_img }}" style="width:100px;">
+              {% endif %}
             </div>
             <div class="col-md-8">
               <div class="p-2 col-md-12">
                 <div class="m-2">
-                  <span>{{ user.username }}</span>
-                  <span class="m-5">팔로우 {{ user.followers.count }} | 팔로잉 {{ user.followings.count }} </span>
+                  <span class="fw-bold fs-4">{{ user.username }}</span>
+                  <span class="m-3">팔로우
+                    {{ user.followers.count }}
+                    | 팔로잉
+                    {{ user.followings.count }}
+                  </span>
                   <span class="text-right">
                     {% if request.user != user %}
-                    <a href="{% url 'accounts:follow' user.pk %}" >
+                      <a href="{% url 'accounts:follow' user.pk %}">
                         {% if request.user in user.followers.all %}
-                            <button class="btn" style="background-color: #FFED90;" type="button">
-                                팔로우 취소
-                            </button>
+                          <button class="btn" style="background-color: #FFED90;" type="button">
+                            팔로우 취소
+                          </button>
                         {% else %}
-                            <button class="btn" style="background-color: #FFED90;" type="button">
-                                팔로우
-                            </button>
+                          <button class="btn" style="background-color: #FFED90;" type="button">
+                            팔로우
+                          </button>
                         {% endif %}
-                    </a>
+                      </a>
                     {% endif %}
                   </span>
                 </div>
@@ -54,61 +58,62 @@
           <div class="row">
             <div class="col-md-6">
               <div>
-                <p style="font-weight: bolder; text-align: center;">'{{ user.username }}' 님이 작성한 글 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
+                <p class="fs-5" style="font-weight: bolder; text-align: center;">'{{ user.username }}' 님이 작성한 글
+                  <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
               </div>
-            
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush" style="list-style:none;">
                 {% for review in user.review_set.all %}
-                    {{ forloop.counter }}
-                <li class="list-group-item">{{ review.title }}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-                  </svg>
-                {% endfor %}</li>
+                  <li class="mb-1" style="text-align: center;">{{ review.title }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewbox="0 0 16 16">
+                      <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                    </svg>
+                  {% endfor %}
+                </li>
               </ul>
             </div>
             <div class="col-md-6">
-              <p style="font-weight: bolder; text-align: center;">'{{ user.username }}' 님이 작성한 댓글 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
-              <ul class="list-group list-group-flush">
+              <p class="fs-5" style="font-weight: bolder; text-align: center;">'{{ user.username }}' 님이 작성한 댓글
+                <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
+              <ul class="list-group list-group-flush" style="list-style:none;">
                 {% for comment in user.reviewcomment_set.all %}
-                {{ forloop.counter }}
-                <li class="list-group-item">{{ comment.content }}</li>
+                  <list style="text-align: center;">{{ comment.content }}</list>
                 {% endfor %}
               </ul>
             </div>
           </div>
           <br>
-          <hr style="background-color: #FFED90;">
-          <div class="row">
-            <div class="col-md-6">
-              <p class="m-4" style="font-size: large; font-weight: bolder;">위시 리스트</p>
-            </div>
-            <div class="col-md-6 text-right">
-              <p class="m-4" href="#">더 보기 &nbsp<img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/254/254434.png" alt=""></p>
-            </div>
+          <hr class="m-2" style="background-color: #FFED90;">
+          <div class="d-flex justify-content-between">
+            <p class="m-4 fs-5" style="font-size: large; font-weight: bolder;">위시 리스트</p>
+            <p class="m-4" href="#">더 보기 &nbsp<img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/254/254434.png" alt=""></p>
           </div>
           {% if user.product_wishlist.all %}
             {% for wish in user.product_wishlist.all %}
-            {{ forloop.counter }}
-              <div class="col-md-3">
-                <div class="card">
-                  <img class="card-img-top" src="{{ wish.image }}" alt="...">
-                  <div class="card-body">
-                    <p style="color: #B2B2B2;">카테고리</p>
-                    <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
-                    <p>⭐⭐⭐⭐⭐</p>
+              {{ forloop.counter }}
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="card">
+                    <img class="card-img-top" src="{{ wish.image }}" alt="...">
+                    <div class="card-body">
+                      <p style="color: #B2B2B2;">카테고리</p>
+                      <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
+                      <p>⭐⭐⭐⭐⭐</p>
+                    </div>
                   </div>
                 </div>
               </div>
             {% endfor %}
           {% else %}
-            <h1>상품이 없습니다.</h1>
-            <a href="{% url 'articles:product_main' %}"> 지금 떠날 여행 보러가기</a>
+            <p class="ms-4">상품이 없습니다.</p>
+            <p class="ms-4 pb-3">
+              <a href="{% url 'articles:product_main' %}">
+                지금 떠날 여행 보러가기</a>
+            </p>
           {% endif %}
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock %}
