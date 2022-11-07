@@ -12,10 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="{% static 'css/main10.css' %}" rel="stylesheet" type="text/css">
 
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
-  />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
 
     <title>Golden Balloon</title>
   </head>
@@ -55,69 +52,34 @@
     </nav>
 
     <!-- 왼쪽 nav -->
-    <div
-    class=""
-    style="
+    <div class="" style="
       width: 200px;
       border-right: 1px solid #8b8b8b;
       position: fixed;
       height: 100%;
-    "
-  >
-    <ul
-      style="
+    ">
+      <ul style="
         list-style: none;
         padding-left: 0;
         margin-top: 5rem;
         color: #5f5e5e;
-      "
-      class="fw-bold fs-4 text-center"
-    >
-      <li class="mb-5"><a href="{% url 'articles:notice' %}" style='text-decoration:none; color: #5f5e5e;'>공지사항</a></li>
-      <li class="mb-5"><a href="{% url 'articles:faq' %}" style='text-decoration:none; color: #5f5e5e;'>FAQ</a></li>
-      <li class="mb-5"><a href="{% url 'articles:qna' %}" style='text-decoration:none; color: #5f5e5e;'>Q & A</a></li>
-    </ul>
-  </div>
-    
-    {% block body %}
-
-    {% endblock body %}
-
-      <!-- footer -->
-  <div class="py-3" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center"> <i class="d-block fa fa-stop-circle mb-3 text-muted fa-3x"></i>
-          <p>누런 풍선</p>
-          <p> <a style="text-decoration: none;" href="tel:+246 - 542 550 5462">멀티캠퍼스</a> </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 d-flex align-items-center justify-content-center my-3">
-          <a style="text-decoration: none;" href="#">
-            <i class="d-block fa fa-facebook-official text-muted fa-lg mr-2"></i>
-          </a> 
-          <a style="text-decoration: none;" href="#">
-            <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
-          </a> 
-          <a style="text-decoration: none;" href="#">
-            <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
-          </a> </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p class="mb-0">© 2022</p>
-        </div>
-      </div>
+      " class="fw-bold fs-4 text-center">
+        <li class="mb-5">
+          <a href="{% url 'articles:notice' %}" style='text-decoration:none; color: #5f5e5e;'>공지사항</a>
+        </li>
+        <li class="mb-5">
+          <a href="{% url 'articles:faq' %}" style='text-decoration:none; color: #5f5e5e;'>FAQ</a>
+        </li>
+        <li class="mb-5">
+          <a href="{% url 'articles:qna' %}" style='text-decoration:none; color: #5f5e5e;'>Q & A</a>
+        </li>
+      </ul>
     </div>
-  </div>
 
+    {% block body %}{% endblock body %}
 
     <!-- JavaScript Bundle with Popper -->
-    <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 
 </html>
