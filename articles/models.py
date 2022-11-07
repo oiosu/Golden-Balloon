@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
+
 class Article(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
@@ -112,7 +113,9 @@ class Product(models.Model):
         options={"quality": 80},
         null=True,
     )
-    wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="product_wishlist")
+    wishlist = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="product_wishlist"
+    )
 
     def __str__(self):
         return self.title
@@ -156,6 +159,8 @@ class QnaComment(models.Model):
     qna = models.ForeignKey(Qna, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+ SK-19
+=======
 
 
 # class Wishlist(models.Model):
@@ -186,3 +191,4 @@ class QnaComment(models.Model):
 
 #     def __str__(self):
 #         return self.product.title
+ master
