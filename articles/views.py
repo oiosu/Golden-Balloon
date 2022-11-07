@@ -11,8 +11,7 @@ from .models import (
     Qna,
     QnaComment,
     Product,
-    # Wishlist,
-    # WishItem,
+    WishItem,
 )
 from .forms import (
     ArticleForm,
@@ -619,96 +618,9 @@ def wishlist(request, pk):
         
     return redirect('articles:product_detail', pk)
 
-# def _wishlist(request):
-#     wishlist = request.session.session_key
-#     if not wishlist:
-#         wishlist = request.session.create()
-#     return _wishlist
-
-# def add_wishitem(request, product_id):
-#     product = Product.objects.get(id=product_id)
-#     try:
-#         wishlist = WishItem.objects.get(product__id=product.pk, user__id=request.user.pk)
-    
-#     except WishItem.DoesNotExist:
-#         user = User.objects.get(pk=request.user.pk)
-#         wishlist=Wishlist.objects.create(
-#             wishlist_id = _wishlist(request)
-#         )
-#         wishlist.save()
-    
-#     try:
-#         wishlist_item = WishItem.objects.get(product=product, wishlist=wishlist)
-#         wishlist_item.quantity += 1
-#         wishlist_item.save()
-
-#     except WishItem.DoesNotExist:
-#         wishlist_item = WishItem.objects.create(
-#             product = product,
-#             quantity = 1,
-#             wishlist = wishlist
-#         )
-#         wishlist_item.save()
-#     return redirect('accounts:mypage_2')
-
-# def wishlist_detail(request, total=0, counter=0, cart_item = None):
-#     try:
-#         wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
-#         wishlist_items = WishItem.objects.filter(wishlist=wishlist, active=True)
-#         for wishitem in wishlist_items:
-#             total += (wishitem.product.price * cart_item.quantity)
-#             counter += wishitem.quantity
-#     except ObjectDoesNotExist:
-#         pass
-    
-#     context = {
-#         'wishlist_items': wishlist_items,
-#         'total': total,
-#         'counter': counter,
-#     }
-#     return render(request, 'accounts:mypage_2', context)
-
-def _wishlist(request):
-    wishlist = request.session.session_key
-    if not wishlist:
-        wishlist = request.session.create()
-    return _wishlist
-
-
-def add_wishitem(request, product_id):
-    product = Product.objects.get(id=product_id)
-    try:
-        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
-    except Wishlist.DoesNotExist:
-        wishlist = Wishlist.objects.create(wishlist_id=_wishlist(request))
-        wishlist.save()
-
-    try:
-        wishlist_item = WishItem.objects.get(product=product, wishlist=wishlist)
-        wishlist_item.quantity += 1
-        wishlist_item.save()
-
-    except WishItem.DoesNotExist:
-        wishlist_item = WishItem.objects.create(
-            product=product, quantity=1, wishlist=wishlist
-        )
-        wishlist_item.save()
-    return redirect("accounts:mypage_2")
-
-
-def wishlist_detail(request, total=0, counter=0, cart_item=None):
-    try:
-        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
-        wishlist_items = WishItem.objects.filter(wishlist=wishlist, active=True)
-        for wishitem in wishlist_items:
-            total += wishitem.product.price * cart_item.quantity
-            counter += wishitem.quantity
-    except ObjectDoesNotExist:
-        pass
-
+def wishitem(request, pk, self):
+    wishitem = WishItem.objects.get(pk=pk)
     context = {
-        "wishlist_items": wishlist_items,
-        "total": total,
-        "counter": counter,
+        "wishitem": wishitem,
     }
-    return render(request, "accounts:mypage_2", context)
+    return redirect('articles:product_detail', context)
