@@ -70,7 +70,14 @@ class Review(models.Model):
         options={"quality": 80},
         null=True,
     )
-    # image = models.ImageField(upload_to="images/%Y/%m/%d")
+    image_two = ProcessedImageField(
+        upload_to="images/%Y/%m/%d",
+        blank=True,
+        processors=[ResizeToFill(600, 600)],
+        format="JPEG",
+        options={"quality": 80},
+        null=True,
+    )
     thumbnail = ProcessedImageField(
         upload_to="images/%Y/%m/%d",
         blank=True,
@@ -109,6 +116,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Faq(models.Model):
     title = models.CharField(max_length=20)
@@ -156,6 +164,15 @@ class QnaComment(models.Model):
 
 #     def __str__(self):
 #         return self.wish_id
+
+class WishItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    active = models.BooleanField(default=True)
+
+    # def sub_total(self):
+    #     return self.product.price * self.quantity
 
 # class WishItem(models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

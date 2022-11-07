@@ -137,8 +137,15 @@ def notice(request):
 
     notices = Notice.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(notices, 10)
+    paginated_notices = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "notices": notices,
+        "paginated_notices": paginated_notices,
+        "max_index": max_index,
     }
 
     return render(request, "articles/notice.html", context)
@@ -154,7 +161,10 @@ def n_create(request):
             image = request.FILES.get("image")
             user = request.user
             Notice.objects.create(
-                title=title, content=content, user=user, image=image,
+                title=title,
+                content=content,
+                user=user,
+                image=image,
             )
             pk = Notice.objects.order_by("-pk")[0].pk
             return redirect("articles:n_detail", pk)
@@ -235,6 +245,7 @@ def r_create(request):
         grade = request.POST.get("grade")
         user = request.user
         image = request.FILES.get("image")
+        image_two = request.FILES.get("image")
         thumbnail = request.FILES.get("thumbnail")
         Review.objects.create(
             country=country,
@@ -243,6 +254,7 @@ def r_create(request):
             grade=grade,
             user=user,
             image=image,
+            image_two=image_two,
             thumbnail=thumbnail,
         )
         return redirect("articles:reviews")
@@ -295,6 +307,11 @@ def r_update(request, pk):
             review.image = image
         elif request.POST.get("check_image"):
             review.image = ""
+        if request.FILES.get("image_two"):
+            image_two = request.FILES.get("image_two")
+            review.image_two = image_two
+        elif request.POST.get("check_image_two"):
+            review.image_two = ""
         if request.FILES.get("thumbnail"):
             thumbnail = request.FILES.get("thumbnail")
             review.thumbnail = thumbnail
@@ -358,8 +375,15 @@ def faq(request):
 
     faqs = Faq.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(faqs, 10)
+    paginated_faqs = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "faqs": faqs,
+        "paginated_faqs": paginated_faqs,
+        "max_index": max_index,
     }
 
     return render(request, "articles/faq.html", context)
@@ -375,7 +399,10 @@ def faq_create(request):
             user = request.user
             image = request.FILES.get("image")
             Faq.objects.create(
-                title=title, content=content, user=user, image=image,
+                title=title,
+                content=content,
+                user=user,
+                image=image,
             )
             pk = Faq.objects.order_by("-pk")[0].pk
             return redirect("articles:faq_detail", pk)
@@ -435,8 +462,15 @@ def qna(request):
 
     qnas = Qna.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(qnas, 10)
+    paginated_qnas = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "qnas": qnas,
+        "paginated_qnas": paginated_qnas,
+        "max_index": max_index,
     }
 
     return render(request, "articles/qna.html", context)
@@ -451,7 +485,10 @@ def qna_create(request):
         user = request.user
         image = request.FILES.get("image")
         Qna.objects.create(
-            title=title, content=content, user=user, image=image,
+            title=title,
+            content=content,
+            user=user,
+            image=image,
         )
         pk = Qna.objects.order_by("-pk")[0].pk
         return redirect("articles:qna_detail", pk)
@@ -541,7 +578,11 @@ def search(request):
             boards = paginator.get_page(page)
             context = {"search": search, "boards": boards, "search_list": search_list}
 
-            return render(request, "articles/search.html", context,)
+            return render(
+                request,
+                "articles/search.html",
+                context,
+            )
         else:
             return render(request, "articles/searchfail.html")
     else:
@@ -626,3 +667,48 @@ def wishlist(request, pk):
 #         'counter': counter,
 #     }
 #     return render(request, 'accounts:mypage_2', context)
+
+def _wishlist(request):
+    wishlist = request.session.session_key
+    if not wishlist:
+        wishlist = request.session.create()
+    return _wishlist
+
+
+def add_wishitem(request, product_id):
+    product = Product.objects.get(id=product_id)
+    try:
+        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
+    except Wishlist.DoesNotExist:
+        wishlist = Wishlist.objects.create(wishlist_id=_wishlist(request))
+        wishlist.save()
+
+    try:
+        wishlist_item = WishItem.objects.get(product=product, wishlist=wishlist)
+        wishlist_item.quantity += 1
+        wishlist_item.save()
+
+    except WishItem.DoesNotExist:
+        wishlist_item = WishItem.objects.create(
+            product=product, quantity=1, wishlist=wishlist
+        )
+        wishlist_item.save()
+    return redirect("accounts:mypage_2")
+
+
+def wishlist_detail(request, total=0, counter=0, cart_item=None):
+    try:
+        wishlist = Wishlist.objects.get(wishlist_id=_wishlist(request))
+        wishlist_items = WishItem.objects.filter(wishlist=wishlist, active=True)
+        for wishitem in wishlist_items:
+            total += wishitem.product.price * cart_item.quantity
+            counter += wishitem.quantity
+    except ObjectDoesNotExist:
+        pass
+
+    context = {
+        "wishlist_items": wishlist_items,
+        "total": total,
+        "counter": counter,
+    }
+    return render(request, "accounts:mypage_2", context)

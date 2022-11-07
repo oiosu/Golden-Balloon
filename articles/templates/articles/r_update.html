@@ -49,26 +49,7 @@
       name="content"
       required
     >{{ review.content }}</textarea>
-    <!-- 사진 -->
-    {% if review.image %}
-    <p class="fs-5 fw-semibold mb-2">여행사진 수정</p>
-    <input class="mb-3" type="file" name="image">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check_image'>
-      <label class="form-check-label" for="flexCheckDefault">
-        여행사진 삭제
-      </label>
-    </div>
-    <div class="my-4 mx-2">
-      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="image">
-    </div>
-
-    {% else %}
-    <p class="fs-5 fw-semibold mb-2">여행사진 업로드</p>
-    <input class="mb-3" type="file" name="image">
-    {% endif %}
-
-    <!-- 사진 -->
+    <!--썸네일 수정 -->
     {% if review.thumbnail %}
     <p class="fs-5 fw-semibold mb-2">썸네일 수정</p>
     <input class="mb-3" type="file" name="thumbnail">
@@ -86,6 +67,41 @@
     <input class="mb-3" type="file" name="thumbnail">
     <div class="my-4 mx-2">
     {% endif %}
+    <!-- 여행사진1 수정 -->
+    {% if review.image %}
+    <p class="fs-5 fw-semibold mb-2">여행사진1 수정</p>
+    <input class="mb-3" type="file" name="image">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check_image'>
+      <label class="form-check-label" for="flexCheckDefault">
+        여행사진1 삭제
+      </label>
+    </div>
+    <div class="my-4 mx-2">
+      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="image">
+    </div>
+    {% else %}
+    <p class="fs-5 fw-semibold mb-2">여행사진 업로드</p>
+    <input class="mb-3" type="file" name="image">
+    {% endif %}
+    <!-- 여행사진2 수정 -->
+    {% if review.image_two %}
+    <p class="fs-5 fw-semibold mb-2">여행사진2 수정</p>
+    <input class="mb-3" type="file" name="image_two">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check_image_two'>
+      <label class="form-check-label" for="flexCheckDefault">
+        여행사진2 삭제
+      </label>
+    </div>
+    <div class="my-4 mx-2">
+      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image_two.url }}" alt="image_two">
+    </div>
+    {% else %}
+    <p class="fs-5 fw-semibold mb-2">여행사진2 업로드</p>
+    <input class="mb-3" type="file" name="image_two">
+    {% endif %}
+
     <!-- 등록 버튼 -->
     <div>
       <button

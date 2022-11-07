@@ -25,7 +25,7 @@
     -->
 
     <div class="d-flex">
-      {% if request.user.user_img %}
+      {% if review.user.user_img %}
       <img
       style="width: 3rem; height: 3rem"
       src="{{ review.user.user_img.url }}"
@@ -98,50 +98,45 @@
     </div>
 
     <!-- 사진 목록 -->
-
-    {% if review.image %}
-    <div class="my-4 mx-2">
-      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="{{ review.image }}">
-    </div>
-    {% else %}
-    <div class="my-4 mx-2">
-      <img
-        class="rounded me-3"
-        style="width: 8rem; height: 8rem"
-        src="https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727__480.jpg"
-        alt="photo"
-      />
-      <img
-        class="rounded me-3"
-        style="width: 8rem; height: 8rem"
-        src="https://cdn.pixabay.com/photo/2016/11/21/17/44/arches-national-park-1846759__480.jpg"
-        alt="photo"
-      />
-      <!-- 추가 사진 -->
-      <div style="display: inline-block; position: relative">
-        <img
-          class="rounded me-3"
-          style="width: 8rem; height: 8rem"
-          src="https://cdn.pixabay.com/photo/2016/11/22/20/10/dog-1850465__480.jpg"
-          alt="photo"
-        />
-        <div
-          class="bg-black bg-opacity-50 rounded me-3 text-center"
-          style="
-            width: 8rem;
-            height: 8rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-          "
-        >
-          <p style="margin-top: 2.5rem" class="text-white fs-2 fw-bold">
-            +2
-          </p>
+    <div>
+      <!-- 사진 1 -->
+      {% if review.image %}
+        <a href="#" class="my-4 mx-2" style="display: inline-block;">
+          <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="{{ review.image }}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </a>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+                <img
+                class="rounded"
+                src="{{ review.image.url }}"
+                alt="photo"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              />
+          </div>
         </div>
-      </div>
+      {% endif %}
+
+      <!-- 사진 2 -->
+      {% if review.image_two %}
+        <a href="#" class="my-4 mx-2" style="display: inline-block;">
+          <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image_two.url }}" alt="{{ review.image_two }}" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        </a>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+                <img
+                class="rounded"
+                src="{{ review.image_two.url }}"
+                alt="photo"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+              />
+          </div>
+        </div>
+      {% endif %}
     </div>
-    {% endif %}
 
     <!-- 수평선 -->
     <hr class="my-3" style="border: 1px solid #ffed90; opacity: 1" />
