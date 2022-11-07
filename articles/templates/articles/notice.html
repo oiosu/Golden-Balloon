@@ -1,55 +1,49 @@
 {% extends 'base2.html' %}
 {% load django_bootstrap5 %}
 
-{% block body %} 
+{% block body %}
 
-<!-- 공지 사항 -->
-<section style="padding: 60px 20px 20px 280px">
-<!-- 제목 -->
-<div>
-  <h2 class="ms-3 fw-bold">공지사항</h2>
-  <hr class="my-3" style="width: 9rem; color: black" />
-  <p class="fw-semibold">홈페이지 공지사항입니다.</p>
-</div>
-{% if request.user.is_staff %}
-<!-- 글쓰기 버튼 -->
-<div class="mt-4" style="width: 93%">
-    <a href="{% url 'articles:n_create' %}"
-      class="btn fw-semibold float-end mb-3 px-3"
-      style="background-color: #ffed90; text-color: black;"
-    >
-    글쓰기
-  </a>
-</button>
-{% else %}
-<br><br>
-{% endif %}
+  <!-- 공지 사항 -->
+  <section style="padding: 60px 20px 20px 280px">
+    <!-- 제목 -->
+    <div>
+      <h2 class="ms-3 fw-bold">공지사항</h2>
+      <hr class="my-3" style="width: 9rem; color: black"/>
+      <p class="fw-semibold">홈페이지 공지사항입니다.</p>
+    </div>
+    {% if request.user.is_staff %}
+      <!-- 글쓰기 버튼 -->
+      <div class="mt-4" style="width: 93%">
+        <a href="{% url 'articles:n_create' %}" class="btn fw-semibold float-end mb-3 px-3" style="background-color: #ffed90; text-color: black;">
+          글쓰기
+        </a>
+      </button>
+    {% else %}
+      <br><br>
+    {% endif %}
 
-  <!-- 테이블 -->
-  <table class="table table-hover">
-    <thead class="table-group-divider">
-      <tr style="font-size: 1.17rem">
-        <th
-          style="padding: 0.7rem 0 0.7rem 2rem; width: 5rem"
-          scope="col"
-        >
-          번호
-        </th>
-        <th style="padding: 0.7rem 0 0.7rem 8rem" scope="col">작성시간</th>
-        <th style="padding: 0.7rem 0 0.7rem 8rem" scope="col">제목</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      {% for notice in notices %}
-        <tr onclick='location.href="{% url 'articles:n_detail' notice.pk %}"' style='cursor: pointer;'>
-          <td style="padding: 0.7rem 0 0.7rem 3rem" scope="row">{{ notice.pk }}</td>
-          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.created_at }}</td>
-          <td style="padding: 0.7rem 0 0.7rem 4rem">{{ notice.title }}</td>
+    <!-- 테이블 -->
+    <table class="table table-hover" style="white-space:nowrap;">
+      <thead class="table-group-divider">
+        <tr style="font-size: 1.17rem">
+          <th style="padding: 0.7rem 0 0.7rem 2rem; width: 5rem" scope="col">
+            번호
+          </th>
+          <th style="padding: 0.7rem 0 0.7rem 8rem; width: 7rem" scope="col">작성시간</th>
+          <th style="padding: 0.7rem 0 0.7rem 9rem" scope="col">제목</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for notice in notices %}
+          <tr onclick="location.href=' {% url 'articles:n_detail' notice.pk %} '" style="cursor: pointer;">
+            <td style="padding: 0.7rem 0 0.7rem 2.7rem; width: 5rem">{{ notice.pk }}</td>
+            <td style="padding: 0.7rem 0 0.7rem 5rem; width: 7rem">{{ notice.created_at }}</td>
+            <td style="padding: 0.7rem 0 0.7rem 7rem">{{ notice.title }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </section>
 
 {% endblock %}
