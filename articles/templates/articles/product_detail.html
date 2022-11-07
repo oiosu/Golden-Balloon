@@ -9,7 +9,8 @@
       <div class="row">
         <div class="col-md-12">
           <p><small>체코 > 🛫 프라하</small></p>
-          <p style="font-weight: 700; font-size: larger;" class="bg-white card-header">✈ [후기 1800개+] 동화 속 마을, 체스키크롬로프 차량투어</p>
+          {% comment %} <p style="font-weight: 700; font-size: larger;" class="bg-white card-header">✈ [후기 1800개+] 동화 속 마을, 체스키크롬로프 차량투어</p> {% endcomment %}
+          <p style="font-weight: 700; font-size: larger;" class="bg-white card-header">✈ {{ product.title }}</p>
         </div>
       </div>
     </div>
@@ -48,11 +49,23 @@
               </div>
               <p></p>
               <div class="btn-group d-flex">
-                <button style="font-weight: 700; background-color: #FFFDD1;" type="button" class="btn mb-2" onclick="location.href='{% url 'articles:add_wishitem' product.id %}'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                  </svg>
-                  위시리스트에 담기</button>
+                <!-- 위시리스트 -->
+                    {% if request.user.is_authenticated %}
+                      {% if request.user in product.wishlist.all %}
+                          <button style="font-weight: 700; background-color: #FFFDD1;" type="button" class="btn mb-2" onclick="location.href='{% url 'articles:wishlist' product.pk %}'">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                          </svg>
+                          위시리스트에 담겨졌어요!</button>
+                      {% else %}
+                        <button style="font-weight: 700; background-color: #FFFDD1;" type="button" class="btn mb-2" onclick="location.href='{% url 'articles:wishlist' product.pk %}'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                        위시리스트에 담기</button>
+                      {% endif %}</a></span>
+                    {% endif %}
+                
               </div>
               <p><small class="text-muted m-3 mb-0">4802명이 이 상품을 위시리스트에 담았습니다.</small></p>
             </div>

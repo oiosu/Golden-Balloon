@@ -88,57 +88,24 @@
             </div>
           </div>
 
-          {% if not wishlist_items  %}
-            <h1>상품이 없습니다.</h1>
-            <a href="{% url 'articles:product_main' %}"> 지금 떠날 여행 보러가기</a>
-          {% else %}
-          <div class="m-2 mb-3 py-2 row">
-            {% for wishlist_item in wishlist_items %}
+          {% if wishlist %}
+            {% for wish in user.wishlist.all %}
+            {{ forloop.counter }}
               <div class="col-md-3">
                 <div class="card">
-                  <img class="card-img-top" src="{{ product.image.url }}" alt="...">
+                  <img class="card-img-top" src="{{ wish.image.url }}" alt="...">
                   <div class="card-body">
                     <p style="color: #B2B2B2;">카테고리</p>
-                    <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wishlist_item.product.title }}</p>
+                    <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
                     <p>⭐⭐⭐⭐⭐</p>
                   </div>
                 </div>
               </div>
-              {% endfor %}
-            {% endif %}
-            {% comment %} <div class="col-md-3">
-              <div class="card"> 
-                <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/32624/205464_large_1521299657.jpg?1521299657" alt="Card image cap">
-                <div class="card-body">
-                  <p style="color: #B2B2B2;">카테고리</p>
-                  <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">제목</p>
-                  <p>⭐⭐⭐⭐⭐</p>
-                  <p>짧은 내용</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/32624/205464_large_1521299657.jpg?1521299657" alt="Card image cap">
-                <div class="card-body">
-                  <p style="color: #B2B2B2;">카테고리</p>
-                  <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">제목</p>
-                  <p>⭐⭐⭐⭐⭐</p>
-                  <p>짧은 내용</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <img class="card-img-top" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/32624/205464_large_1521299657.jpg?1521299657" alt="Card image cap">
-                <div class="card-body">
-                  <p style="color: #B2B2B2;">카테고리</p>
-                  <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">제목</p>
-                  <p>⭐⭐⭐⭐⭐</p>
-                  <p>짧은 내용</p>
-                </div>
-              </div>
-            </div> {% endcomment %}
+            {% endfor %}
+          {% else %}
+            <h1>상품이 없습니다.</h1>
+            <a href="{% url 'articles:product_main' %}"> 지금 떠날 여행 보러가기</a>
+          {% endif %}
           </div>
         </div>
       </div>
