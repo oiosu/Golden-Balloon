@@ -165,11 +165,11 @@ class QnaComment(models.Model):
 #     def __str__(self):
 #         return self.wish_id
 
-class WishItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    active = models.BooleanField(default=True)
+# class WishItem(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
+#     quantity = models.IntegerField()
+#     active = models.BooleanField(default=True)
 
     # def sub_total(self):
     #     return self.product.price * self.quantity
