@@ -4,6 +4,12 @@
 {% block body %}
   <!-- 여행 카드 -->
   <div class="d-flex justify-content-center flex-wrap container pb-5 mt-5" style="min-height:39rem">
+    {% if not paginated_reviews %}
+    <div class="text-center" style="margin-top:10rem;">
+    <h1>아직 리뷰가 없어요. </h1>
+    <h1>리뷰를 남겨 여행의 즐거움을 나눠보세요 :)</h1>
+  </div>
+    {% endif %}
     {% for review in paginated_reviews %}
       <div class="card mx-4 my-3" style="width: 18rem; border:2px solid #FFED90">
         {% if request.user in review.like_users.all %}
