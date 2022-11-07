@@ -137,8 +137,15 @@ def notice(request):
 
     notices = Notice.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(notices, 10)
+    paginated_notices = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "notices": notices,
+        "paginated_notices": paginated_notices,
+        "max_index": max_index,
     }
 
     return render(request, "articles/notice.html", context)
@@ -368,8 +375,15 @@ def faq(request):
 
     faqs = Faq.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(faqs, 10)
+    paginated_faqs = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "faqs": faqs,
+        "paginated_faqs": paginated_faqs,
+        "max_index": max_index,
     }
 
     return render(request, "articles/faq.html", context)
@@ -448,8 +462,15 @@ def qna(request):
 
     qnas = Qna.objects.order_by("-pk")
 
+    page = request.GET.get("page", "1")
+    paginator = Paginator(qnas, 10)
+    paginated_qnas = paginator.get_page(page)
+    max_index = len(paginator.page_range)
+
     context = {
         "qnas": qnas,
+        "paginated_qnas": paginated_qnas,
+        "max_index": max_index,
     }
 
     return render(request, "articles/qna.html", context)
