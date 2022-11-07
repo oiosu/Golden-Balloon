@@ -16,7 +16,7 @@
       <div class="col-lg-10 col-12 bg-white">
         {% if request.user.is_staff %}
           <!-- 글쓰기 버튼 -->
-          <div class="mt-4" style="width: 93%">
+          <div class="mt-4" style="width: 93%; min-height:20rem;">
             <a href="{% url 'articles:n_create' %}" class="btn fw-semibold float-end mb-3 px-3" style="background-color: #ffed90; text-color: black;">
               글쓰기
             </a>
@@ -41,7 +41,9 @@
               <tr onclick="location.href=' {% url 'articles:n_detail' notice.pk %} '" style="cursor: pointer;">
                 <td style="padding: 0.7rem 0 0.7rem 2.7rem; width: 5rem">{{ notice.pk }}</td>
                 <td style="padding: 0.7rem 0 0.7rem 5rem; width: 7rem">{{ notice.created_at }}</td>
-                <td style="padding: 0.7rem 0 0.7rem 7rem">{{ notice.title }}</td>
+                <td style="padding: 0.7rem 0 0.7rem 7rem;">
+                <p style="width: 45rem; white-space: nowrap; overflow: hidden; text-overflow:ellipsis; margin-bottom:0;">{{ notice.title }}</p>
+              </td>
               </tr>
             {% endfor %}
           </tbody>
