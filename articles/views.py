@@ -602,7 +602,7 @@ def product_main(request):
 
 
 def product_detail(request, pk):
-    product = Product.objects.get(pk=1)
+    product = Product.objects.get(pk=pk)
     context = {
         "product": product,
     }
