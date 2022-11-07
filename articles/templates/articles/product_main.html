@@ -50,10 +50,7 @@
             {% for product in products %}
             <div class="col-md-3">
               <div style=" border-color: #FFED90;" class="card">
-                {% comment %} {% for i in "x"|rjust:"64" %}
-                    {{ forloop.counter }} {% endcomment %}
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
-                  {% comment %} {% endfor %}             {% endcomment %}
+                  <img src="{{ product.image.url }}" class="card-img-top" alt="...">
               <div class="card-body">
                   <h4 class="card-title">{{ product.title }}</h4>
                   <p class="card-text">⭐⭐⭐⭐⭐</p>
