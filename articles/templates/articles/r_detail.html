@@ -26,11 +26,7 @@
 
     <div class="d-flex">
       {% if review.user.user_img %}
-      <img
-      style="width: 3rem; height: 3rem"
-      src="{{ review.user.user_img.url }}"
-      alt="profile"
-      />
+      <img class="rounded-circle" style="width: 3.5rem; height: 3.5rem" src="{{ review.user.user_img.url }}" alt="profile"/>
       {% else %} 
       <img
       style="width: 3rem; height: 3rem"
