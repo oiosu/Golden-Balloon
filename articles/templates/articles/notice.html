@@ -37,8 +37,8 @@
         {% for notice in notices %}
           <tr onclick="location.href=' {% url 'articles:n_detail' notice.pk %} '" style="cursor: pointer;">
             <td style="padding: 0.7rem 0 0.7rem 2.7rem; width: 5rem">{{ notice.pk }}</td>
-            <td style=" padding: 0.7rem 0 0.7rem 5rem; width: 7rem">{{ notice.created_at }}</td>
-            <td style=" padding: 0.7rem 0 0.7rem 7rem">{{ notice.title }}</td>
+            <td style="padding: 0.7rem 0 0.7rem 5rem; width: 7rem">{{ notice.created_at }}</td>
+            <td style="padding: 0.7rem 0 0.7rem 7rem">{{ notice.title }}</td>
           </tr>
         {% endfor %}
       </tbody>
