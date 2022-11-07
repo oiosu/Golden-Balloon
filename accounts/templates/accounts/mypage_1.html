@@ -2,50 +2,66 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-<div class="py-5">
+  <div class="py-5">
     <div style="border-radius: 3%; border: 3px solid #FFED90;" class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-4"></div>
-            <div class="d-flex justify-content-center col-md-4">
-                {% if user.user_img %}
-                    <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
-                {% else %}  
-                    <img class="m-3 rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="{{ user.user_img }}" style="width:100px;">
-                {% endif %}
+            <div class="d-flex justify-content-center col-md-4 mt-4">
+              {% if user.user_img %}
+                <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
+              {% else %}
+                <img class="m-3 rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="{{ user.user_img }}" style="width:100px;">
+              {% endif %}
             </div>
             <div class="col-md-4 text-right p-3">
               <a style="border: 3px solid #FFED90;" class="btn" href="{% url 'accounts:update' %}">편집하기</a>
             </div>
           </div>
           <div class="row">
-            <div class="m-2 col-md-12">
-              <p>닉네임&nbsp; : {{ user.username }}
-                <br><br>
-                이메일&nbsp; : {{ user.email }}
-                <br><br> 
+            <div class="m-2 col-md-12 mb-5 ms-4">
+              <p>
+                <span class="fw-bold fs-5">닉네임&nbsp; :</span>
+                {{ user.username }}
+              </p>
+              <p>
+                <span class="fw-bold fs-5">이메일&nbsp; :</span>
+                {{ user.email }}
+              </p>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-5">
             <div class="col-md-6">
               <ul class="list-group list-group-flush">
-                <p style="text-align: center;">나를 팔로우 한 사람 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
-                    {% for myfollower in user.followers.all %}
-                        {{ forloop.counter }}
-                        <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" style="width:50px;">{{ myfollower.username }}</li>
-                    {% endfor %}
-                </ul>
+                <p class="fw-bold fs-5" style="text-align: center;">나를 팔로우 한 사람
+                  <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
+
+                {% for myfollower in user.followers.all %}
+                  {{ forloop.counter }}
+                  <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" style="width:50px;">{{ myfollower.username }}</li>
+                {% endfor %}
+              </ul>
+
+              {% if not user.followers.all %}
+                <p class="text-center">나를 팔로우 한 사람이 없습니다.</p>
+              {% endif %}
 
             </div>
             <div class="col-md-6">
-              <p style="text-align: center;">내가 팔로우 한 사람 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
+              <p class="fw-bold fs-5" style="text-align: center;">내가 팔로우 한 사람
+                <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
               <ul class="list-group list-group-flush">
                 {% for myfollowing in user.followings.all %}
-                    {{ forloop.counter }}
-                    <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140061.png" style="width:50px;">{{ myfollowing.username }}</li>
+                  {{ forloop.counter }}
+                  <li class="list-group-item"><img class=" rounded-circle" src="https://cdn-icons-png.flaticon.com/128/4140/4140061.png" style="width:50px;">{{ myfollowing.username }}</li>
                 {% endfor %}
-            </ul>
+              </ul>
+
+              {% if not user.followings.all %}
+                <p class="text-center">내가 팔로우 한 사람이 없습니다.</p>
+              {% endif %}
+
             </div>
           </div>
         </div>
