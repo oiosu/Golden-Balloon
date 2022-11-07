@@ -157,4 +157,4 @@ class QnaComment(models.Model):
     content = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     qna = models.ForeignKey(Qna, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
