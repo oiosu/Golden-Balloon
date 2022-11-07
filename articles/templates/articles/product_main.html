@@ -46,6 +46,7 @@
             {% for product in products %}
             <div class="col-md-3">
               <div style=" border-color: #FFED90;" class="card">
+                <img src="{{ product.image }}" class="card-img-top" alt="...">
                 {% comment %} {% for i in "x"|rjust:"64" %}
                     {{ forloop.counter }} {% endcomment %}
                     <img src="" class="card-img-top" alt="...">

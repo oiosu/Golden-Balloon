@@ -117,9 +117,14 @@ class Product(models.Model):
         settings.AUTH_USER_MODEL, related_name="product_wishlist"
     )
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
+    # def __str__(self):
+    #     return self.wishlist
 
+class WishItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Faq(models.Model):
     title = models.CharField(max_length=20)
@@ -157,4 +162,5 @@ class QnaComment(models.Model):
     content = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     qna = models.ForeignKey(Qna, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

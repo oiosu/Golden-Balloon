@@ -11,8 +11,7 @@ from .models import (
     Qna,
     QnaComment,
     Product,
-    # Wishlist,
-    # WishItem,
+    WishItem,
 )
 from .forms import (
     ArticleForm,
@@ -617,5 +616,13 @@ def wishlist(request, pk):
         product.wishlist.remove(request.user)
     else:
         product.wishlist.add(request.user)
+        
+    return redirect('articles:product_detail', pk)
 
-    return redirect("articles:product_detail", pk)
+def wishitem(request, pk, self):
+    wishitem = WishItem.objects.get(pk=pk)
+    context = {
+        "wishitem": wishitem,
+    }
+    return redirect('articles:product_detail', context)
+

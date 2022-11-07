@@ -60,7 +60,7 @@ def mypage_1(request, pk):
 
 def mypage_2(request, pk):
     user = get_user_model().objects.get(pk=pk)
-
+    print(user.product_wishlist.all())
     context = {
         "user": user,
     }

@@ -58,9 +58,9 @@
               </div>
             
               <ul class="list-group list-group-flush">
-                {% for article in user.article_set.all %}
+                {% for review in user.review_set.all %}
                     {{ forloop.counter }}
-                <li class="list-group-item">{{ article.title }}
+                <li class="list-group-item">{{ review.title }}
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                   <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
                   </svg>
@@ -70,7 +70,7 @@
             <div class="col-md-6">
               <p style="font-weight: bolder; text-align: center;">'{{ user.username }}' 님이 작성한 댓글 <img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/4344/4344892.png" alt=""></p>
               <ul class="list-group list-group-flush">
-                {% for comment in user.comment_set.all %}
+                {% for comment in user.reviewcomment_set.all %}
                 {{ forloop.counter }}
                 <li class="list-group-item">{{ comment.content }}</li>
                 {% endfor %}
@@ -87,13 +87,12 @@
               <p class="m-4" href="#">더 보기 &nbsp<img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/254/254434.png" alt=""></p>
             </div>
           </div>
-
-          {% if wishlist %}
-            {% for wish in user.wishlist_set.all %}
+          {% if user.product_wishlist.all %}
+            {% for wish in user.product_wishlist.all %}
             {{ forloop.counter }}
               <div class="col-md-3">
                 <div class="card">
-                  <img class="card-img-top" src="{{ wish.image.url }}" alt="...">
+                  <img class="card-img-top" src="{{ wish.image }}" alt="...">
                   <div class="card-body">
                     <p style="color: #B2B2B2;">카테고리</p>
                     <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
