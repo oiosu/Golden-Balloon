@@ -300,176 +300,131 @@
                   </ul>
                 </div>
               </header>
-              <!-- 현재 핫한 인기나라 -->
-              <section>
-                <div class="py-5">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <ul class="breadcrumb">
-                          <li class="breadcrumb-item">
-                            <h3 style="font: weight 900%;" href="#">🛫 현재 핫한 인기 나라!&nbsp;</h3>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <!-- 메인 카드 구현 -->
-              <div class="container">
-                <div class="py-1">
-                  <div class="">
-                    <div class="row">
-                      <div class="col-md-3">
-                        <div class="cont_principal">
-                          <div class="cont_central">
-                            <div class="cont_modal cont_modal_active">
-                              <div class="cont_photo">
-                                <div class="cont_img_back">
-                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4654_large_square_1535621335.jpg?1535621335" alt=""/>
-                                </div>
-                                <div class="cont_mins">
-                                  <div class="text-center sub_mins">
-                                    <h3>NEW</h3>
-                                    <pre></pre>
-                                    <span>
-                                      <p style="font-size: 15px;">🛫</p>
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="text-center cont_servings">
-                                  <h3>BEST</h3>
-                                  <pre></pre>
-                                  <span>
-                                    <p style="font-size: 15px;">👍</p>
-                                  </span>
-                                </div>
-                                <div class="text-center p-4 cont_detalles">
-                                  <h3>라스베가스</h3>
-                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
-                                    예약하기</button>
-                                  <p class="m-3 text-center">208여개의 여행상품</p>
-                                </div>
-                              </div>
+ <!-- 메인 카드 구현 -->
+<div class="container">
+  <div class="py-5">
+    <div class="">
+      <div class="row" >
+        <div class="col-md-3">
+            <div class="cont_principal">
+                <div class="cont_central">
+                    <div class="cont_modal cont_modal_active">
+                        <div class="cont_photo">
+                            <div class="cont_img_back">
+                                <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4654_large_square_1535621335.jpg?1535621335" alt="" />
                             </div>
-                          </div>
+                            <div class="cont_mins">
+                                <div class="text-center sub_mins">
+                                    <h3>NEW</h3><pre></pre>
+                                    <span><p style="font-size: 15px;">🛫</p></span>
+                                </div>
+                            </div>
+                            <div class="text-center cont_servings">
+                                <h3>BEST</h3><pre></pre>
+                                <span><p style="font-size: 15px;">👍</p></span>
+                            </div>
+                            <div class="text-center p-4 cont_detalles">
+                                <h3>라스베가스</h3>
+                                <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    예약하기</button>
+                                <p class="m-3 text-center">208여개의 여행상품</p>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="cont_principal">
-                          <div class="cont_central">
-                            <div class="cont_modal cont_modal_active">
-                              <div class="cont_photo">
-                                <div class="cont_img_back">
-                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4735_large_square_1535795554.jpg?1535795554" alt=""/>
-                                </div>
-                                <div class="cont_mins">
-                                  <div class="text-center sub_mins">
-                                    <h3>NEW</h3>
-                                    <pre></pre>
-                                    <span>
-                                      <p style="font-size: 15px;">🛫</p>
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="text-center cont_servings">
-                                  <h3>BEST</h3>
-                                  <pre></pre>
-                                  <span>
-                                    <p style="font-size: 15px;">👍</p>
-                                  </span>
-                                </div>
-                                <div class="text-center p-4 cont_detalles">
-                                  <h3>후쿠오카</h3>
-                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
-                                    예약하기</button>
-                                  <p class="m-3 text-center">120여개의 여행상품</p>
-                                </div>
-                              </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="cont_principal">
+                <div class="cont_central">
+                    <div class="cont_modal cont_modal_active">
+                        <div class="cont_photo">
+                            <div class="cont_img_back">
+                                <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4735_large_square_1535795554.jpg?1535795554" alt="" />
                             </div>
+                            <div class="cont_mins">
+                              <div class="text-center sub_mins">
+                                  <h3>NEW</h3><pre></pre>
+                                  <span><p style="font-size: 15px;">🛫</p></span>
+                              </div>
+                          </div>
+                          <div class="text-center cont_servings">
+                              <h3>BEST</h3><pre></pre>
+                              <span><p style="font-size: 15px;">👍</p></span>
                           </div>
                           <div class="text-center p-4 cont_detalles">
-                              <h3>라스베가스</h3>
-                              <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
+                              <h3>후쿠오카</h3>
+                              <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                   예약하기</button>
-                              <p class="m-3 text-center">208여개의 여행상품</p>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="cont_principal">
-                          <div class="cont_central">
-                            <div class="cont_modal cont_modal_active">
-                              <div class="cont_photo">
-                                <div class="cont_img_back">
-                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/544_large_square_1468373190.jpg?1468373190" " alt=" " />
-                        </div>
-                        <div class=" cont_mins"="cont_mins"">
-                                  <div class="text-center sub_mins">
-                                    <h3>NEW</h3>
-                                    <pre></pre>
-                                    <span>
-                                      <p style="font-size: 15px;">🛫</p>
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="text-center cont_servings">
-                                  <h3>BEST</h3>
-                                  <pre></pre>
-                                  <span>
-                                    <p style="font-size: 15px;">👍</p>
-                                  </span>
-                                </div>
-                                <div class="text-center p-4 cont_detalles">
-                                  <h3>칸쿤</h3>
-                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
-                                    예약하기</button>
-                                  <p class="m-3 text-center">40여개의 여행상품</p>
-                                </div>
-                              </div>
+                              <p class="m-3 text-center">120여개의 여행상품</p>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="cont_principal">
-                          <div class="cont_central">
-                            <div class="cont_modal cont_modal_active">
-                              <div class="cont_photo">
-                                <div class="cont_img_back">
-                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4672_large_square_1535678422.jpg?1535678422" alt=""/>
-                                </div>
-                                <div class="cont_mins">
-                                  <div class="text-center sub_mins">
-                                    <h3>NEW</h3>
-                                    <pre></pre>
-                                    <span>
-                                      <p style="font-size: 15px;">🛫</p>
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="text-center cont_servings">
-                                  <h3>BEST</h3>
-                                  <pre></pre>
-                                  <span>
-                                    <p style="font-size: 15px;">👍</p>
-                                  </span>
-                                </div>
-                                <div class="text-center p-4 cont_detalles">
-                                  <h3>바르셀로나</h3>
-                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
-                                    예약하기</button>
-                                  <p class="m-3 text-center">350여개의 여행상품</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                    <br>
-                    <hr style="border-color:#FFB200;">
-                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="cont_principal">
+              <div class="cont_central">
+                  <div class="cont_modal cont_modal_active">
+                      <div class="cont_photo">
+                          <div class="cont_img_back">
+                              <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/544_large_square_1468373190.jpg?1468373190"" alt="" />
+                          </div>
+                          <div class="cont_mins">
+                            <div class="text-center sub_mins">
+                                <h3>NEW</h3><pre></pre>
+                                <span><p style="font-size: 15px;">🛫</p></span>
+                            </div>
+                        </div>
+                        <div class="text-center cont_servings">
+                            <h3>BEST</h3><pre></pre>
+                            <span><p style="font-size: 15px;">👍</p></span>
+                        </div>
+                        <div class="text-center p-4 cont_detalles">
+                            <h3>칸쿤</h3>
+                            <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                예약하기</button>
+                            <p class="m-3 text-center">40여개의 여행상품</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="cont_principal">
+            <div class="cont_central">
+                <div class="cont_modal cont_modal_active">
+                    <div class="cont_photo">
+                        <div class="cont_img_back">
+                            <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4672_large_square_1535678422.jpg?1535678422" alt="" />
+                        </div>
+                        <div class="cont_mins">
+                          <div class="text-center sub_mins">
+                              <h3>NEW</h3><pre></pre>
+                              <span><p style="font-size: 15px;">🛫</p></span>
+                          </div>
+                      </div>
+                      <div class="text-center cont_servings">
+                          <h3>BEST</h3><pre></pre>
+                          <span><p style="font-size: 15px;">👍</p></span>
+                      </div>
+                      <div class="text-center p-4 cont_detalles">
+                          <h3>바르셀로나</h3>
+                          <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                              예약하기</button>
+                          <p class="m-3 text-center">350여개의 여행상품</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <br>
+  <hr style="border-color:#FFB200;">
+  <br>
                     <!-- 추천 투어 / 상품리뷰 -->
                     <section>
                       <div class="py-4">
