@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% block css %}
+<style>
+  article {
+    border-bottom: 1px solid black;
+  }
+
+  .hide {
+    display: none;
+  }
+</style>
+{% endblock css %}
 
 {% block body %} 
   <!--  여행 상세 페이지 시작 -->
@@ -69,12 +80,20 @@
               </div>
               <p><small class="text-muted m-3 mb-0">4802명이 이 상품을 위시리스트에 담았습니다.</small></p>
             </div>
-            
-          </div>
-          <pre></pre>
-          <div class="card">
-            <div style="background-color: #E1FFB1;" class="card-body">
-              <h5 style="font-weight: 400; color:#1C6758" class="card-title">여행자 보험</h5>
+            <div class="card">
+              <div class="container">
+                <div class="row m-2">
+                  <img style="width: 50px;" class="rounded-circle" src="https://cdn-icons-png.flaticon.com/512/3942/3942104.png" alt="">
+                  <div class="m-2">
+                    <span style="font-weight: 800;">투어하라</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre></pre>
+            <div>
+              <!-- 여행자 보험 광고 -->
+              <img style="width: 350px;" class="rounded m-3 p-1 text-center" src="https://d2ur7st6jjikze.cloudfront.net/cms/1996_original_1664442058.png?1664442058" alt="">
             </div>
           </div>
         </div>
@@ -133,36 +152,45 @@
     </div>
   </div>
 
-  <!-- 여행소개 -->
-  <div class="py-5">
+   <!-- 여행소개 -->
+   <div class="py-5">
     <div class="container">
       <div style="border-radius: 3%; border: 3px solid #FFED90;" class="row">
         <div class="m-4 col-md-10">
-          <h3 class="mb-3">✨한 번의 시간, 꼭 만족해야만 하는 여행✨</h3>
-          <h5>프라하근교 아지자기한 동화마을 퀄리티있는 투어진행, 함께하는 여행으로 오랫동안 추억하실 수 있는 순간 만들어 드리겠습니다 :)</h5><br>
-          <p>
-            ✔ 만약 체스키크롬로프에서 하차를 원하시는 분들이 계시다면 예약시 메시지를 통해 알려주세요 ! 캐리어와 짐은 투어중 저희 차량에 보관 가능하십니다.<br>
-            <br>
-            ★ 공지사항 ★ <br>
-            - 2018년부터 경찰의 제제로 이하여 저희는 체코에 등록된 "여행가이드 비자"와 "가이드라이센스"를 모두 가지고 있는여행사입니다. <br>
-            - 차량투어는 당일 차량상황에 따라 프라하 도착시간이 달라질 수 있습니다.<br>
-            (보통 오후 7시 30분-18시 경 프라하 도착합니다.)<br>
-            <br>
-            ★ 코스일정 ★<br>
-            미팅: 프라하 바츨라프 광장 출발<br>
-            미팅시각: 08:20AM<br>
-            <br>
-            - 망토다리
-            - 브로드스트리트
-            - 에곤쉴레갤러리(내부입장안함)
-            - 크르친둠
-            - 스보로노스티 광장
-            - 성 비투스 성당
-            - 루제호텔
-            - 체스키크롬로프 전망대
-            - 이발사의다리
-            - 체스키 크롬로프 성
-            - 망토다리 위 </p>
+          <div class="article">
+            <h3 class="mb-3">✨한 번의 시간, 꼭 만족해야만 하는 여행✨</h3>
+            <h5>프라하근교 아지자기한 동화마을 퀄리티있는 투어진행, 함께하는 여행으로 오랫동안 추억하실 수 있는 순간 만들어 드리겠습니다 :)</h5><br>
+            
+            <h3 style="font-weight: 400;" class="read-more-toggle">Read More</h3>
+
+            <div class="read-more-content">
+              <p>
+                ✔ 만약 체스키크롬로프에서 하차를 원하시는 분들이 계시다면 예약시 메시지를 통해 알려주세요 ! 캐리어와 짐은 투어중 저희 차량에 보관 가능하십니다.<br>
+                <br>
+                ★ 공지사항 ★ <br>
+                - 2018년부터 경찰의 제제로 이하여 저희는 체코에 등록된 "여행가이드 비자"와 "가이드라이센스"를 모두 가지고 있는여행사입니다. <br>
+                - 차량투어는 당일 차량상황에 따라 프라하 도착시간이 달라질 수 있습니다.<br>
+                (보통 오후 7시 30분-18시 경 프라하 도착합니다.)<br>
+                <br>
+                ★ 코스일정 ★<br>
+                미팅: 프라하 바츨라프 광장 출발<br>
+                미팅시각: 08:20AM<br>
+  
+                <br>
+                - 망토다리
+                - 브로드스트리트
+                - 에곤쉴레갤러리(내부입장안함)
+                - 크르친둠
+                - 스보로노스티 광장
+                - 성 비투스 성당
+                - 루제호텔
+                - 체스키크롬로프 전망대
+                - 이발사의다리
+                - 체스키 크롬로프 성
+                - 망토다리 위 </p>
+            </div>
+  
+          </div>
         </div>
       </div>
     </div>
@@ -214,7 +242,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center align-self-center p-4">
-          <p class="mb-5" contenteditable="true">만나는 장소&nbsp;</p>
+          <p class="mb-5" contenteditable="true"><span><img style="width: 60px;"  src="https://cdn-icons-png.flaticon.com/512/2335/2335353.png" alt=""></span><br><br> Share the meeting place through Google Maps!&nbsp;</p>
         </div>
         <div class="col-md-6 p-0"> <iframe width="100%" height="350" src="https://maps.google.com/maps?hl=en&amp;q=New%20York&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" scrolling="no" frameborder="0"></iframe></div>
       </div>
@@ -258,7 +286,7 @@
   <!-- 경계선 -->
   <hr style="background-color: #FFED90;">
 
- <!-- footer -->
+ <!-- footer
  <div class="py-3" >
   <div class="container">
     <div class="row">
@@ -285,9 +313,18 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+    // Hide the extra content initially, using JS so that if JS is disabled, no problemo.
+    $('.read-more-content').addClass('hide');
+
+    // Set up the toggle.
+    $('.read-more-toggle').on('click', function() {
+      $(this).next('.read-more-content').toggleClass('hide');
+    });
+      </script>
 
 {% endblock %}
