@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
+
 class Article(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
@@ -112,7 +113,9 @@ class Product(models.Model):
         options={"quality": 80},
         null=True,
     )
-    wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="product_wishlist")
+    wishlist = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="product_wishlist"
+    )
 
     def __str__(self):
         return self.title
@@ -155,34 +158,3 @@ class QnaComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     qna = models.ForeignKey(Qna, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-
-
-# class Wishlist(models.Model):
-#     wish_id = models.CharField(max_length=200, blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.wish_id
-
-class WishItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    active = models.BooleanField(default=True)
-
-    # def sub_total(self):
-    #     return self.product.price * self.quantity
-
-# class WishItem(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     quantity = models.IntegerField()
-#     active = models.BooleanField(default=False)
-#     wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
-
-#     def sub_total(self):
-#         return self.product.price * self.quantity
-
-#     def __str__(self):
-#         return self.product.title
