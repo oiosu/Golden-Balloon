@@ -2,12 +2,20 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-<div>
-    <h1>회원정보 수정하기</h1>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% bootstrap_button button_type="submit" content="수정하기" %}
-    </form>
+<div class="container py-5">
+    <div style="border-radius: 3%; border: 3px solid #FFED90;" class="mx-auto col-md-6 col-10 bg-white p-5">
+        <div class="text-center">
+            <h1 style="color: #FFED90;" class="mb-3">누런 풍선</h1>
+            <p>회원정보 수정페이지 :) </p>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-grid gap-2">
+                <button style="background-color: #FFED90;" type="submit" class="m-3 btn btn-lg">회원정보 수정</button>
+            </div>
+        </form>
+    </div>
 </div>
+
 {% endblock %}
