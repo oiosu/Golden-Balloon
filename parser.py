@@ -46,7 +46,6 @@ def prase_product():
     data = {}
     for i in range(len(title)):
         data[title[i]] = images[i]   
-    # pprint.pprint(result)
     return data 
 
     
