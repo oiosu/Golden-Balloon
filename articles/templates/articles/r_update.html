@@ -3,12 +3,101 @@
 
 {% block body %} 
 
-<h1 class='text-center'>리뷰 수정</h1><hr>
+<section class="d-flex justify-content-center my-5 pb-5">
+  <!-- 별점 -->
+  <div class="mb-5">
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3 class="fw-bold text-center">이번 여행은 어떠셨나요?</h3>
+    <!-- 다녀온 나라 -->
+    <p class="fs-5 fw-semibold mb-2">다녀오신 나라</p>
+    <input
+      class="rounded p-1 mb-4 ps-2"
+      style="border: 1.5px solid #424143; width: 45rem"
+      type="text"
+      name='country'
+      value='{{ review.country }}'
+      required
+    />
+    <!-- 평점 -->
+    <p class="fs-5 fw-semibold mb-2">이번 여행의 만족도는!?</p>
+    <select class="form-select rounded p-1 mb-4 ps-2" style="border: 1.5px solid #424143; width: 45rem" name="grade" aria-label=".form-select-sm example" required>
+      <option selected>{{ review.grade }}</option>
+      <option value=1>1점</option>
+      <option value=2>2점</option>
+      <option value=3>3점</option>
+      <option value=4>4점</option>
+      <option value=5>5점</option>
+    </select> 
+    <!-- 후기 작성 -->
+    <h3 class="fw-bold mb-4 text-center">자세한 후기를 남겨주세요!</h3>    
+    <!-- 제목 -->
+    <p class="fs-5 fw-semibold mb-2">후기 제목</p>
+    <input
+      class="rounded p-1 mb-4 ps-2"
+      style="border: 1.5px solid #424143; width: 45rem"
+      type="text"
+      name="title"
+      value="{{ review.title }}"
+      required
+    />
+    <!-- 내용 -->
+    <p class="fs-5 fw-semibold mb-2">후기 내용</p>
+    <textarea
+      class="mb-3 rounded"
+      style="border: 1.5px solid #424143; width: 45rem; height: 7rem"
+      name="content"
+      required
+    >{{ review.content }}</textarea>
+    <!-- 사진 -->
+    {% if review.image %}
+    <p class="fs-5 fw-semibold mb-2">여행사진 수정</p>
+    <input class="mb-3" type="file" name="image">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check_image'>
+      <label class="form-check-label" for="flexCheckDefault">
+        여행사진 삭제
+      </label>
+    </div>
+    <div class="my-4 mx-2">
+      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="image">
+    </div>
 
-<form action='' method='POST' enctype="multipart/form-data">
-  {% csrf_token %}
-  {% bootstrap_form review_form %}
-  {% bootstrap_button button_type='submit' content='리뷰수정' %}
-</form>
+    {% else %}
+    <p class="fs-5 fw-semibold mb-2">여행사진 업로드</p>
+    <input class="mb-3" type="file" name="image">
+    {% endif %}
+
+    <!-- 사진 -->
+    {% if review.thumbnail %}
+    <p class="fs-5 fw-semibold mb-2">썸네일 수정</p>
+    <input class="mb-3" type="file" name="thumbnail">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" name='check_thumbnail'>
+      <label class="form-check-label" for="flexCheckDefault">
+        썸네일사진 삭제
+      </label>
+    </div>
+    <div class="my-4 mx-2">
+      <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.thumbnail.url }}" alt="thumbnail">
+    </div>
+    {% else %}
+    <p class="fs-5 fw-semibold mb-2">썸네일 업로드</p>
+    <input class="mb-3" type="file" name="thumbnail">
+    <div class="my-4 mx-2">
+    {% endif %}
+    <!-- 등록 버튼 -->
+    <div>
+      <button
+        class="btn fw-semibold float-end mt-5 px-3"
+        style="background-color: #ffed90"
+        type="submit"
+      >
+        후기 수정하기
+      </button>
+    </div>
+  </form>
+</div>
+</section>
 
 {% endblock %}
