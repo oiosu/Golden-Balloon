@@ -4,6 +4,12 @@
 {% block body %}
   <!-- 여행 카드 -->
   <div class="d-flex justify-content-center flex-wrap container pb-5 mt-5">
+    {% if not paginated_reviews %}
+    <div class="text-center" style="margin-top:10rem;">
+    <h1>아직 리뷰가 없어요. </h1>
+    <h1>리뷰를 남겨 여행의 즐거움을 나눠보세요 :)</h1>
+  </div>
+    {% endif %}
     {% for review in paginated_reviews %}
       <div class="card mx-4 my-3" style="width: 18rem; border:2px solid #FFED90">
         {% if request.user in review.like_users.all %}
@@ -78,6 +84,7 @@
   </div>
 
   <!-- 페이지네이션 -->
+  {% if paginated_reviews %}
   <ul class="pagination justify-content-center">
     <!-- 첫 페이지 -->
     {% if paginated_reviews.has_previous %}
@@ -94,18 +101,18 @@
     <!-- 페이지리스트 -->
     <!-- //페이지 범위를 하나씩 리턴 -->
     {% for page_number in paginated_reviews.paginator.page_range %}
-    {% if page_number >= paginated_reviews.number|add:-2 and page_number <= paginated_reviews.number|add:2 %}
-        <!-- // 현재 페이지일 때는 active -->
-        {% if page_number == paginated_reviews.number %}
-          <li class="page-item" aria-current="page">
-            <a class="page-link mx-2 text-black rounded" style="border: none; background-color:#ffed90 !important;  padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
-          </li>
-        {% else %}
-          <li class="page-item text-color-warning">
-            <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
-          </li>
-        {% endif %}
-    {% endif %}
+      {% if page_number >= paginated_reviews.number|add:-5 and page_number <= paginated_reviews.number|add:2 %}
+          <!-- // 현재 페이지일 때는 active -->
+          {% if page_number == paginated_reviews.number %}
+            <li class="page-item" aria-current="page">
+              <a class="page-link mx-2 text-black rounded" style="border: none; background-color:#ffed90 !important;  padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% else %}
+            <li class="page-item text-color-warning">
+              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% endif %}
+      {% endif %}
     {% endfor %}
 
     <!-- 다음페이지 -->
@@ -120,6 +127,7 @@
     {% endif %}
   </ul>
 </div>
+{% endif %}
 
 <!-- 리뷰 작성 -->
 <div class="sticky-bottom float-end me-4">

@@ -244,7 +244,7 @@ def r_create(request):
         grade = request.POST.get("grade")
         user = request.user
         image = request.FILES.get("image")
-        image_two = request.FILES.get("image")
+        image_two = request.FILES.get("image_two")
         thumbnail = request.FILES.get("thumbnail")
         Review.objects.create(
             country=country,
@@ -256,7 +256,8 @@ def r_create(request):
             image_two=image_two,
             thumbnail=thumbnail,
         )
-        return redirect("articles:reviews")
+        pk = Review.objects.order_by("-pk")[0].pk
+        return redirect("articles:r_detail", pk)
 
     review_form = ReviewForm()
 
@@ -624,3 +625,4 @@ def wishitem(request, pk, self):
         "wishitem": wishitem,
     }
     return redirect('articles:product_detail', context)
+
