@@ -63,8 +63,7 @@
       <!-- 페이지리스트 -->
       <!-- //페이지 범위를 하나씩 리턴 -->
       {% for page_number in paginated_faqs.paginator.page_range %}
-      {% comment %}  | add : -2 and page_number <= paginated_faqs.number | add : 2 {% endcomment %}
-        {% if page_number >= paginated_faqs.number %}
+        {% if page_number >= paginated_faqs.number|add:-2 and page_number <= paginated_faqs.number|add:2 %}
           <!-- // 현재 페이지일 때는 active -->
           {% if page_number == paginated_faqs.number %}
             <li class="page-item" aria-current="page">
@@ -76,7 +75,6 @@
             </li>
           {% endif %}
         {% endif %}
-
       {% endfor %}
 
       <!-- 다음페이지 -->
