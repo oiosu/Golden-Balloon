@@ -88,6 +88,7 @@
             <p class="m-4" href="#">더 보기 &nbsp<img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/254/254434.png" alt=""></p>
           </div>
 
+
         
           {% if user.product_wishlist.all %}
             {% for wish in user.product_wishlist.all %}
@@ -100,11 +101,22 @@
                       <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
                       <p>⭐⭐⭐⭐⭐</p>
                     </div>
+
+          <div class="d-flex justify-content-center flex-wrap">
+            {% if user.product_wishlist.all %}
+              {% for wish in user.product_wishlist.all %}
+                <div class="card" style="width:18rem;">
+                  <img class="card-img-top" src="{{ wish.image }}" alt="...">
+                  <div class="card-body">
+                    <p style="color: #B2B2B2;">카테고리</p>
+                    <p style="color: #000; font-size: larger; font-weight: 400;" class="card-text">{{ wish.title }}</p>
+                    <p>⭐⭐⭐⭐⭐</p>
+
                   </div>
                 </div>
-              </div>
-            {% endfor %}
-          {% else %}
+              {% endfor %}
+            {% else %}
+            </div>
             <p class="ms-4">상품이 없습니다.</p>
             <p class="ms-4 pb-3">
               <a href="{% url 'articles:product_main' %}">
