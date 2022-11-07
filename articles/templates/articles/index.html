@@ -8,9 +8,7 @@
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <link rel="stylesheet" href="/STATIC/CSS/main10.css">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css"/>
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
@@ -300,131 +298,155 @@
                   </ul>
                 </div>
               </header>
- <!-- 메인 카드 구현 -->
-<div class="container">
-  <div class="py-5">
-    <div class="">
-      <div class="row" >
-        <div class="col-md-3">
-            <div class="cont_principal">
-                <div class="cont_central">
-                    <div class="cont_modal cont_modal_active">
-                        <div class="cont_photo">
-                            <div class="cont_img_back">
-                                <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4654_large_square_1535621335.jpg?1535621335" alt="" />
-                            </div>
-                            <div class="cont_mins">
-                                <div class="text-center sub_mins">
-                                    <h3>NEW</h3><pre></pre>
-                                    <span><p style="font-size: 15px;">🛫</p></span>
+              <!-- 메인 카드 구현 -->
+              <div class="container">
+                <div class="py-5">
+                  <div class="">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="cont_principal">
+                          <div class="cont_central">
+                            <div class="cont_modal cont_modal_active">
+                              <div class="cont_photo">
+                                <div class="cont_img_back">
+                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4654_large_square_1535621335.jpg?1535621335" alt=""/>
                                 </div>
-                            </div>
-                            <div class="text-center cont_servings">
-                                <h3>BEST</h3><pre></pre>
-                                <span><p style="font-size: 15px;">👍</p></span>
-                            </div>
-                            <div class="text-center p-4 cont_detalles">
-                                <h3>라스베가스</h3>
-                                <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
+                                <div class="cont_mins">
+                                  <div class="text-center sub_mins">
+                                    <h3>NEW</h3>
+                                    <pre></pre>
+                                    <span>
+                                      <p style="font-size: 15px;">🛫</p>
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="text-center cont_servings">
+                                  <h3>BEST</h3>
+                                  <pre></pre>
+                                  <span>
+                                    <p style="font-size: 15px;">👍</p>
+                                  </span>
+                                </div>
+                                <div class="text-center p-4 cont_detalles">
+                                  <h3>라스베가스</h3>
+                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="location.href='{% url 'articles:product_main' %}'">
                                     예약하기</button>
-                                <p class="m-3 text-center">208여개의 여행상품</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="cont_principal">
-                <div class="cont_central">
-                    <div class="cont_modal cont_modal_active">
-                        <div class="cont_photo">
-                            <div class="cont_img_back">
-                                <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4735_large_square_1535795554.jpg?1535795554" alt="" />
-                            </div>
-                            <div class="cont_mins">
-                              <div class="text-center sub_mins">
-                                  <h3>NEW</h3><pre></pre>
-                                  <span><p style="font-size: 15px;">🛫</p></span>
+                                  <p class="m-3 text-center">208여개의 여행상품</p>
+                                </div>
                               </div>
-                          </div>
-                          <div class="text-center cont_servings">
-                              <h3>BEST</h3><pre></pre>
-                              <span><p style="font-size: 15px;">👍</p></span>
-                          </div>
-                          <div class="text-center p-4 cont_detalles">
-                              <h3>후쿠오카</h3>
-                              <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                  예약하기</button>
-                              <p class="m-3 text-center">120여개의 여행상품</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="cont_principal">
-              <div class="cont_central">
-                  <div class="cont_modal cont_modal_active">
-                      <div class="cont_photo">
-                          <div class="cont_img_back">
-                              <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/544_large_square_1468373190.jpg?1468373190"" alt="" />
                           </div>
-                          <div class="cont_mins">
-                            <div class="text-center sub_mins">
-                                <h3>NEW</h3><pre></pre>
-                                <span><p style="font-size: 15px;">🛫</p></span>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="cont_principal">
+                          <div class="cont_central">
+                            <div class="cont_modal cont_modal_active">
+                              <div class="cont_photo">
+                                <div class="cont_img_back">
+                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4735_large_square_1535795554.jpg?1535795554" alt=""/>
+                                </div>
+                                <div class="cont_mins">
+                                  <div class="text-center sub_mins">
+                                    <h3>NEW</h3>
+                                    <pre></pre>
+                                    <span>
+                                      <p style="font-size: 15px;">🛫</p>
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="text-center cont_servings">
+                                  <h3>BEST</h3>
+                                  <pre></pre>
+                                  <span>
+                                    <p style="font-size: 15px;">👍</p>
+                                  </span>
+                                </div>
+                                <div class="text-center p-4 cont_detalles">
+                                  <h3>후쿠오카</h3>
+                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    예약하기</button>
+                                  <p class="m-3 text-center">120여개의 여행상품</p>
+                                </div>
+                              </div>
                             </div>
-                        </div>
-                        <div class="text-center cont_servings">
-                            <h3>BEST</h3><pre></pre>
-                            <span><p style="font-size: 15px;">👍</p></span>
-                        </div>
-                        <div class="text-center p-4 cont_detalles">
-                            <h3>칸쿤</h3>
-                            <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                                예약하기</button>
-                            <p class="m-3 text-center">40여개의 여행상품</p>
                           </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3">
-        <div class="cont_principal">
-            <div class="cont_central">
-                <div class="cont_modal cont_modal_active">
-                    <div class="cont_photo">
-                        <div class="cont_img_back">
-                            <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4672_large_square_1535678422.jpg?1535678422" alt="" />
                         </div>
-                        <div class="cont_mins">
-                          <div class="text-center sub_mins">
-                              <h3>NEW</h3><pre></pre>
-                              <span><p style="font-size: 15px;">🛫</p></span>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="cont_principal">
+                          <div class="cont_central">
+                            <div class="cont_modal cont_modal_active">
+                              <div class="cont_photo">
+                                <div class="cont_img_back">
+                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/544_large_square_1468373190.jpg?1468373190" " alt=" " />
                           </div>
-                      </div>
-                      <div class="text-center cont_servings">
-                          <h3>BEST</h3><pre></pre>
-                          <span><p style="font-size: 15px;">👍</p></span>
-                      </div>
-                      <div class="text-center p-4 cont_detalles">
-                          <h3>바르셀로나</h3>
-                          <button type="button" class="btn btn-primary"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                              예약하기</button>
-                          <p class="m-3 text-center">350여개의 여행상품</p>
+                          <div class=" cont_mins"=" cont_mins""=" cont_mins" "">
+                                  <div class=" text-center sub_mins">
+                                    <h3>NEW</h3>
+                                    <pre></pre>
+                                    <span>
+                                      <p style="font-size: 15px;">🛫</p>
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="text-center cont_servings">
+                                  <h3>BEST</h3>
+                                  <pre></pre>
+                                  <span>
+                                    <p style="font-size: 15px;">👍</p>
+                                  </span>
+                                </div>
+                                <div class="text-center p-4 cont_detalles">
+                                  <h3>칸쿤</h3>
+                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    예약하기</button>
+                                  <p class="m-3 text-center">40여개의 여행상품</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="cont_principal">
+                          <div class="cont_central">
+                            <div class="cont_modal cont_modal_active">
+                              <div class="cont_photo">
+                                <div class="cont_img_back">
+                                  <img src="https://d2ur7st6jjikze.cloudfront.net/landscapes/4672_large_square_1535678422.jpg?1535678422" alt=""/>
+                                </div>
+                                <div class="cont_mins">
+                                  <div class="text-center sub_mins">
+                                    <h3>NEW</h3>
+                                    <pre></pre>
+                                    <span>
+                                      <p style="font-size: 15px;">🛫</p>
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="text-center cont_servings">
+                                  <h3>BEST</h3>
+                                  <pre></pre>
+                                  <span>
+                                    <p style="font-size: 15px;">👍</p>
+                                  </span>
+                                </div>
+                                <div class="text-center p-4 cont_detalles">
+                                  <h3>바르셀로나</h3>
+                                  <button type="button" class="btn btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    예약하기</button>
+                                  <p class="m-3 text-center">350여개의 여행상품</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-  <br>
-  <hr style="border-color:#FFB200;">
-  <br>
+                    <br>
+                    <hr style="border-color:#FFB200;">
+                    <br>
                     <!-- 추천 투어 / 상품리뷰 -->
                     <section>
                       <div class="py-4">
@@ -502,7 +524,7 @@
                       <div class="container">
                         <div class="row">
                           <div class="mx-auto col-md-8 text-center">
-                            <h1>실시간 여행 후기 공유</h1>
+                            <h1 style="font-family: 'Jua', sans-serif !important;">실시간 여행 후기 공유</h1>
                             <p style="font-size: 18px;" class="mb-4">Check out the real-time travel reviews!</p>
                           </div>
                         </div>
@@ -513,7 +535,7 @@
                               <div class="text-center  card-body">
                                 <pre></pre>
                                 <h5 class="card-title p-1">
-                                  <b>루브르 박물관</b>
+                                  <b style="font-family: 'Jua', sans-serif !important;">루브르 박물관</b>
                                 </h5>
                                 <p class="card-text">예술이 역사가 되는 곳</p>
                                 <pre></pre>
@@ -522,11 +544,11 @@
                           </div>
                           <div class="col-lg-3 col-6 p-3">
                             <div class="card">
-                              <img class="card" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/20220/369187_large_1559802935.jpg?1559802935 alt=" card="Card" image="image" cap"="cap"">
-                              <div class="text-center card-body">
+                              <img class="card" src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/20220/369187_large_1559802935.jpg?1559802935 alt=" card="Card" image="image" cap"=" cap""=" cap" "">
+                              <div class=" text-center card-body">
                                 <pre></pre>
                                 <h5 class="card-title p-1">
-                                  <b>그랜드캐년</b>
+                                  <b style="font-family: 'Jua', sans-serif !important;">그랜드캐년</b>
                                 </h5>
                                 <p class="card-text">후회없는 선택!</p>
                                 <pre></pre>
@@ -539,7 +561,7 @@
                               <div class="text-center card-body">
                                 <pre></pre>
                                 <h5 class="card-title p-1">
-                                  <b>박재벌의남부투어</b>
+                                  <b style="font-family: 'Jua', sans-serif !important;">박재벌의남부투어</b>
                                 </h5>
                                 <p class="card-text">이탈리아 남부투어! 독보적재미!</p>
                                 <pre></pre>
@@ -552,7 +574,7 @@
                               <div class="text-center card-body">
                                 <pre></pre>
                                 <h5 class="card-title p-1">
-                                  <b>조슈아 트리 국립 공원</b>
+                                  <b style="font-family: 'Jua', sans-serif !important;">조슈아 트리 국립 공원</b>
                                 </h5>
                                 <p class="card-text">미국/로스엔젤레스의 별밤</p>
                                 <pre></pre>
