@@ -387,14 +387,14 @@ header .main-menu .item .item__contents .contents__texture p {
 
 /* 실시간 리뷰 카드 hover
 /* card-img-top1 */
-/* .card:hover {
+/* .card-img-top1:hover {
   transition: all 0.2s ease-out;
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
   top: -4px;
-  border: 1px solid #cccccc; */
-/* background-color: white; */
-/* }
-.card:before {
+  border: 1px solid #cccccc; 
+background-color: white;
+}
+.card-img-top1:before {
   content: "";
   position: absolute;
   z-index: -1;

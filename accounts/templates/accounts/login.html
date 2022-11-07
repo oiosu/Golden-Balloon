@@ -2,14 +2,28 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-<h1>로그인</h1>
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button style="background-color: #FFED90;" type="submit" class="m-2 btn">✈ 바로 시작 ✈</button>
-    </form>
-</div> 
+<div class="container py-5">
+  <div style="border-radius: 3%; border: 3px solid #FFED90;" class="mx-auto col-md-6 col-10 bg-white p-5">
+    <div class="text-center">
+      <h1 style="color: #FFED90;" class="mb-3">누런 풍선</h1>
+      <p>무거운 여행을 시작해 보세요 :) </p>
+    </div>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-grid gap-2">
+              <button style="background-color: #FFED90;" type="submit" class="m-3 btn btn-lg">✈ 바로 시작 ✈</button>
+            </div>
+        </form>
+        <div class="text-center">
+        <small>
+          <span>혹시 회원이 아니신가요? <a style="text-decoration: none;" href="{% url 'accounts:signup' %}">회원 가입</a>하기</span>
+        </small>
+      </div>
+    </div> 
+  </div>
+</div>
 
 {% comment %} <div class="py-5 text-center">
     <div class="py-5 container">

@@ -25,7 +25,7 @@
     -->
 
     <div class="d-flex">
-      {% if request.user.user_img %}
+      {% if review.user.user_img %}
       <img
       style="width: 3rem; height: 3rem"
       src="{{ review.user.user_img.url }}"
@@ -101,9 +101,9 @@
     <div>
       <!-- 사진 1 -->
       {% if review.image %}
-        <div class="my-4 mx-2" style="display: inline-block;">
+        <a href="#" class="my-4 mx-2" style="display: inline-block;">
           <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image.url }}" alt="{{ review.image }}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        </div>
+        </a>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -120,9 +120,9 @@
 
       <!-- 사진 2 -->
       {% if review.image_two %}
-        <div class="my-4 mx-2" style="display: inline-block;">
+        <a href="#" class="my-4 mx-2" style="display: inline-block;">
           <img class="rounded me-3" style="width: 8rem; height: 8rem" src="{{ review.image_two.url }}" alt="{{ review.image_two }}" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        </div>
+        </a>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
