@@ -57,7 +57,7 @@
               <div class="card-body">
                   <h4 class="card-title">{{ product.title }}</h4>
                   <p class="card-text">⭐⭐⭐⭐⭐</p>
-                  <a style="background-color: #FFED90;" href="{% url 'articles:product_detail'%}" class="btn">50,000</a>
+                  <a style="background-color: #FFED90;" href="{% url 'articles:product_detail' product.pk %}" class="btn">50,000</a>
                 </div>
               </div>
             </div> 
