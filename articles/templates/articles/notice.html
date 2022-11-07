@@ -12,16 +12,16 @@
       <p class="fw-semibold">홈페이지 공지사항입니다.</p>
     </div>
 
-    {% if request.user.is_staff %}
-      <div class="mt-4" style="width: 93%; min-height:20rem;">
-        <!-- 글쓰기 버튼 -->
-        <a href="{% url 'articles:n_create' %}" class="btn fw-semibold float-end mb-3 px-3" style="background-color: #ffed90; text-color: black;">
-          글쓰기
-        </a>
-      </button>
-    {% else %}
-      <br><br>
-    {% endif %}
+
+    <div class="mt-4" style="width: 93%; min-height:20rem;">
+      {% if request.user.is_staff %}
+          <!-- 글쓰기 버튼 -->
+          <a href="{% url 'articles:n_create' %}" class="btn fw-semibold float-end mb-3 px-3" style="background-color: #ffed90; text-color: black;">
+            글쓰기
+          </a>
+      {% else %}
+        <br><br>
+      {% endif %}
 
     <!-- 테이블 -->
     <table class="table table-hover" style="white-space:nowrap;">
