@@ -16,7 +16,7 @@
       <div class="row mt-4">
         <div class="col-md-12">
           <div class="row">
-            <div class="p-3 d-flex justify-content-center col-md-4">
+            <div class=" d-flex justify-content-center col-md-4">
               {% if user.user_img %}
                 <img class="m-3 rounded-circle" src="{{ user.user_img.url }}" alt="{{ user.user_img }}" style="width:100px;">
               {% else %}
@@ -89,7 +89,6 @@
           </div>
           {% if user.product_wishlist.all %}
             {% for wish in user.product_wishlist.all %}
-              {{ forloop.counter }}
               <div class="row">
                 <div class="col-md-3">
                   <div class="card">
