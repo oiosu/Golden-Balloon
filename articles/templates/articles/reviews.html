@@ -3,7 +3,7 @@
 
 {% block body %}
   <!-- 여행 카드 -->
-  <div class="d-flex justify-content-center flex-wrap container pb-5 mt-5">
+  <div class="d-flex justify-content-center flex-wrap container pb-5 mt-5" style="min-height:39rem">
     {% for review in paginated_reviews %}
       <div class="card mx-4 my-3" style="width: 18rem; border:2px solid #FFED90">
         {% if request.user in review.like_users.all %}
@@ -78,6 +78,7 @@
   </div>
 
   <!-- 페이지네이션 -->
+  {% if paginated_reviews %}
   <ul class="pagination justify-content-center">
     <!-- 첫 페이지 -->
     {% if paginated_reviews.has_previous %}
@@ -94,7 +95,8 @@
     <!-- 페이지리스트 -->
     <!-- //페이지 범위를 하나씩 리턴 -->
     {% for page_number in paginated_reviews.paginator.page_range %}
-    {% if page_number >= paginated_reviews.number|add:-2 and page_number <= paginated_reviews.number|add:2 %}
+    {% comment %} |add:-2 and page_number <= paginated_reviews.number|add:2 {% endcomment %}
+    {% if page_number >= paginated_reviews.number %}
         <!-- // 현재 페이지일 때는 active -->
         {% if page_number == paginated_reviews.number %}
           <li class="page-item" aria-current="page">
@@ -120,6 +122,7 @@
     {% endif %}
   </ul>
 </div>
+{% endif %}
 
 <!-- 리뷰 작성 -->
 <div class="sticky-bottom float-end me-4">
