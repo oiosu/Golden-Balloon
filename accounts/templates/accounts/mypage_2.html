@@ -89,7 +89,7 @@
           </div>
 
           {% if wishlist %}
-            {% for wish in user.wishlist.all %}
+            {% for wish in user.wishlist_set.all %}
             {{ forloop.counter }}
               <div class="col-md-3">
                 <div class="card">
