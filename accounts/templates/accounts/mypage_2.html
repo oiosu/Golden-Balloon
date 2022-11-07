@@ -87,11 +87,13 @@
             <p class="m-4 fs-5" style="font-size: large; font-weight: bolder;">위시 리스트</p>
             <p class="m-4" href="#">더 보기 &nbsp<img style="width: 15px;" src="https://cdn-icons-png.flaticon.com/512/254/254434.png" alt=""></p>
           </div>
+
+        
           {% if user.product_wishlist.all %}
             {% for wish in user.product_wishlist.all %}
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="card">
+              <div class=" d-flex justify-content-center flex-wrap ">
+                <div class="">
+                  <div style="border-color: #B2B2B2; width: 400px;" class="card">
                     <img class="card-img-top" src="{{ wish.image }}" alt="...">
                     <div class="card-body">
                       <p style="color: #B2B2B2;">카테고리</p>
@@ -109,6 +111,9 @@
                 지금 떠날 여행 보러가기</a>
             </p>
           {% endif %}
+          
+
+
         </div>
       </div>
     </div>
