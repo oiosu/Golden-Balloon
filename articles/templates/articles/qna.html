@@ -3,105 +3,99 @@
 
 {% block body %}
 
-<!-- Q&A -->
-<section style="padding: 60px 20px 20px 280px">
-  <!-- 제목 -->
-  <div>
-    <h2 class="ms-4 fw-bold">Q & A</h2>
-    <hr class="my-3" style="width: 9rem; color: black" />
-    <p class="fw-semibold" style="white-space:nowrap;">홈페이지 운영에 관해 궁금하신 것 물어보세요.</p>
-  </div>
+  <!-- Q&A -->
+  <section style="padding: 60px 20px 20px 280px">
+    <!-- 제목 -->
+    <div>
+      <h2 class="ms-4 fw-bold">Q & A</h2>
+      <hr class="my-3" style="width: 9rem; color: black"/>
+      <p class="fw-semibold" style="white-space:nowrap;">홈페이지 운영에 관해 궁금하신 것 물어보세요.</p>
+    </div>
 
-    <div class='container'>
-      <div class="col-md-10 col-10 bg-white">
-          <!-- 글쓰기 버튼 -->
-        <div class="mt-4" style="width: 93%; min-height:20rem;">
-          <a href="{% url 'articles:qna_create' %}"
-          class="btn fw-semibold float-end mb-3 px-3"
-          style="background-color: #ffed90; text-color: black;"
-          >
-          글쓰기
-          </a>
-          <!-- 테이블 -->
-          <table class="table table-hover text-center" style="white-space:nowrap;">
-            <thead class="table-group-divider" >
-              <tr style="font-size: 1.17rem">
-               <th style="padding: 0.7rem 0.5rem 0.7rem 2rem; width: 6rem" scope="col">번호</th>
-                <th style="padding: 0.7rem 2.8rem 0.7rem 4.5rem; width: 10rem" scope="col">작성자</th>
-                <th style="padding: 0.7rem 0 0.7rem 8rem; width: 22rem" scope="col">제목</th>
-                <th style="padding: 0.7rem 0 0.7rem 3.8rem " scope="col">답변여부</th>
-                <th style="padding: 0.7rem 0 0.7rem 7.8rem" scope="col">작성시간</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              {% for qna in paginated_qnas %}
-              <tr onclick='location.href="{% url 'articles:qna_detail' qna.pk %}"' style='cursor: pointer;'>
-                <td class="text-center" width: 6rem" scope="row">{{ qna.pk }}</td>
-                <td style="padding: 0.7rem 2.5rem 0.7rem 1.5rem;">
+    <!-- 글쓰기 버튼 -->
+    <div class="mt-4" style="width: 93%; min-height:20rem;">
+      <a href="{% url 'articles:qna_create' %}" class="btn fw-semibold float-end mb-3 px-3" style="background-color: #ffed90; text-color: black;">
+        글쓰기
+      </a>
+      <!-- 테이블 -->
+      <table class="table table-hover text-center" style="white-space:nowrap;">
+        <thead class="table-group-divider">
+          <tr style="font-size: 1.17rem">
+            <th style="padding: 0.7rem 0.5rem 0.7rem 2rem; width: 6rem" scope="col">번호</th>
+            <th style="padding: 0.7rem 2.8rem 0.7rem 4.5rem; width: 10rem" scope="col">작성자</th>
+            <th style="padding: 0.7rem 0 0.7rem 8rem; width: 22rem" scope="col">제목</th>
+            <th style="padding: 0.7rem 0 0.7rem 3.8rem " scope="col">답변여부</th>
+            <th style="padding: 0.7rem 0 0.7rem 7.8rem" scope="col">작성시간</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for qna in paginated_qnas %}
+            <tr onclick="location.href=' {% url 'articles:qna_detail' qna.pk %} '" style='cursor: pointer;'>
+              <td class="text-center" width:="width:" 6rem" scope=" row"=" row""="row""">{{ qna.pk }}</td>
+              <td style=" padding: 0.7rem 2.5rem 0.7rem 1.5rem;">
                 <p class="text-center" style="width: 9.5rem; white-space: nowrap; overflow: hidden;  margin-bottom:0;">{{ qna.user }}</p>
               </td>
-                <td style="padding: 0.7rem 0 0.7rem 1rem;">
+              <td style="padding: 0.7rem 0 0.7rem 1rem;">
                 <p style="width: 22rem; white-space: nowrap; overflow: hidden; text-overflow:ellipsis; margin-bottom:0;">{{ qna.title }}</p>
               </td>
-                <td style="padding: 0.7rem 0 0.7rem 4rem">
-                  {% if qna.qnacomment_set.all %}
-                    <span class="rounded fw-semibold" style="background-color: #FDC678; padding: 0.5rem 1rem">답변</span>
-                  {% else %}
-                    <span class="rounded fw-semibold" style="background-color: #D9DFDF; padding: 0.5rem 1rem">답변</span>
-                  {% endif %}          
-                </td>
-                <td style="padding: 0.7rem 0 0.7rem 4rem">{{ qna.created_at }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <!-- 페이지네이션 -->
-        <ul class="pagination justify-content-center">
-          <!-- 첫 페이지 -->
-          {% if paginated_qnas.has_previous %}
-            <!-- 이전페이지가 있으면 연결(첫 페이지가 아니면) -->
-            <li class="page-item">
-              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" tabindex="-1" href="?page=1">&#60;</a>
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="#">&#60;</a>
-            </li>
-          {% endif %}
-
-          <!-- 페이지리스트 -->
-          <!-- //페이지 범위를 하나씩 리턴 -->
-          {% for page_number in paginated_qnas.paginator.page_range %}
-          {% if page_number >= paginated_qnas.number|add:-2 and page_number <= paginated_qnas.number|add:2 %}
-              <!-- // 현재 페이지일 때는 active -->
-              {% if page_number == paginated_qnas.number %}
-                <li class="page-item" aria-current="page">
-                  <a class="page-link mx-2 text-black rounded" style="border: none; background-color:#ffed90 !important;  padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
-                </li>
-              {% else %}
-                <li class="page-item text-color-warning">
-                  <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
-                </li>
-              {% endif %}
-          {% endif %}
-
+              <td style="padding: 0.7rem 0 0.7rem 4rem">
+                {% if qna.qnacomment_set.all %}
+                  <span class="rounded fw-semibold" style="background-color: #FDC678; padding: 0.5rem 1rem">답변</span>
+                {% else %}
+                  <span class="rounded fw-semibold" style="background-color: #D9DFDF; padding: 0.5rem 1rem">답변</span>
+                {% endif %}
+              </td>
+              <td style="padding: 0.7rem 0 0.7rem 4rem">{{ qna.created_at }}</td>
+            </tr>
           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- 페이지네이션 -->
+    <ul class="pagination justify-content-center">
+      <!-- 첫 페이지 -->
+      {% if paginated_qnas.has_previous %}
+        <!-- 이전페이지가 있으면 연결(첫 페이지가 아니면) -->
+        <li class="page-item">
+          <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" tabindex="-1" href="?page=1">&#60;</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="#">&#60;</a>
+        </li>
+      {% endif %}
 
-          <!-- 다음페이지 -->
-          {% if paginated_notices.has_next %}
-            <li class="page-item">
-              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ max_index }}">&#62;</a>
+      <!-- 페이지리스트 -->
+      <!-- //페이지 범위를 하나씩 리턴 -->
+      {% for page_number in paginated_qnas.paginator.page_range %}
+      {% comment %} | add : -2 and page_number <= paginated_qnas.number | add : 2 {% endcomment %}
+        {% if page_number >= paginated_qnas.number %}
+          <!-- // 현재 페이지일 때는 active -->
+          {% if page_number == paginated_qnas.number %}
+            <li class="page-item" aria-current="page">
+              <a class="page-link mx-2 text-black rounded" style="border: none; background-color:#ffed90 !important;  padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
           {% else %}
-            <li class="page-item disabled">
-              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" tabindex="-1" href="#">&#62;</a>
+            <li class="page-item text-color-warning">
+              <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
           {% endif %}
-        </ul>
-      </div>
-    </div>
-</section>
+        {% endif %}
 
+      {% endfor %}
+
+      <!-- 다음페이지 -->
+      {% if paginated_notices.has_next %}
+        <li class="page-item">
+          <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" href="?page={{ max_index }}">&#62;</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link mx-2 text-black rounded" style="border: none; padding: 0.5rem 1.05rem;" tabindex="-1" href="#">&#62;</a>
+        </li>
+      {% endif %}
+    </ul>
+
+  </section>
 
 {% endblock %}
