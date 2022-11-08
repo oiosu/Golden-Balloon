@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
     ]
 STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 
+
 # STATICFILES_DIRS = (os.path.join("static"),)
 
 # Media files (user uploaded filed)
