@@ -2,6 +2,9 @@
 ### 여행 상품 소개 및 리뷰 커뮤니티 서비스
 <br>
 
+### herku 
+[누런풍선](https://pacific-reaches-80736.herokuapp.com/)
+
 ## 업무분담
 * `백솔비`: 프론트엔드
 
